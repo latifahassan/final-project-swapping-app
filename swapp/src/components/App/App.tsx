@@ -1,1 +1,1 @@
-// THI IS THE APP
+// THIS IS THE APP
