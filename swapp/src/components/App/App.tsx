@@ -2,9 +2,9 @@
 
 import React from 'react'
 
-type Props = {}
+// type Props = {}
 
-export default function index({}: Props) {
+export default function App() {
   return (
     <div className="App">
       <h1>SWAPP bit by bit!</h1>
