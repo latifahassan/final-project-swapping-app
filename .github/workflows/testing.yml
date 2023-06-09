@@ -22,10 +22,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: pwd    
-      - run: ls
-      - run: cd swapp 
-      - run: pwd  
-      - run: ls 
-      - run: npm ci 
-      - run: npm test
+      - run: |
+          pwd    
+          ls
+          cd swapp 
+          pwd  
+          ls 
+          npm ci 
+          npm test
