@@ -10,6 +10,6 @@ import App from './App';
 
 test('does the h1 say SWAPP bit by bit-test', () => {
   render(<App />);
-  const h1Element = screen.getByText(/SWAPP bit by bit-test/i);
+  const h1Element = screen.getByText(/SWAPP bit by bit-test1/i);
   expect(h1Element).toBeInTheDocument();
 });
