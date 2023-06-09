@@ -8,8 +8,8 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('does the h1 say SWAPP bit by bit!!!!', () => {
+test('does the h1 say SWAPP bit by bit-test', () => {
   render(<App />);
-  const h1Element = screen.getByText(/SWAPP bit by bit!!!!/i);
+  const h1Element = screen.getByText(/SWAPP bit by bit-test/i);
   expect(h1Element).toBeInTheDocument();
 });
