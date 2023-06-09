@@ -1,14 +1,11 @@
-name: testing CI
-
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  Test:
-
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,16 +14,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: |
-          pwd    
-          ls
-          cd swapp 
-          pwd  
-          ls 
-          npm ci 
-          npm test
+      - name: Change directory to swapp
+        run: cd swapp
+      - name: Install dependencies
+        working-directory: swapp
+        run: npm ci
+      - name: Build
+        working-directory: swapp
+        run: npm run build --if-present
+      - name: Test
+        working-directory: swapp
+        run: npm test
