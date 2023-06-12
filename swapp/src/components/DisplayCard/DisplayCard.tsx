@@ -4,7 +4,7 @@ type DisplayCardProps = {
   image: string
   title: string
   username: string
-  key: number
+  id: string
 }
 
 export default function DisplayCard({image, title, username, key}: DisplayCardProps) {
