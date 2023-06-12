@@ -16,8 +16,18 @@ export default function SearchBar() {
     const filteredData = listingsData.filter((listing:Listing)=> listing.title.toLowerCase().includes(searchQuery.toLowerCase()));
     setSearchResults(filteredData)
   }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value)
+  }
   return (
-    <div>SearchBar</div>
+    <div>
+  <input type="text" 
+  placeholder='Search'
+  value={searchQuery}
+  onChange={handleInputChange}
+  />
+    </div>
   )
 }
 
