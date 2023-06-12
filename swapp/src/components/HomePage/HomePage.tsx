@@ -1,11 +1,30 @@
-// this is a dummy file
+import React from 'react';
+import { useState } from 'react';
+import DisplayCard from '../DisplayCard/DisplayCard';
+import PopUp from '../PopUp/PopUp';
 
-import React from 'react'
+export default function HomePage() {
+    const [getItNowClicked, setGetItNowClicked] = useState(false);
+  
+    const handleGetItNowClick = () => {
+      setGetItNowClicked(true);
+    };
 
-type Props = {}
+    
+  // We'll need to set this up so that when clicked in PopUp it will update the DisplayCard and eventually the token count  
+  const [spendATokenClicked, setSpendATokenClicked] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-export default function HomePage({}: Props) {
+  const handleSpendATokenClick = () => {
+    setSpendATokenClicked(true);
+    console.log(spendATokenClicked)
+  };
+
   return (
-    <div>HomePage</div>
-  )
+    <div>
+      <DisplayCard handleGetItNowClick={handleGetItNowClick} />
+      {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
+
+    </div>
+  );
 }
