@@ -22,14 +22,14 @@ describe("ListDisplay", () => {
         expect(DisplayCard).toHaveBeenCalledTimes(3);
       });
 
-    // test('Passes correct props to DisplayCard', () => {
-    //     render(<ListDisplay numItems={1} itemsArray={[
-    //         {title: 'test title 1', image: 'test1.jpg', username: 'test username 1', id: 'abc123'}
-    //     ]} />);
-    //     expect(DisplayCard).toHaveBeenCalledWith({title: 'test title 1', image: 'test1.jpg', username: 'test username 1', id: 'abc123'});
-    // })
-    
+    test('Passes correct props to DisplayCard', () => {
+      render(<ListDisplay numItems={2} itemsArray={[
+        {title: 'test title 1', image: 'test1.jpg', username: 'test username 1', id: 'abc123'},
+        {title: 'test title 2', image: 'test2.jpg', username: 'test username 2', id: 'def456'},
+      ]} />);
+        expect(DisplayCard).toHaveBeenNthCalledWith(1, {id: 'abc123', image: 'test1.jpg', title: 'test title 1', username: 'test username 1'}, {});
+        expect(DisplayCard).toHaveBeenNthCalledWith(2, {id: 'def456', image: 'test2.jpg', title: 'test title 2', username: 'test username 2'}, {});
+    });
 })
     
-    
-
+  
