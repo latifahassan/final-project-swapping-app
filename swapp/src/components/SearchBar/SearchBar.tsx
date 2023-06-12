@@ -18,18 +18,41 @@ export default function SearchBar() {
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value)
+    const query = event.target.value.toLowerCase()
+    setSearchQuery(query)
+    const filteredData = listingsData.filter((listing:Listing)=> listing.title.toLowerCase().includes(query));
+    setSearchResults(filteredData)
   }
   return (
     <div>
-  <input type="text" 
-  placeholder='Search'
-  value={searchQuery}
-  onChange={handleInputChange}
-  />
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchQuery}
+        onChange={handleInputChange}
+      />
+
+{searchResults.length > 0 && (
+  <div>
+    <h3>Search Results:</h3>
+    <ul>
+      {searchResults.map((result, index) => (
+        <li key={index}>
+          <img src={result.image} alt={result.title} />
+          <div>{result.title}</div>
+          <div>{result.username}</div>
+        </li>
+      ))}
+    </ul>
+        </div>
+      )}
     </div>
-  )
+  );
 }
+
+
+
+
 
 /*
 - import data ✅
