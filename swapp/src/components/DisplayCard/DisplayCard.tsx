@@ -7,13 +7,14 @@ type DisplayCardProps = {
   id: string
 }
 
-export default function DisplayCard({image, title, username, id}: DisplayCardProps) {
+export default function DisplayCard({id, image, title, username}: DisplayCardProps) {
   return (
     <>
       <img src={image} alt={`img of ${title}`} />
       <h3>{title}</h3>
       <p>{username}</p>
       <button type="button">GET IT NOW</button>
+      <p>The ID is {id}</p>
     </>
   )
 }

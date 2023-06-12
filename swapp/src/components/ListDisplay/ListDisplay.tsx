@@ -17,7 +17,8 @@ export default function ListDisplay({numItems, itemsArray}: ListDisplayProps) {
       {slicedItemsArray.map((item, index) => {
         return (
           <DisplayCard
-            key={index}
+            key={item.id}
+            id={item.id}
             image={item.image}
             title={item.title}
             username={item.username}
