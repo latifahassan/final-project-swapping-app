@@ -35,24 +35,19 @@ import DisplayCard from '../DisplayCard/DisplayCard.js';
 import PopUp from '../PopUp/PopUp.js';
 
 export default function HomePage() {
-  const ParentComponent = () => {
     const [getItNowClicked, setGetItNowClicked] = useState(false);
   
     const handleGetItNowClick = () => {
       setGetItNowClicked(true);
     };
-
-    return { handleGetItNowClick };
-  };
-
-  const { handleGetItNowClick } = ParentComponent();
+ 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div>
-      <DisplayCard getItNowClicked={handleGetItNowClick} />
-      {ParentComponent && <PopUp />}
+      <DisplayCard handleGetItNowClick={handleGetItNowClick} />
+      {getItNowClicked && <PopUp />}
 
     </div>
   );
