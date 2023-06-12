@@ -17,6 +17,7 @@ export default function HomePage() {
 
   const handleSpendATokenClick = () => {
     setSpendATokenClicked(true);
+    console.log(spendATokenClicked)
   };
 
   return (
