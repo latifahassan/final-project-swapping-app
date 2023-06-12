@@ -5,7 +5,7 @@ import DisplayCard from '../DisplayCard/DisplayCard'
 // ListDisplay should receive a prop (from App) of the number of DisplayCard items to display
 type ListDisplayProps = {
   numItems: number
-  itemsArray: {title: string, image: string, username: string}[]
+  itemsArray: {title: string, image: string, username: string, id: string}[]
 }
 
 export default function ListDisplay({numItems, itemsArray}: ListDisplayProps) {

@@ -7,7 +7,7 @@ type DisplayCardProps = {
   id: string
 }
 
-export default function DisplayCard({image, title, username, key}: DisplayCardProps) {
+export default function DisplayCard({image, title, username, id}: DisplayCardProps) {
   return (
     <>
       <img src={image} alt={`img of ${title}`} />
