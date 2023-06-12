@@ -1,21 +1,31 @@
-import React from 'react';
+import React from 'react'
 
-export default function DisplayCard(props: | { handleGetItNowClick: () => void; }) {
-  const handleClick = () => {
-    props.handleGetItNowClick();
-  };
-
-  return (
-    <div>
-      <img src="https://cdn.shopify.com/s/files/1/0606/8482/8929/products/10_bc06b69a-fff0-415b-b753-f3de8fe716c6.jpg?v=1645969533&width=1200" alt="Dummy jumper" />
-      <h2> Maroon jumper </h2>
-      <button onClick={handleClick} className='greenButton'>Get it now</button>
-    </div>
-  );
+type DisplayCardProps = {
+  image: string
+  title: string
+  username: string
+  id: string
+  handleGetItNowClick: () => void;
 }
 
-
-
-
-
-
+export default function DisplayCard({id, image, title, username, handleGetItNowClick}: DisplayCardProps) {
+    
+     const handleClick = () => {
+    props.handleGetItNowClick();
+  };
+    
+  return (
+    <>
+      <img src={image} alt={`img of ${title}`} />
+      <h3>{title}</h3>
+      <p>{username}</p>
+      <button onClick={handleClick} className='greenButton'>GET IT NOW</button>
+             {/*
+             The GET IT NOW button should bring up a PopUp asking you to confirm your address
+             It will do this by calling a function from App.tsx that will set the state of the PopUp to true
+             If loggedIn is false, the button should take you to the sign up/log in page        
+             */}
+      <p>The ID is {id}</p>
+    </>
+  )
+}
