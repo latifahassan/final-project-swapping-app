@@ -12,10 +12,6 @@ type Listing = {
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Listing[]>([]);
-  function handleSearch(){
-    const filteredData = listingsData.filter((listing:Listing)=> listing.title.toLowerCase().includes(searchQuery.toLowerCase()));
-    setSearchResults(filteredData)
-  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.toLowerCase()
