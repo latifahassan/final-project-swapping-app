@@ -1,8 +1,7 @@
 // THIS IS THE APP
 
 import React from 'react'
-import { useState } from 'react'
-import HomePage from '../HomePage/HomePage.js'
+import HomePage from '../HomePage/HomePage'
 // type Props = {}
 
 export default function App() {
