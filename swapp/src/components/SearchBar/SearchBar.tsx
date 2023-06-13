@@ -6,17 +6,21 @@ import { useState } from 'react'
 type Listing = {
   title:string,
   username: string,
-  image: string
+  image: string,
+  id: string
 }
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Listing[]>([]);
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value.toLowerCase()
+    const query = event.target.value
     setSearchQuery(query)
-    const filteredData = listingsData.filter((listing:Listing)=> listing.title.toLowerCase().includes(query));
+    // cleanedQuery: remove any extra spaces and make the string lowercase
+    // "     rEd      dREsS     "
+    // "red dress"
+    const cleanedQuery = query.trim().replace(/\s+/g, " ").toLowerCase();
+    const filteredData = listingsData.filter((listing:Listing)=> listing.title.toLowerCase().includes(cleanedQuery));
     setSearchResults(filteredData)
   }
   return (
