@@ -47,16 +47,18 @@ export default function HomePage() {
     console.log(spendATokenClicked);
   };
 
-  const displayCardProps = {
-    id: 'exampleId',
-    image: 'exampleImage.jpg',
-    title: 'Example Title',
-    username: 'exampleUser',
-    handleGetItNowClick: handleGetItNowClick,
-  };
-
   const numItems = 3;
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([
+    // this is just an example of what the items array should look like.
+    // It will eventually be set to start as empty via useState([]) 
+    {
+      id: '678qwerty',
+      image: 'red_trousers.jpg',
+      title: 'Red Trousers',
+      username: 'john_doe_123',
+    }
+  ]);
+
 
   return (
     <div>
