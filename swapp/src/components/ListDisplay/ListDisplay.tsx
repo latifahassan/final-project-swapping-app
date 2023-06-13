@@ -37,9 +37,10 @@ type ListDisplayProps = {
   numItems: number;
   items: { title: string; image: string; username: string; id: string }[];
   handleGetItNowClick: () => void;
+  spendATokenClicked: boolean;
 };
 
-export default function ListDisplay({ numItems, items, handleGetItNowClick }: ListDisplayProps) {
+export default function ListDisplay({ numItems, items, handleGetItNowClick, spendATokenClicked }: ListDisplayProps) {
   const slicedItems = items.slice(0, numItems);
 
   return (
@@ -52,6 +53,7 @@ export default function ListDisplay({ numItems, items, handleGetItNowClick }: Li
           title={item.title}
           username={item.username}
           handleGetItNowClick={handleGetItNowClick}
+          spendATokenClicked={spendATokenClicked}
         />
       ))}
     </>
