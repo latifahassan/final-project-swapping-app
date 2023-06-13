@@ -32,6 +32,7 @@
 import React, { useState } from 'react';
 import PopUp from '../PopUp/PopUp';
 import ListDisplay from '../ListDisplay/ListDisplay';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function HomePage() {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
@@ -63,6 +64,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <SearchBar/>
       <ListDisplay numItems={numItems} items={items} handleGetItNowClick={handleGetItNowClick}/>
       {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
     </div>
