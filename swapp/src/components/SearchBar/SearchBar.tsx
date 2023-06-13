@@ -4,15 +4,18 @@ import React from 'react'
 import { useState } from 'react'
 
 type Listing = {
-  title:string,
+  title: string,
   username: string,
   image: string,
   id: string
 }
 
-export default function SearchBar() {
+type SearchBarProps = {
+  setSearchResults: () => void;
+}
+
+export default function SearchBar({setSearchResults}: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<Listing[]>([]);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value
     setSearchQuery(query)
