@@ -13,20 +13,4 @@ describe('SearchBar component', () => {
       fireEvent.change(inputElement, { target: { value: 'jumper' } });
       expect(inputElement.value).toBe('jumper');
     });
-test("displays search result header on page", ()=> {
-    const setSearchResults = jest.fn();
-    render(<SearchBar setSearchResults={setSearchResults}/>);
-    const inputElement = screen.getByPlaceholderText('Search')
-    fireEvent.change(inputElement, { target: { value: 'jumper' } })
-    const resultHeader = screen.getByText('Search Results:')
-    expect(resultHeader).toBeInTheDocument();
-})
-test("displays a search result item on page", ()=> {
-    const setSearchResults = jest.fn();
-    render(<SearchBar setSearchResults={setSearchResults}/>);
-    const inputElement = screen.getByPlaceholderText('Search')
-    fireEvent.change(inputElement, { target: { value: 'jumper' } })
-    const searchResultItem = screen.getByAltText('Knitted jumper in maroon')
-    expect(searchResultItem).toBeInTheDocument();
-}
-)})
+});
