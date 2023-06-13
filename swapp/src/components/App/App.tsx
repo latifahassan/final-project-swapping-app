@@ -1,5 +1,4 @@
 // THIS IS THE APP
-
 import HomePage from '../HomePage/HomePage'
 // type Props = {}
 export default function App() {

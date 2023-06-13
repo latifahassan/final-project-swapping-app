@@ -1,11 +1,11 @@
 // this is a dummy file
 
 import React from 'react'
+import './Footer.css'
 
-type Props = {}
 
-export default function Footer({}: Props) {
+export default function Footer() {
   return (
-    <div>Footer</div>
+    <div className="footer">Copyright @2023 bit by bit</div>
   )
 }
