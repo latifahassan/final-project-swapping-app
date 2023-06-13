@@ -34,7 +34,6 @@ export default function HomePage() {
       <SearchBar setSearchResults={setSearchResults} />
       <ListDisplay
        numItems={numItems}
-      //  items={items}
        handleGetItNowClick={handleGetItNowClick}
        searchResults={searchResults}/>
       {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
