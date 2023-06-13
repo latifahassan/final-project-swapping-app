@@ -19,9 +19,12 @@ export default function HomePage() {
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
+  const [numberOfTokens, setNumberOfTokens] = useState(4);
 
   const handleSpendATokenClick = () => {
     setSpendATokenClicked(true);
+    setNumberOfTokens(numberOfTokens - 1); 
+    setGetItNowClicked(false);
     console.log(spendATokenClicked);
   };
 
@@ -35,8 +38,12 @@ export default function HomePage() {
       <ListDisplay
        numItems={numItems}
        handleGetItNowClick={handleGetItNowClick}
-       searchResults={searchResults}/>
+       searchResults={searchResults}        
+       spendATokenClicked={spendATokenClicked} />
       {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
+      <p> Number of tokens: {numberOfTokens}</p>
     </div>
+  
   );
 }
+

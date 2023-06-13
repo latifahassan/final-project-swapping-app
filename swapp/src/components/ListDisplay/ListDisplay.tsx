@@ -4,6 +4,7 @@ import DisplayCard from '../DisplayCard/DisplayCard';
 type ListDisplayProps = {
   numItems: number;
   handleGetItNowClick: () => void;
+  spendATokenClicked: boolean;
   searchResults: {
     title:string,
     username: string,
@@ -11,8 +12,7 @@ type ListDisplayProps = {
     id: string
   }[];
 };
-
-export default function ListDisplay({ numItems, handleGetItNowClick, searchResults }: ListDisplayProps) {
+export default function ListDisplay({ numItems, searchResults, handleGetItNowClick, spendATokenClicked }: ListDisplayProps) {
   const slicedSearchResults = searchResults.slice(0, numItems);
 
   return (
@@ -26,6 +26,7 @@ export default function ListDisplay({ numItems, handleGetItNowClick, searchResul
           title={item.title}
           username={item.username}
           handleGetItNowClick={handleGetItNowClick}
+          spendATokenClicked={spendATokenClicked}
         />
       ))}
     </>
