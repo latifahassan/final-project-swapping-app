@@ -2,8 +2,19 @@ import React, { useState } from 'react';
 import PopUp from '../PopUp/PopUp';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
+<<<<<<< HEAD
 import Footer from '../Footer/Footer';
 import './HomePage.css';
+=======
+import listingsData from '../SearchBar/data.json';
+
+type Listing = {
+  title: string,
+  username: string,
+  image: string,
+  id: string
+}
+>>>>>>> 2d69a9aabac0984d9eb673bf9f2829fae087d45a
 
 export default function HomePage() {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
@@ -13,32 +24,35 @@ export default function HomePage() {
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
+  const [numberOfTokens, setNumberOfTokens] = useState(4);
 
   const handleSpendATokenClick = () => {
     setSpendATokenClicked(true);
+    setNumberOfTokens(numberOfTokens - 1); 
+    setGetItNowClicked(false);
     console.log(spendATokenClicked);
   };
 
-  const numItems = 3;
-  const [items, setItems] = useState([
-    // this is just an example of what the items array should look like.
-    // It will eventually be set to start as empty via useState([]) 
-    {
-      id: '678qwerty',
-      image: 'red_trousers.jpg',
-      title: 'Red Trousers',
-      username: 'john_doe_123',
-    }
-  ]);
-  // adding a random console log so that setItems is technically used, so that deployment passes.
-  console.log(setItems)
+  const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
+
+  let numItems = 99;
 
   return (
     <div>
-      <SearchBar/>
-      <ListDisplay numItems={numItems} items={items} handleGetItNowClick={handleGetItNowClick}/>
+      <SearchBar setSearchResults={setSearchResults} />
+      <ListDisplay
+       numItems={numItems}
+       handleGetItNowClick={handleGetItNowClick}
+       searchResults={searchResults}        
+       spendATokenClicked={spendATokenClicked} />
       {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
+<<<<<<< HEAD
       <div className="footer-container"><Footer/></div>
+=======
+      <p> Number of tokens: {numberOfTokens}</p>
+>>>>>>> 2d69a9aabac0984d9eb673bf9f2829fae087d45a
     </div>
+  
   );
 }
+
