@@ -8,10 +8,10 @@ type Listing = {
   username: string,
   image: string,
   id: string
-}
+};
 
 type SearchBarProps = {
-  setSearchResults: () => void;
+  setSearchResults: (FilteredData: Listing[]) => void;
 }
 
 export default function SearchBar({setSearchResults}: SearchBarProps) {
