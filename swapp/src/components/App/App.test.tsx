@@ -8,8 +8,8 @@ import App from './App';
 //   expect(linkElement).toBeInTheDocument();
 // });
 
-test('does the h1 say SWAPP bit by bit!!!!', () => {
+test('does the h1 say SWAPP bit by bit-test FINAL - 17:10', () => {
   render(<App />);
-  const h1Element = screen.getByText(/SWAPP bit by bit!!!!/i);
+  const h1Element = screen.getByText(/SWAPP bit by bit-test FINAL - 17:10/i);
   expect(h1Element).toBeInTheDocument();
 });
