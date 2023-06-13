@@ -25,21 +25,16 @@ export default function HomePage() {
     console.log(spendATokenClicked);
   };
 
-  const [searchResults, setSearchResults] = useState<Listing[]>([]);
+  const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
 
-  const numItems = 3;
-  const [items, setItems] = useState(listingsData);
-  // adding a random console log so that setItems is technically used, so that deployment passes.
-  console.log(setItems)
+  let numItems = 99;
 
   return (
     <div>
-      <SearchBar
-      setSearchResults={setSearchResults}
-      />
+      <SearchBar setSearchResults={setSearchResults} />
       <ListDisplay
        numItems={numItems}
-       items={items}
+      //  items={items}
        handleGetItNowClick={handleGetItNowClick}
        searchResults={searchResults}/>
       {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}

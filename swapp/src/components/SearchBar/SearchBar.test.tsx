@@ -7,20 +7,23 @@ import { render, fireEvent, screen } from "@testing-library/react"
 
 describe('SearchBar component', () => {
     test('update search query state on input change', () => {
-      render(<SearchBar />);
+      const setSearchResults = jest.fn();
+      render(<SearchBar setSearchResults={setSearchResults}/>);
       const inputElement = screen.getByPlaceholderText('Search') as HTMLInputElement;
       fireEvent.change(inputElement, { target: { value: 'jumper' } });
       expect(inputElement.value).toBe('jumper');
     });
 test("displays search result header on page", ()=> {
-    render(<SearchBar />)
+    const setSearchResults = jest.fn();
+    render(<SearchBar setSearchResults={setSearchResults}/>);
     const inputElement = screen.getByPlaceholderText('Search')
     fireEvent.change(inputElement, { target: { value: 'jumper' } })
     const resultHeader = screen.getByText('Search Results:')
     expect(resultHeader).toBeInTheDocument();
 })
 test("displays a search result item on page", ()=> {
-    render(<SearchBar />)
+    const setSearchResults = jest.fn();
+    render(<SearchBar setSearchResults={setSearchResults}/>);
     const inputElement = screen.getByPlaceholderText('Search')
     fireEvent.change(inputElement, { target: { value: 'jumper' } })
     const searchResultItem = screen.getByAltText('Knitted jumper in maroon')

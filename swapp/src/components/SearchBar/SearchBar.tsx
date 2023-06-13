@@ -1,4 +1,3 @@
-// this is a dummy file
 import listingsData from './data.json'
 import React from 'react'
 import { useState } from 'react'
@@ -34,33 +33,6 @@ export default function SearchBar({setSearchResults}: SearchBarProps) {
         value={searchQuery}
         onChange={handleInputChange}
       />
-
-{searchResults.length > 0 && (
-  <div>
-    <h3>Search Results:</h3>
-    <ul>
-      {searchResults.map((result, index) => (
-        <li key={index}>
-          <img src={result.image} alt={result.title} />
-          <div>{result.title}</div>
-          <div>{result.username}</div>
-        </li>
-      ))}
-    </ul>
-        </div>
-      )}
     </div>
   );
 }
-
-
-
-
-
-/*
-- import data ✅
-- declare states ✅
-  - search query - stores what user types in
-  - search results - shows result 
-- write searchbar function
- */
