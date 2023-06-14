@@ -63,7 +63,7 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
       <CardActions>
       {!spendATokenClicked && 
       <Button role="button" variant="contained" color="success"  onClick={handleGetItNowClick} sx={{mb: 2, mt: -2}}>
-          Get it now
+          GET IT NOW
         </Button>}
        {spendATokenClicked && <p id = "claimedOption">Claimed</p>} 
       </CardActions>
