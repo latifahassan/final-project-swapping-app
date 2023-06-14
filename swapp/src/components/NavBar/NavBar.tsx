@@ -5,13 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // import swappTransparent from '../../../public/swapp-transparent.png';
-import swappTransparent from '../../images/swapp-transparent.png';
+// import swappTransparent from '../../images/swapp-transparent.png';
 
 const settings = ['My Account', 'Logout'];
 
