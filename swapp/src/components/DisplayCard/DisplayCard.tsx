@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Button, Stack, Box } from '@mui/material';
 type DisplayCardProps = {
   image: string
   title: string
@@ -14,10 +14,19 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
     
   return (
     <>
-      <img src={image} alt={`img of ${title}`} />
+      <Box image={image} />
       <h3>{title}</h3>
       <p>{username}</p>
-      {!spendATokenClicked && <button onClick={handleGetItNowClick} id='greenButton'>GET IT NOW</button>} 
+      {!spendATokenClicked && 
+      
+      
+        <Stack direction="row" spacing={2}>
+          <Button variant="contained" color="success">
+          Success
+        </Button>
+
+        </Stack>      
+      } 
              {/*
              The GET IT NOW button should bring up a PopUp asking you to confirm your address
              It will do this by calling a function from App.tsx that will set the state of the PopUp to true
@@ -25,6 +34,7 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
              */}
       {spendATokenClicked && <p id = "claimedOption">Claimed</p>} 
       <p>The ID is {id}</p>
+      </Box>
     </>
   )
 }
