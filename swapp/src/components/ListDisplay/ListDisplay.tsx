@@ -19,9 +19,9 @@ export default function ListDisplay({ numItems, searchResults, handleGetItNowCli
   return (
     <>
     <h2>Search Results:</h2>
-    <Grid container spacing = {2}>
+    <Grid container rowSpacing={2} columnSpacing={{ xs: 10, sm: 5, md: 7 }} sx={{pl: 1.5}}>
       {slicedSearchResults.map((item) => (
-        <Grid item xs = {4} key={item.id}>
+        <Grid item xs = {5} key={item.id}>
         <DisplayCard
           key={item.id}
           id={item.id}

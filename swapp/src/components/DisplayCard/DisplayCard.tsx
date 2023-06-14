@@ -45,25 +45,25 @@ type DisplayCardProps = {
 // width: 200, marginTop: 5, marginLeft: 15, marginRight: 15, marginBottom: 5
 export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked}: DisplayCardProps) {
   return (
-    <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+    <Card sx={{ maxWidth: 520, minWidth: 190, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5}}>
       <CardMedia
-        sx={{ height: 140, width: 140 }}
+        sx={{ height: 165, width: 172, borderRadius: 2, mt: 1.4}}
         image={image}
         title={`image of ${title}`}
         
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div" sx={{fontSize: 14, fontWeight: 'bold', maxWidth: 500, minWidth: 190, textWrap: 'wrap', mt: -2}}>
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" sx={{mt: -0.5}}>
           {username}
         </Typography>
       </CardContent>
       <CardActions>
       {!spendATokenClicked && 
-      <Button role="button" variant="contained" color="success"  onClick={handleGetItNowClick}>
-          GET IT NOW
+      <Button role="button" variant="contained" color="success"  onClick={handleGetItNowClick} sx={{mb: 2, mt: -2}}>
+          Get it now
         </Button>}
        {spendATokenClicked && <p id = "claimedOption">Claimed</p>} 
       </CardActions>
