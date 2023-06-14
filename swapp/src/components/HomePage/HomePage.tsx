@@ -3,6 +3,8 @@ import PopUp from '../PopUp/PopUp';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
 import listingsData from '../SearchBar/data.json';
+import Footer from '../Footer/Footer';
+
 
 type Listing = {
   title: string,
@@ -42,6 +44,7 @@ export default function HomePage() {
        spendATokenClicked={spendATokenClicked} />
       {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
       <p> Number of tokens: {numberOfTokens}</p>
+      <Footer/>
     </div>
   
   );
