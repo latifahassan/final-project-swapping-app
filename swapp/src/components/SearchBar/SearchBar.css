@@ -1,0 +1,9 @@
+.searchBar123 {
+    background-color: #E3E2E2;
+    border: 0.2px solid black;
+    border-radius: 20px;
+    width: 350px;
+    height: 35px;
+    margin: 0 auto;
+    font-size: 20px;
+}
