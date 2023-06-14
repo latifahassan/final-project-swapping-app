@@ -14,15 +14,16 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
     
   return (
     <>
-      <Box image={image} />
+      <Box>
+      <img src={image} alt={title}/>
       <h3>{title}</h3>
       <p>{username}</p>
       {!spendATokenClicked && 
       
       
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" color="success">
-          Success
+          <Button variant="contained" color="success"  onClick={handleGetItNowClick}>
+          GET IT NOW
         </Button>
 
         </Stack>      
@@ -34,7 +35,7 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
              */}
       {spendATokenClicked && <p id = "claimedOption">Claimed</p>} 
       <p>The ID is {id}</p>
-      </Box>
+    </Box>
     </>
   )
 }
