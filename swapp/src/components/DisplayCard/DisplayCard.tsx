@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Stack, Box, CardMedia, Card, CardContent } from '@mui/material';
+import { Button, CardMedia, Card, CardContent } from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 
@@ -42,17 +42,18 @@ type DisplayCardProps = {
 //     </>
 //   )
 // }
-
+// width: 200, marginTop: 5, marginLeft: 15, marginRight: 15, marginBottom: 5
 export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked}: DisplayCardProps) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 140, width: 140 }}
         image={image}
         title={`image of ${title}`}
+        
       />
       <CardContent>
-        <Typography gutterBottom variant="h3" component="div">
+        <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">

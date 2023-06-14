@@ -1,5 +1,6 @@
 import React from 'react';
 import DisplayCard from '../DisplayCard/DisplayCard';
+import Grid from '@mui/material/Grid';
 
 type ListDisplayProps = {
   numItems: number;
@@ -18,7 +19,9 @@ export default function ListDisplay({ numItems, searchResults, handleGetItNowCli
   return (
     <>
     <h2>Search Results:</h2>
+    <Grid container spacing = {2}>
       {slicedSearchResults.map((item) => (
+        <Grid item xs = {4} key={item.id}>
         <DisplayCard
           key={item.id}
           id={item.id}
@@ -28,7 +31,9 @@ export default function ListDisplay({ numItems, searchResults, handleGetItNowCli
           handleGetItNowClick={handleGetItNowClick}
           spendATokenClicked={spendATokenClicked}
         />
+        </Grid>
       ))}
+      </Grid>
     </>
   );
 }
