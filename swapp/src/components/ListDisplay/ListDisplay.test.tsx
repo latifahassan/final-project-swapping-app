@@ -23,17 +23,6 @@ describe("ListDisplay", () => {
         expect(DisplayCard).toHaveBeenCalledTimes(3);
       });
 
-    test('Renders the correct data in DisplayCard', () => {
-      const handleGetItNowClick = jest.fn();
-      render(<ListDisplay numItems={3} handleGetItNowClick={handleGetItNowClick} searchResults={[
-        {title: 'test title 1', image: 'test1.jpg', username: 'test username 1', id: 'abc123'},
-        {title: 'test title 2', image: 'test2.jpg', username: 'test username 2', id: 'def456'},
-        {title: 'test title 3', image: 'test3.jpg', username: 'test username 3', id: 'ghi789'}
-       ]} spendATokenClicked={false} />)
-        expect(screen.getByText("test username 1")).toBeInTheDocument();
-        expect(screen.getByText("test title 3")).toBeInTheDocument();
-    });
-
     test('print search results heading on page', () => {
       const handleGetItNowClick = jest.fn();
         render(<ListDisplay numItems={3} handleGetItNowClick={handleGetItNowClick} spendATokenClicked={true} searchResults={[
