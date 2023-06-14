@@ -10,6 +10,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import swappTransparent from '../../../public/swapp-transparent.png';
+import swappTransparent from '../../images/swapp-transparent.png';
 
 const settings = ['My Account', 'Logout'];
 
@@ -32,6 +34,7 @@ export default function NavBar() {
             <HomeIcon sx={{fontSize: "60px"}}/>
             </IconButton>
           <Box sx={{ flexGrow: 0 }}>
+            {/* <img src={swappTransparent.src} alt="swapp logo" width="200px" height="60px"/> */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <AccountCircleIcon sx={{fontSize: "60px"}} />
