@@ -13,7 +13,8 @@ export default function App() {
       <div className="App">
         <NavBar />
           <Routes>
-            <Route path = "/home" element = {<HomePage/>} />
+            <Route path = "/" element = {<HomePage/>} />
+            {/* path should be /home */}
             {/* <Route path = "/" element = {<LandingPage/>} /> */}
             {/* <Route path = "/login" element = {<AuthPage/>} /> */}
             {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
