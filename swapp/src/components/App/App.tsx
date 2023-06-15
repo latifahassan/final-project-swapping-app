@@ -2,6 +2,7 @@
 
 import HomePage from '../HomePage/HomePage'
 import NavBar from '../NavBar/NavBar'
+import './App.css'
 
 export default function App() {
   return (
