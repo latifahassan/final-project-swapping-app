@@ -45,7 +45,8 @@ type DisplayCardProps = {
 // width: 200, marginTop: 5, marginLeft: 15, marginRight: 15, marginBottom: 5
 export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked}: DisplayCardProps) {
   return (
-    <Card sx={{ maxWidth: 520, minWidth: 190, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5}}>
+    // <Card sx={{ maxWidth: 520, minWidth: 190, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5}}>
+    <Card sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5 }}>
       <CardMedia
         sx={{ height: 165, width: 172, borderRadius: 2, mt: 1.4}}
         image={image}
