@@ -8,9 +8,10 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HomeIcon from '@mui/icons-material/Home';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// import swappTransparent from '../../../public/swapp-transparent.png';
-// import swappTransparent from '../../images/swapp-transparent.png';
+import { useLocation, Link } from 'react-router-dom';
 import swappTransparent from '../../swapp-transparent.png'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -21,24 +22,37 @@ export default function NavBar() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
- 
+
+  const location = useLocation();
+  const renderHomeIcon = location.pathname === "/myaccount"
+  const renderListItButton  = location.pathname === "/home"
   const [accountMenu, setAccountMenu] = useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAccountMenu(event.currentTarget);
   };
 
-
   const handleCloseUserMenu = () => {
     setAccountMenu(null);
   };
+
+
+
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#018043", height: "80px", flexShrink: 9 }}>
   <Toolbar disableGutters sx={{ justifyContent: "space-between", pl: '10px', pr: '10px'}}>
     <Box sx={{ flexGrow: 0 }}>
-      <IconButton>
-        <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px" }} />
-      </IconButton>
+      {renderHomeIcon && (
+          <IconButton component = {Link} to = "/home">
+            <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px" }}/>
+            </IconButton>)}
+          
+          {renderListItButton && (
+          <Stack direction = "row" spacing = {2} >
+            <Button role="button" variant="contained" color="success" >
+          List it
+            </Button>
+          </Stack>)}
     </Box>
     <Box>
       <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '150px' : '280px' }} />
@@ -74,6 +88,5 @@ export default function NavBar() {
     </Box>
   </Toolbar>
 </AppBar>
-
 );
 }
