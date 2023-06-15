@@ -12,10 +12,15 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // import swappTransparent from '../../../public/swapp-transparent.png';
 // import swappTransparent from '../../images/swapp-transparent.png';
 import swappTransparent from '../../swapp-transparent.png'
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const settings = ['My Account', 'Logout'];
 
 export default function NavBar() {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
  
   const [accountMenu, setAccountMenu] = useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,46 +33,47 @@ export default function NavBar() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: "#018043", height: "80px"}}>
-        <Toolbar disableGutters sx= {{justifyContent:"space-between", paddingLeft: "30px", paddingRight: "30px"}}>
-        <Box sx={{ flexGrow: 0 }}>
-          <IconButton>
-            <HomeIcon sx={{fontSize: "60px"}}/>
-            </IconButton>
-            </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'center' }}>
-            <img src={swappTransparent} alt="swapp logo" style={{height:'300px'}}/> 
-            </Box>
-            <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircleIcon sx={{fontSize: "60px"}} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={accountMenu}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(accountMenu)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-      </Toolbar>
-  </AppBar>
+    <AppBar position="static" sx={{ backgroundColor: "#018043", height: "80px", flexShrink: 9 }}>
+  <Toolbar disableGutters sx={{ justifyContent: "space-between", pl: '10px', pr: '10px'}}>
+    <Box sx={{ flexGrow: 0 }}>
+      <IconButton>
+        <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px" }} />
+      </IconButton>
+    </Box>
+    <Box>
+      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '150px' : '280px' }} />
+    </Box>
+    <Box sx={{ flexGrow: 0 }}>
+      <Tooltip title="Open settings">
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
+        </IconButton>
+      </Tooltip>
+      <Menu
+        sx={{ mt: '45px' }}
+        id="menu-appbar"
+        anchorEl={accountMenu}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={Boolean(accountMenu)}
+        onClose={handleCloseUserMenu}
+      >
+        {settings.map((setting) => (
+          <MenuItem key={setting} onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">{setting}</Typography>
+          </MenuItem>
+        ))}
+      </Menu>
+    </Box>
+  </Toolbar>
+</AppBar>
+
 );
 }

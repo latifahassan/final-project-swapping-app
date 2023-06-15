@@ -2,8 +2,20 @@
     background-color: #E3E2E2;
     border: 0.2px solid black;
     border-radius: 20px;
-    width: 350px;
-    height: 35px;
+    width: 320px;
+    height: 25px;
     margin: 0 auto;
     font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    flex-grow: 0.3;
+}
+
+#searchIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
