@@ -8,15 +8,17 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import HomeIcon from '@mui/icons-material/Home';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// import swappTransparent from '../../../public/swapp-transparent.png';
-// import swappTransparent from '../../images/swapp-transparent.png';
+import { useLocation, Link } from 'react-router-dom';
 import swappTransparent from '../../swapp-transparent.png'
 
 const settings = ['My Account', 'Logout'];
 
 export default function NavBar() {
- 
+  const location = useLocation();
+  const isHomePage = location.pathname === "/home";
   const [accountMenu, setAccountMenu] = useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAccountMenu(event.currentTarget);
@@ -31,10 +33,15 @@ export default function NavBar() {
     <AppBar position="static" sx={{backgroundColor: "#018043", height: "80px"}}>
         <Toolbar disableGutters sx= {{justifyContent:"space-between", paddingLeft: "30px", paddingRight: "30px"}}>
         <Box sx={{ flexGrow: 0 }}>
-          <IconButton>
+          <IconButton component = {Link} to = "/home">
             <HomeIcon sx={{fontSize: "60px"}}/>
             </IconButton>
-            </Box>
+          <Stack direction = "row" spacing = {2} >
+            <Button role="button" variant="contained" color="success" >
+          List it
+            </Button>
+          </Stack>
+        </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'center' }}>
             <img src={swappTransparent} alt="swapp logo" style={{height:'300px'}}/> 
             </Box>
