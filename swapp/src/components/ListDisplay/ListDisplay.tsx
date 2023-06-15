@@ -18,10 +18,11 @@ export default function ListDisplay({ numItems, searchResults, handleGetItNowCli
 
   return (
     <>
-    <h2>Search Results:</h2>
-    <Grid container rowSpacing={2} columnSpacing={{ xs: 10, sm: 5, md: 7 }} sx={{pl: 1.5}}>
+    {/* <Grid container rowSpacing={2} columnSpacing={{ xs: 10, sm: 5, md: 7 }} sx={{pl: 1.5}}> */}
+    <Grid container spacing={2} justifyContent="space-evenly" alignItems="center" sx={{ px: 2 }}>
       {slicedSearchResults.map((item) => (
-        <Grid item xs = {5} key={item.id}>
+        // <Grid item xs = {5} key={item.id}>
+        <Grid item xs={12} sm={6} md={4} key={item.id} sx={{ display: 'flex', justifyContent: 'center' }}>
         <DisplayCard
           key={item.id}
           id={item.id}

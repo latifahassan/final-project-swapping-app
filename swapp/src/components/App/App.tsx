@@ -8,7 +8,6 @@ export default function App() {
   return (
     <div className="App">
       <NavBar />
-      <h1>SWAPP bit by bit-test FINAL - 17:10</h1>
       <HomePage />
     </div>
   );
