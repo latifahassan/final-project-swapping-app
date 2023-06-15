@@ -54,8 +54,8 @@ export default function NavBar() {
             </Button>
           </Stack>)}
     </Box>
-    <Box>
-      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '150px' : '280px' }} />
+    <Box sx={{ flexGrow: 1, display: "flex", alignItem: 'center', justifyContent: 'center', paddingTop: 2 }}>
+      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '150px' : '47px' }} />
     </Box>
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
