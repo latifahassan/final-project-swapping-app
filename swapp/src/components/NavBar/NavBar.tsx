@@ -13,10 +13,16 @@ import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation, Link } from 'react-router-dom';
 import swappTransparent from '../../swapp-transparent.png'
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const settings = ['My Account', 'Logout'];
 
 export default function NavBar() {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const location = useLocation();
   const renderHomeIcon = location.pathname === "/myaccount"
   const renderListItButton  = location.pathname === "/home"
@@ -29,23 +35,16 @@ export default function NavBar() {
     setAccountMenu(null);
   };
 
-// PLAN
-// 3 parts: if, else if, else
-// if ('the url is /myaccount )
-//    print a home icon
-// else if (' the url is /home')
-//    print a list it button
-// else
-//    print nothing
+
 
 
   return (
-    <AppBar position="static" sx={{backgroundColor: "#018043", height: "80px"}}>
-        <Toolbar disableGutters sx= {{justifyContent:"space-between", paddingLeft: "30px", paddingRight: "30px"}}>
-        <Box sx={{ flexGrow: 0 }}>
-          {renderHomeIcon && (
+    <AppBar position="static" sx={{ backgroundColor: "#018043", height: "80px", flexShrink: 9 }}>
+  <Toolbar disableGutters sx={{ justifyContent: "space-between", pl: '10px', pr: '10px'}}>
+    <Box sx={{ flexGrow: 0 }}>
+      {renderHomeIcon && (
           <IconButton component = {Link} to = "/home">
-            <HomeIcon sx={{fontSize: "60px"}}/>
+            <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px" }}/>
             </IconButton>)}
           
           {renderListItButton && (
@@ -54,40 +53,40 @@ export default function NavBar() {
           List it
             </Button>
           </Stack>)}
-        </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'center' }}>
-            <img src={swappTransparent} alt="swapp logo" style={{height:'300px'}}/> 
-            </Box>
-            <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircleIcon sx={{fontSize: "60px"}} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={accountMenu}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(accountMenu)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-      </Toolbar>
-  </AppBar>
+    </Box>
+    <Box>
+      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '150px' : '280px' }} />
+    </Box>
+    <Box sx={{ flexGrow: 0 }}>
+      <Tooltip title="Open settings">
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
+        </IconButton>
+      </Tooltip>
+      <Menu
+        sx={{ mt: '45px' }}
+        id="menu-appbar"
+        anchorEl={accountMenu}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={Boolean(accountMenu)}
+        onClose={handleCloseUserMenu}
+      >
+        {settings.map((setting) => (
+          <MenuItem key={setting} onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">{setting}</Typography>
+          </MenuItem>
+        ))}
+      </Menu>
+    </Box>
+  </Toolbar>
+</AppBar>
 );
 }
