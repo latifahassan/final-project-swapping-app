@@ -2,7 +2,7 @@
 
 import HomePage from '../HomePage/HomePage'
 import NavBar from '../NavBar/NavBar'
-// type Props = {}
+
 export default function App() {
   return (
     <div className="App">

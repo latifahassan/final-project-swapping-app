@@ -1,6 +1,7 @@
 import listingsData from './data.json'
 import React from 'react'
 import { useState } from 'react'
+import './SearchBar.css'
 
 type Listing = {
   title: string,
@@ -26,8 +27,9 @@ export default function SearchBar({setSearchResults}: SearchBarProps) {
     setSearchResults(filteredData)
   }
   return (
-    <div>
+    <div id="searchIcon">
       <input
+        className="searchBar123"
         type="text"
         placeholder="Search"
         value={searchQuery}
