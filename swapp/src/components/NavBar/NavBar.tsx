@@ -18,29 +18,42 @@ const settings = ['My Account', 'Logout'];
 
 export default function NavBar() {
   const location = useLocation();
-  const isHomePage = location.pathname === "/home";
+  const renderHomeIcon = location.pathname === "/myaccount"
+  const renderListItButton  = location.pathname === "/home"
   const [accountMenu, setAccountMenu] = useState<null | HTMLElement>(null);
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAccountMenu(event.currentTarget);
   };
 
-
   const handleCloseUserMenu = () => {
     setAccountMenu(null);
   };
+
+// PLAN
+// 3 parts: if, else if, else
+// if ('the url is /myaccount )
+//    print a home icon
+// else if (' the url is /home')
+//    print a list it button
+// else
+//    print nothing
+
 
   return (
     <AppBar position="static" sx={{backgroundColor: "#018043", height: "80px"}}>
         <Toolbar disableGutters sx= {{justifyContent:"space-between", paddingLeft: "30px", paddingRight: "30px"}}>
         <Box sx={{ flexGrow: 0 }}>
+          {renderHomeIcon && (
           <IconButton component = {Link} to = "/home">
             <HomeIcon sx={{fontSize: "60px"}}/>
-            </IconButton>
+            </IconButton>)}
+          
+          {renderListItButton && (
           <Stack direction = "row" spacing = {2} >
             <Button role="button" variant="contained" color="success" >
           List it
             </Button>
-          </Stack>
+          </Stack>)}
         </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'center' }}>
             <img src={swappTransparent} alt="swapp logo" style={{height:'300px'}}/> 
