@@ -4,6 +4,7 @@ import HomePage from '../HomePage/HomePage';
 // import MyAccountPage from '../MyAccountPage/MyAccountPage';
 import NavBar from '../NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import './App.css'
 
 export default function App() {
   return (
