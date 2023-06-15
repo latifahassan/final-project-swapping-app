@@ -11,6 +11,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // import swappTransparent from '../../../public/swapp-transparent.png';
 // import swappTransparent from '../../images/swapp-transparent.png';
+import swappTransparent from '../../swapp-transparent.png'
 
 const settings = ['My Account', 'Logout'];
 
@@ -29,11 +30,15 @@ export default function NavBar() {
   return (
     <AppBar position="static" sx={{backgroundColor: "#018043", height: "80px"}}>
         <Toolbar disableGutters sx= {{justifyContent:"space-between", paddingLeft: "30px", paddingRight: "30px"}}>
+        <Box sx={{ flexGrow: 0 }}>
           <IconButton>
             <HomeIcon sx={{fontSize: "60px"}}/>
             </IconButton>
-          <Box sx={{ flexGrow: 0 }}>
-            {/* <img src={swappTransparent.src} alt="swapp logo" width="200px" height="60px"/> */}
+            </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'center' }}>
+            <img src={swappTransparent} alt="swapp logo" style={{height:'300px'}}/> 
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <AccountCircleIcon sx={{fontSize: "60px"}} />
