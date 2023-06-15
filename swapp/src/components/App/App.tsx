@@ -14,7 +14,7 @@ export default function App() {
         <NavBar />
           <Routes>
             <Route path = "/" element = {<HomePage/>} />
-            {/* path should be /home */}
+            {/* path should be /home - to be amended */}
             {/* <Route path = "/" element = {<LandingPage/>} /> */}
             {/* <Route path = "/login" element = {<AuthPage/>} /> */}
             {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
