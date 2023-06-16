@@ -47,9 +47,11 @@ export default function HomePage() {
        handleGetItNowClick={handleGetItNowClick}
        searchResults={searchResults}        
        spendATokenClicked={spendATokenClicked} />
-      {getItNowClicked && <PopUp numberOfTokens={numberOfTokens} 
+      {getItNowClicked && <PopUp
+      numberOfTokens={numberOfTokens} 
       handleSpendATokenClick={handleSpendATokenClick} 
-      getItNowClicked={getItNowClicked}/>}
+      getItNowClicked={getItNowClicked}
+      setGetItNowClicked={setGetItNowClicked}/>}
       <p> Number of tokens: {numberOfTokens}</p>
       <Footer/>
     </div>
