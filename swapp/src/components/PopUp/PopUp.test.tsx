@@ -1,10 +1,10 @@
-import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import PopUp from './PopUp';
+// import React from 'react';
+// import { render, fireEvent, screen } from '@testing-library/react';
+// import PopUp from './PopUp';
 // import DisplayCard from '../DisplayCard/DisplayCard';
 
 describe('PopUp component', () => {
-  const handleSpendATokenClickMock = jest.fn();
+  // const handleSpendATokenClickMock = jest.fn();
 
   afterEach(() => {
     jest.clearAllMocks();
