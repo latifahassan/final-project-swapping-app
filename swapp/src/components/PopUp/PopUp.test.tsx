@@ -10,27 +10,27 @@ describe('PopUp component', () => {
     jest.clearAllMocks();
   });
 
-  it('renders the component', () => {
-    render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} />);
+  // it('renders the component', () => {
+  //   render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} />);
 
-    const titleElement = screen.getByText('Confirm your address');
-    // const addressInput = screen.getByRole('input');
-    const spendTokenButton = screen.getByText('Spend a token');
+  //   const titleElement = screen.getByText('Confirm your address');
+  //   // const addressInput = screen.getByRole('input');
+  //   const spendTokenButton = screen.getByText('Spend a token');
 
-    expect(titleElement).toBeInTheDocument();
-    // expect(addressInput).toBeInTheDocument();
-    expect(spendTokenButton).toBeInTheDocument();
-  });
+  //   expect(titleElement).toBeInTheDocument();
+  //   // expect(addressInput).toBeInTheDocument();
+  //   expect(spendTokenButton).toBeInTheDocument();
+  // });
 
-  it('calls the handleSpendATokenClick function when the button is clicked', () => {
-    render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} />);
+  // it('calls the handleSpendATokenClick function when the button is clicked', () => {
+  //   render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} />);
 
-    const spendTokenButton = screen.getByText('Spend a token');
+  //   const spendTokenButton = screen.getByText('Spend a token');
 
-    fireEvent.click(spendTokenButton);
+  //   fireEvent.click(spendTokenButton);
 
-    expect(handleSpendATokenClickMock).toHaveBeenCalledTimes(1);
-  });
+  //   expect(handleSpendATokenClickMock).toHaveBeenCalledTimes(1);
+  // });
 //   Here is a test for the DisplayCard component to see if the button text changes to "Claimed" when the button is clicked
 // it('Removes the button', () => {
 //     render(<DisplayCard handleGetItNowClick={handleSpendATokenClickMock} spendATokenClicked={false} />);

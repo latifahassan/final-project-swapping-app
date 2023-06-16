@@ -24,10 +24,15 @@ export default function HomePage() {
   const [numberOfTokens, setNumberOfTokens] = useState(4);
 
   const handleSpendATokenClick = () => {
-    setSpendATokenClicked(true);
-    setNumberOfTokens(numberOfTokens - 1); 
-    setGetItNowClicked(false);
-    console.log(spendATokenClicked);
+    if (numberOfTokens <= 0) {
+      setNumberOfTokens(0);
+      alert("You don't have any tokens left!");
+    } else {
+      setSpendATokenClicked(true);
+      setNumberOfTokens(numberOfTokens - 1); 
+      setGetItNowClicked(false);
+      console.log(spendATokenClicked);
+    }
   };
 
   const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
@@ -42,7 +47,7 @@ export default function HomePage() {
        handleGetItNowClick={handleGetItNowClick}
        searchResults={searchResults}        
        spendATokenClicked={spendATokenClicked} />
-      {getItNowClicked && <PopUp handleSpendATokenClick={handleSpendATokenClick} />}
+      {getItNowClicked && <PopUp numberOfTokens={numberOfTokens} handleSpendATokenClick={handleSpendATokenClick} />}
       <p> Number of tokens: {numberOfTokens}</p>
       <Footer/>
     </div>
