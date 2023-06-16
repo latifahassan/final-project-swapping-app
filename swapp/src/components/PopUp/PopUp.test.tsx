@@ -1,26 +1,26 @@
-// import React from 'react';
-// import { render, fireEvent, screen } from '@testing-library/react';
-// import PopUp from './PopUp';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import PopUp from './PopUp';
 // import DisplayCard from '../DisplayCard/DisplayCard';
 
 describe('PopUp component', () => {
-  // const handleSpendATokenClickMock = jest.fn();
+  const handleSpendATokenClickMock = jest.fn();
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  // it('renders the component', () => {
-  //   render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} />);
+  it('renders the component', () => {
+    render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} numberOfTokens={4} getItNowClicked={true} />);
 
-  //   const titleElement = screen.getByText('Confirm your address');
-  //   // const addressInput = screen.getByRole('input');
-  //   const spendTokenButton = screen.getByText('Spend a token');
+    const titleElement = screen.getByText('Confirm your address');
+    // const addressInput = screen.getByRole('input');
+    const spendTokenButton = screen.getByText('Spend a token');
 
-  //   expect(titleElement).toBeInTheDocument();
-  //   // expect(addressInput).toBeInTheDocument();
-  //   expect(spendTokenButton).toBeInTheDocument();
-  // });
+    expect(titleElement).toBeInTheDocument();
+    // expect(addressInput).toBeInTheDocument();
+    expect(spendTokenButton).toBeInTheDocument();
+  });
 
   // it('calls the handleSpendATokenClick function when the button is clicked', () => {
   //   render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} />);
