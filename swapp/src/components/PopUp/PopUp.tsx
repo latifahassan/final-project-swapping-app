@@ -1,23 +1,54 @@
 import React from 'react'
-import { Button, CardMedia, Card, CardContent } from '@mui/material';
-import { type } from 'os';
+import Modal from '@mui/material/Modal';
+import { useState } from 'react';
+import { opendir } from 'fs';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { useEffect } from 'react';
+
 
 type PopUpProps = {
   handleSpendATokenClick: () => void;
   numberOfTokens: number;
+  getItNowClicked: boolean;
 }
 
-export default function PopUp({handleSpendATokenClick, numberOfTokens}: PopUpProps) {
+export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked}: PopUpProps) {
+
+const [open, setOpen] = useState(false);
+
+useEffect(() => {
+  if (getItNowClicked) {
+    setOpen(true);
+  }
+}, [getItNowClicked]);
+
 
 const youHaveOneToken = numberOfTokens === 1;
 
   return (
     <div>
-      <h2 id = "popUpTitle">Confirm your address</h2>
+      <Modal
+        open={open}
+        onClose={handleSpendATokenClick}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+
+        <Box>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Confirm your address
+        </Typography>
+      </Box>
+      </Modal>
+
+
+
+      {/* <h2 id = "popUpTitle">Confirm your address</h2>
       <input id = "userAddressInput"></input>
       {youHaveOneToken && <p id = "numberOfTokens"> You have 1 token</p>}
       {!youHaveOneToken && <p id = "numberOfTokens"> You have {numberOfTokens} tokens</p>}
       <button onClick={handleSpendATokenClick} className='greenButton' >Spend a token</button>
+       */}
     </div>
   )
 }
