@@ -4,8 +4,9 @@ import Grid from '@mui/material/Grid';
 
 type ListDisplayProps = {
   numItems: number;
-  handleGetItNowClick: () => void;
+  handleGetItNowClick: (itemId: string) => void;
   spendATokenClicked: boolean;
+  selectedItem: string | null; 
   searchResults: {
     title:string,
     username: string,
@@ -13,7 +14,7 @@ type ListDisplayProps = {
     id: string
   }[];
 };
-export default function ListDisplay({ numItems, searchResults, handleGetItNowClick, spendATokenClicked }: ListDisplayProps) {
+export default function ListDisplay({ numItems, searchResults, handleGetItNowClick, spendATokenClicked, selectedItem }: ListDisplayProps) {
   const slicedSearchResults = searchResults.slice(0, numItems);
 
   return (
@@ -28,8 +29,9 @@ export default function ListDisplay({ numItems, searchResults, handleGetItNowCli
           image={item.image}
           title={item.title}
           username={item.username}
-          handleGetItNowClick={handleGetItNowClick}
+          handleGetItNowClick={() => handleGetItNowClick(item.id)}
           spendATokenClicked={spendATokenClicked}
+          selectedItem={selectedItem}
         />
         </Grid>
       ))}

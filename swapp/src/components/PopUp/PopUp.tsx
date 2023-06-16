@@ -13,9 +13,10 @@ type PopUpProps = {
   handleSpendATokenClick: () => void;
   numberOfTokens: number;
   getItNowClicked: boolean;
+  selectedItem: string | null;
 }
 
-export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked}: PopUpProps) {
+export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked, selectedItem}: PopUpProps) {
 
 const [open, setOpen] = useState(false);
 const theme = useTheme();

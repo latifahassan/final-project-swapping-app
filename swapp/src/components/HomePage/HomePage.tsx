@@ -15,7 +15,7 @@ type Listing = {
 
 export default function HomePage() {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
-
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const handleGetItNowClick = () => {
     setGetItNowClicked(true);
   };
@@ -48,7 +48,8 @@ export default function HomePage() {
        searchResults={searchResults}        
        spendATokenClicked={spendATokenClicked} />
       {getItNowClicked && <PopUp numberOfTokens={numberOfTokens} 
-      handleSpendATokenClick={handleSpendATokenClick} 
+      handleSpendATokenClick={handleSpendATokenClick}
+      selectedItem={selectedItem}
       getItNowClicked={getItNowClicked}/>}
       <p> Number of tokens: {numberOfTokens}</p>
       <Footer/>
