@@ -66,7 +66,7 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
       <Button role="button" variant="contained" color="success"  onClick={handleGetItNowClick} sx={{mb: 2, mt: -2}}>
           GET IT NOW
         </Button>}
-       {spendATokenClicked && <p id = "claimedOption">Claimed</p>} 
+       {spendATokenClicked && <Typography id = "claimedOption" variant="body1" sx={{fontWeight: 'bold', color: '#018043', pb: '8px'}}>Claimed</Typography>} 
       </CardActions>
     </Card>
   );
