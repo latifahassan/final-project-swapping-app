@@ -26,6 +26,7 @@ export default function LandingPage() {
 
 // check on phone, possibly make gif smaller
 // make search bar longer to match homepage
+//replace gif with actual one we need
 
   return (
    
