@@ -36,7 +36,7 @@ export default function NavBar() {
   };
 
 
-
+  const renderAccountIcon = !['/', '/login'].includes(location.pathname);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#018043", height: "80px", flexShrink: 9 }}>
@@ -58,11 +58,12 @@ export default function NavBar() {
       <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '30px' : '47px' }} />
     </Box>
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open settings">
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
-        </IconButton>
-      </Tooltip>
+      {renderAccountIcon && (
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
+          </IconButton>
+        </Tooltip>)}
       <Menu
         sx={{ mt: '45px' }}
         id="menu-appbar"
@@ -90,3 +91,4 @@ export default function NavBar() {
 </AppBar>
 );
 }
+

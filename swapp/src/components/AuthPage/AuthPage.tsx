@@ -1,5 +1,3 @@
-// this is a dummy file
-
 import React from 'react'
 
 type Props = {}
