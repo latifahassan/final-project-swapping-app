@@ -8,11 +8,18 @@ type DisplayCardProps = {
   title: string
   username: string
   id: string
-  handleGetItNowClick: () => void;
   spendATokenClicked: boolean;
+  handleGetItNowClick: (itemId: string) => void;
+  selectedItem: string[]; 
 }
 
-export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked}: DisplayCardProps) {
+export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked, selectedItem}: DisplayCardProps) {
+  const itemIsSelected = selectedItem.includes(id);
+
+  const handleButtonClick = () => {
+    handleGetItNowClick(id);
+  }
+
   return (
     <Card sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5 }}>
       <CardMedia
@@ -30,19 +37,13 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
         </Typography>
       </CardContent>
       <CardActions>
-      {!spendATokenClicked && 
-      <Button role="button" variant="contained" color="success"  onClick={handleGetItNowClick} sx={{mb: 2, mt: -2}}>
+      {(!itemIsSelected || !spendATokenClicked) && ( 
+      <Button role="button" variant="contained" color="success"  onClick={handleButtonClick} sx={{mb: 2, mt: -2}}>
           GET IT NOW
-        </Button>}
-       {spendATokenClicked && <Typography id = "claimedOption" variant="body1" sx={{fontWeight: 'bold', color: '#018043', pb: '8px'}}>Claimed</Typography>} 
+        </Button>)}
+       {spendATokenClicked && itemIsSelected && (<Typography id = "claimedOption" variant="body1" sx={{fontWeight: 'bold', color: '#018043', pb: '8px'}}>Claimed</Typography>)} 
       </CardActions>
     </Card>
   );
 }
 
-
-//reduce font size of h3
-//resize images inside card
-//center text
-//cards need some padding/margin between
-//cards in rows of 2 

@@ -13,7 +13,7 @@ type PopUpProps = {
   handleSpendATokenClick: () => void;
   numberOfTokens: number;
   getItNowClicked: boolean;
-  setGetItNowClicked: (value: boolean) => void;
+  setGetItNowClicked: (getItNowClicked: boolean) => void;
 }
 
 export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked, setGetItNowClicked}: PopUpProps) {

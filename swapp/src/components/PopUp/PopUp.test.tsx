@@ -13,6 +13,7 @@ describe('PopUp component', () => {
   });
 
   it('renders the component', () => {
+
     render(<PopUp
       handleSpendATokenClick={handleSpendATokenClickMock}
       numberOfTokens={4}

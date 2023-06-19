@@ -15,9 +15,12 @@ type Listing = {
 
 export default function HomePage() {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
-  const handleGetItNowClick = () => {
+  const handleGetItNowClick = (itemId: string) => {
     setGetItNowClicked(true);
+    setSelectedItem((prevSelectedItems) => [...prevSelectedItems, itemId]);
+    setSpendATokenClicked(false);
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
@@ -46,7 +49,8 @@ export default function HomePage() {
        numItems={numItems}
        handleGetItNowClick={handleGetItNowClick}
        searchResults={searchResults}        
-       spendATokenClicked={spendATokenClicked} />
+       spendATokenClicked={spendATokenClicked} 
+       selectedItem={selectedItem}/>
       {getItNowClicked && <PopUp
       numberOfTokens={numberOfTokens} 
       handleSpendATokenClick={handleSpendATokenClick} 
