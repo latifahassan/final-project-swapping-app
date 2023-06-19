@@ -6,7 +6,7 @@ type ListDisplayProps = {
   numItems: number;
   handleGetItNowClick: (itemId: string) => void;
   spendATokenClicked: boolean;
-  selectedItem: string | null; 
+  selectedItem: string[]; 
   searchResults: {
     title:string,
     username: string,

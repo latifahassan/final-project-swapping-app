@@ -15,11 +15,11 @@ type Listing = {
 
 export default function HomePage() {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
   const handleGetItNowClick = (itemId: string) => {
     setGetItNowClicked(true);
-    setSelectedItem(itemId);
+    setSelectedItem((prevSelectedItems) => [...prevSelectedItems, itemId]);
     setSpendATokenClicked(false);
   };
 

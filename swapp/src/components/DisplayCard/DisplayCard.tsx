@@ -10,11 +10,11 @@ type DisplayCardProps = {
   id: string
   spendATokenClicked: boolean;
   handleGetItNowClick: (itemId: string) => void;
-  selectedItem: string | null; 
+  selectedItem: string[]; 
 }
 
 export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked, selectedItem}: DisplayCardProps) {
-  const itemIsSelected = selectedItem === id;
+  const itemIsSelected = selectedItem.includes(id);
 
   const handleButtonClick = () => {
     handleGetItNowClick(id);
