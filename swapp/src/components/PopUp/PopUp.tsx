@@ -28,16 +28,18 @@ useEffect(() => {
     setOpen(true);
   }
 }, [getItNowClicked]);
+
 const handleCloseModal = () => {
   setOpen(false);
   setGetItNowClicked(false);
 };
 
+
 const youHaveOneToken = numberOfTokens === 1;
 
   return (
     <div>
-      <Modal
+      <Modal disableEnforceFocus
         open={open}
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"

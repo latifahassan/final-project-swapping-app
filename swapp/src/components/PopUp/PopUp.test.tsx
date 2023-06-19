@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import PopUp from './PopUp';
+import { truncate } from 'fs/promises';
 // import DisplayCard from '../DisplayCard/DisplayCard';
 
 describe('PopUp component', () => {
@@ -12,7 +13,12 @@ describe('PopUp component', () => {
   });
 
   it('renders the component', () => {
-    render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} numberOfTokens={4} getItNowClicked={true} setGetItNowClicked={setGetItNowClickedMock}/>);
+
+    render(<PopUp
+      handleSpendATokenClick={handleSpendATokenClickMock}
+      numberOfTokens={4}
+      getItNowClicked={true}
+      setGetItNowClicked={setGetItNowClickedMock}/>);
 
     const titleElement = screen.getByText('Confirm your address');
     // const addressInput = screen.getByRole('input');

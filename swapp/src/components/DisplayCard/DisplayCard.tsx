@@ -21,8 +21,6 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
   }
 
   return (
-
-    // <Card sx={{ maxWidth: 520, minWidth: 190, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5}}>
     <Card sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5 }}>
       <CardMedia
         sx={{ height: 165, width: 172, borderRadius: 2, mt: 1.4}}
@@ -49,9 +47,3 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
   );
 }
 
-
-//reduce font size of h3
-//resize images inside card
-//center text
-//cards need some padding/margin between
-//cards in rows of 2 
