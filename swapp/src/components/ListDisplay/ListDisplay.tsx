@@ -3,6 +3,7 @@ import DisplayCard from '../DisplayCard/DisplayCard';
 import Grid from '@mui/material/Grid';
 
 type ListDisplayProps = {
+  selectedItem?: string[]
   numItems: number;
   handleGetItNowClick: () => void;
   spendATokenClicked: boolean;
