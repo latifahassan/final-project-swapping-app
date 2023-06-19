@@ -17,9 +17,10 @@ export default function HomePage() {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const handleGetItNowClick = () => {
+  const handleGetItNowClick = (itemId: string) => {
     setGetItNowClicked(true);
     setSelectedItem(itemId);
+    setSpendATokenClicked(false);
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
@@ -53,7 +54,7 @@ export default function HomePage() {
        
       {getItNowClicked && <PopUp numberOfTokens={numberOfTokens} 
       handleSpendATokenClick={handleSpendATokenClick}
-      getItNowClicked={getItNowClicked}/>}
+      getItNowClicked={getItNowClicked} setGetItNowClicked={setGetItNowClicked}/>}
       <p> Number of tokens: {numberOfTokens}</p>
       <Footer/>
     </div>

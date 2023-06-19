@@ -13,9 +13,10 @@ type PopUpProps = {
   handleSpendATokenClick: () => void;
   numberOfTokens: number;
   getItNowClicked: boolean;
+  setGetItNowClicked: (getItNowClicked: boolean) => void;
 }
 
-export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked}: PopUpProps) {
+export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked, setGetItNowClicked}: PopUpProps) {
 
 const [open, setOpen] = useState(false);
 const theme = useTheme();
@@ -27,7 +28,10 @@ useEffect(() => {
     setOpen(true);
   }
 }, [getItNowClicked]);
-
+const handleCloseModal = () => {
+  setOpen(false);
+  setGetItNowClicked(false);
+};
 
 const youHaveOneToken = numberOfTokens === 1;
 
@@ -35,7 +39,7 @@ const youHaveOneToken = numberOfTokens === 1;
     <div>
       <Modal
         open={open}
-        onClose={handleSpendATokenClick}
+        onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 

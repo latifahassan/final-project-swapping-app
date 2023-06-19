@@ -5,13 +5,14 @@ import PopUp from './PopUp';
 
 describe('PopUp component', () => {
   const handleSpendATokenClickMock = jest.fn();
+  const setGetItNowClickedMock = jest.fn();
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it('renders the component', () => {
-    render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} numberOfTokens={4} getItNowClicked={true} />);
+    render(<PopUp handleSpendATokenClick={handleSpendATokenClickMock} numberOfTokens={4} getItNowClicked={true} setGetItNowClicked={setGetItNowClickedMock}/>);
 
     const titleElement = screen.getByText('Confirm your address');
     // const addressInput = screen.getByRole('input');
