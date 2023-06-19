@@ -4,7 +4,7 @@ import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
 import listingsData from '../SearchBar/data.json';
 import Footer from '../Footer/Footer';
-import gifme from '../../images/gifme.gif';
+import landingpagegif from '../../images/landingpagegif.gif';
 import { Button } from '@mui/material';
 
 type Listing = {
@@ -26,12 +26,12 @@ export default function LandingPage() {
 
 // check on phone, possibly make gif smaller
 // make search bar longer to match homepage
-//replace gif with actual one we need
+// replace gif with actual one we need 
 
   return (
    
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <img src={gifme} alt='gif' style={{ width: '100%', maxWidth: '500px', margin: '10px auto' }} />
+      <img src={landingpagegif} alt='gif' style={{ width: '100%', maxWidth: '500px', margin: '10px auto' }} />
       <Button role="button" variant="contained" color="success"  onClick={handleGetStartedClicked} sx={{mb: 2, mt: 2, width: '200px', height: '50px', fontSize: '1.2rem'}}>
           <b>Get Started</b>
         </Button>
