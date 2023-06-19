@@ -2,9 +2,7 @@
 
 import React from 'react'
 
-type Props = {}
-
-export default function Authpage({}: Props) {
+export default function Authpage() {
   return (
     <div>Authpage</div>
   )
