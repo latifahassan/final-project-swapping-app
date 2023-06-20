@@ -11,18 +11,22 @@ type Session = {
 }
 
 export default function Authpage() {
-  const [session, setSession] = useState<Session | null>(null)
+  const [session, setSession] = useState<Session | null | undefined>(null)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: session }) => {
       setSession(session)
     })
-
+  
     const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })
-
-    return () => subscription.unsubscribe()
+  
+    return () => {
+      if (subscription) {
+        subscription.data?.unsubscribe()
+      }
+    }
   }, [])
 
   if (!session) {
@@ -31,5 +35,3 @@ export default function Authpage() {
     return <div>Logged in!</div>
   }
 }
-
-
