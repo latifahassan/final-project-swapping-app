@@ -6,9 +6,9 @@ import NavBar from '../NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css'
-import createClient from '../../supabaseClient'
+import supabase from '../../supabaseClient';
 
-type ItemResults = {
+type ItemsTableResults = {
   item_id: string;
   created_at: string;
   title: string;
@@ -16,10 +16,9 @@ type ItemResults = {
   user_id: string;
 }
 
-const supabase = createClient
 
 export default function App() {
-  const [items, setItems] = useState<ItemResults[]>([]);
+  const [items, setItems] = useState<ItemsTableResults[]>([]);
 
   useEffect(() => {
     getItems();
@@ -31,13 +30,14 @@ export default function App() {
     .select('*');
 
     if (data) {
-      setItems(data as ItemResults[]);
+      setItems(data as ItemsTableResults[]);
     } else {
       console.error(error);
   }
 }
 
 // this is to check that the items are being pulled from the database
+console.log("see items below...")
 console.log(items)
 
 
