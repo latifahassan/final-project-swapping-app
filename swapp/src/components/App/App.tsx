@@ -8,12 +8,13 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import supabase from '../../supabaseClient';
 
-type ItemsTableResults = {
+ export type ItemsTableResults = {
   item_id: string;
   created_at: string;
   title: string;
   image: string;
   user_id: string;
+  username: string;
 }
 
 
@@ -26,11 +27,19 @@ export default function App() {
 
   async function getItems() {
     let { data, error } = await supabase
-    .from('items')
-    .select('*');
+    .from('items') 
+    .select('item_id, created_at, title, image, user_id, users:user_id(username)');
 
     if (data) {
-      setItems(data as ItemsTableResults[]);
+      const transformedData: ItemsTableResults[] = data.map(x => ({
+        item_id: x.item_id,
+        created_at: x.created_at,
+        title: x.title,
+        image: x.image,
+        user_id: x.user_id,
+        username: x.users[0]?.username
+       }))
+      setItems(transformedData);
     } else {
       console.error(error);
   }
@@ -46,8 +55,8 @@ console.log(items)
       <div className="App">
         <NavBar />
           <Routes>
-            <Route path = "/home" element = {<HomePage/>} />
-            <Route path = "/" element = {<LandingPage/>} />
+            <Route path = "/home" element = {<HomePage items={items}/>} />
+            <Route path = "/" element = {<LandingPage items={items}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
             {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
         </Routes>

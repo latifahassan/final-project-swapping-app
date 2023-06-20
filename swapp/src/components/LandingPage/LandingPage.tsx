@@ -6,6 +6,7 @@ import listingsData from '../SearchBar/data.json';
 import Footer from '../Footer/Footer';
 import landingpagegif from '../../images/landingpagegif.gif';
 import { Button } from '@mui/material';
+import { ItemsTableResults } from '../App/App';
 
 type Listing = {
   title: string,
@@ -14,7 +15,11 @@ type Listing = {
   id: string
 }
 
-export default function LandingPage() {
+type LandingPageProps = {
+  items: ItemsTableResults[]
+  }
+
+export default function LandingPage({items}: LandingPageProps) {
   const navigate = useNavigate();
   const handleGetStartedClicked = () => {
     navigate('/login');
@@ -37,7 +42,8 @@ export default function LandingPage() {
        numItems={numItems}
        handleGetItNowClick={handleGetStartedClicked}
        searchResults={searchResults}
-       spendATokenClicked = {false}        
+       spendATokenClicked = {false}  
+       items={items}  
         />
       <Footer/>
     </div>

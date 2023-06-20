@@ -1,8 +1,10 @@
 import React from 'react';
 import DisplayCard from '../DisplayCard/DisplayCard';
 import Grid from '@mui/material/Grid';
+import { ItemsTableResults } from '../App/App';
 
 type ListDisplayProps = {
+  items: ItemsTableResults[]
   numItems: number;
   handleGetItNowClick: (itemId: string) => void;
   spendATokenClicked: boolean;
@@ -14,7 +16,7 @@ type ListDisplayProps = {
     id: string
   }[];
 };
-export default function ListDisplay({ numItems, searchResults, handleGetItNowClick, spendATokenClicked, selectedItem }: ListDisplayProps) {
+export default function ListDisplay({ items, numItems, searchResults, handleGetItNowClick, spendATokenClicked, selectedItem }: ListDisplayProps) {
   const slicedSearchResults = searchResults.slice(0, numItems);
 
   return (

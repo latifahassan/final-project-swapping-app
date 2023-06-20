@@ -4,7 +4,7 @@ import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
 import listingsData from '../SearchBar/data.json';
 import Footer from '../Footer/Footer';
-
+import { ItemsTableResults } from '../App/App';
 
 type Listing = {
   title: string,
@@ -12,8 +12,11 @@ type Listing = {
   image: string,
   id: string
 }
+type HomePageProps = {
+items: ItemsTableResults[]
+}
 
-export default function HomePage() {
+export default function HomePage({items}: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
@@ -50,7 +53,8 @@ export default function HomePage() {
        handleGetItNowClick={handleGetItNowClick}
        searchResults={searchResults}        
        spendATokenClicked={spendATokenClicked} 
-       selectedItem={selectedItem}/>
+       selectedItem={selectedItem}
+       items={items}/>
       {getItNowClicked && <PopUp
       numberOfTokens={numberOfTokens} 
       handleSpendATokenClick={handleSpendATokenClick} 
