@@ -26,24 +26,31 @@ export default function App() {
   }, []);
 
   async function getItems() {
-    let { data, error } = await supabase
-    .from('items') 
-    .select('item_id, created_at, title, image, user_id, users:user_id(username)');
+    let { data: itemsData, error: itemsError } = await supabase
+      .from('items')
+      .select('item_id, created_at, title, image, user_id');
 
-    if (data) {
-      const transformedData: ItemsTableResults[] = data.map(x => ({
-        item_id: x.item_id,
-        created_at: x.created_at,
-        title: x.title,
-        image: x.image,
-        user_id: x.user_id,
-        username: x.users[0]?.username
-       }))
-      setItems(transformedData);
-    } else {
-      console.error(error);
+    let { data: usersData, error: usersError } = await supabase
+      .from('users')
+      .select('user_id, username');
+
+
+      if (itemsError) console.error('Items Error: ', itemsError);
+      if (usersError) console.error('Users Error: ', usersError);
+      
+      if (!itemsError && !usersError && itemsData && usersData) {
+        const transformedData = itemsData.map(item => {
+          const user = usersData?.find(user => user.user_id === item.user_id);
+          return {
+            ...item,
+            username: user ? user.username : null,
+          };
+        });
+      
+        console.log('Transformed Data: ', transformedData);
+        setItems(transformedData);
+      }
   }
-}
 
 // this is to check that the items are being pulled from the database
 console.log("see items below...")
