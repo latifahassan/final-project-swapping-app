@@ -15,9 +15,11 @@ type Listing = {
 }
 type HomePageProps = {
 items: ItemsTableResults[]
+numberOfTokens: number
+setNumberOfTokens: (numberOfTokens: number) => void
 }
 
-export default function HomePage({items}: HomePageProps) {
+export default function HomePage({items, numberOfTokens, setNumberOfTokens}: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
