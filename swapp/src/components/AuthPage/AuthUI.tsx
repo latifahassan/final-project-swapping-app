@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import supabase from '../../supabaseClient';
+// import { useNavigate } from 'react-router-dom';
+// import supabase from '../../supabaseClient';
 
-type Props = {
-    user: string;
-    session: string;
-  }
+// type Props = {
+//     user: string;
+//     session: string;
+//   }
   
 export default function AuthUI() {
-const navigate = useNavigate();
-const [activeTab, setActiveTab] = useState('login');
+// const navigate = useNavigate();
+// const [activeTab, setActiveTab] = useState('login');
 const [loginEmail, setLoginEmail] = useState('');
 const [loginPassword, setLoginPassword] = useState('');
-const [signupEmail, setSignupEmail] = useState('');
-const [signupPassword, setSignupPassword] = useState('');
+// const [signupEmail, setSignupEmail] = useState('');
+// const [signupPassword, setSignupPassword] = useState('');
 
     // const handleTabChange= (tab: string) => {
     //     setActiveTab(tab);
@@ -34,10 +34,10 @@ const [signupPassword, setSignupPassword] = useState('');
 
     return (
         <div className="authUiContainer">
-            <div className="navigation">
+            {/* <div className="navigation">
                 <button className="loginButton" onClick={() => setActiveTab('login')}>Login</button>
                 <button className="signupButton" onClick={() => setActiveTab('signup')}>Signup</button>
-            </div>
+            </div> */}
             <div className="loginSection">
                 <form>
                     <label htmlFor="loginEmail">Email</label>
