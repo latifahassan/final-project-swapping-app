@@ -35,7 +35,6 @@ export default function NavBar() {
     setAccountMenu(null);
   };
 
-
   const renderAccountIcon = !['/', '/login'].includes(location.pathname);
 
   return (
