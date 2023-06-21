@@ -7,10 +7,10 @@ import { ItemsTableResults } from '../App/App'
 type SearchBarProps = {
   items: ItemsTableResults[];
   setItems: (FilteredData: ItemsTableResults[]) => void;
-
+  setFilteredItems: (FilteredData: ItemsTableResults[]) => void;
 }
 
-export default function SearchBar({items, setItems}: SearchBarProps) {
+export default function SearchBar({items, setItems, setFilteredItems}: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value

@@ -12,9 +12,10 @@ import { ItemsTableResults } from '../App/App';
 type LandingPageProps = {
   items: ItemsTableResults[]
   setItems: (items:ItemsTableResults[]) => void
+  setFilteredItems: (items:ItemsTableResults[]) => void
   }
 
-export default function LandingPage({items, setItems}: LandingPageProps) {
+export default function LandingPage({items, setItems, setFilteredItems}: LandingPageProps) {
   const navigate = useNavigate();
   const handleGetStartedClicked = () => {
     navigate('/login');
@@ -30,7 +31,10 @@ export default function LandingPage({items, setItems}: LandingPageProps) {
       <Button role="button" variant="contained" color="success"  onClick={handleGetStartedClicked} sx={{mb: 2, mt: 2, width: '200px', height: '50px', fontSize: '1.2rem'}}>
           <b>Get Started</b>
         </Button>
-      <div style={{width: '100%'}}><SearchBar items={items} setItems={setItems}/></div>
+      <div style={{width: '100%'}}><SearchBar
+      items={items}
+      setItems={setItems}
+      setFilteredItems={setFilteredItems}/></div>
       <ListDisplay
        selectedItem={[]}
        numItems={numItems}

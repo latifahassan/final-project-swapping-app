@@ -20,10 +20,15 @@ import supabase from '../../supabaseClient';
 
 export default function App() {
   const [items, setItems] = useState<ItemsTableResults[]>([]);
+  const [filteredItems, setFilteredItems] = useState<ItemsTableResults[]>(items);
 
   useEffect(() => {
     getItems();
   }, []);
+
+  useEffect(() => {
+    setFilteredItems(items);
+  }, [items]);
 
   async function getItems() {
     let { data: itemsData, error: itemsError } = await supabase
@@ -62,8 +67,14 @@ console.log(items)
       <div className="App">
         <NavBar />
           <Routes>
-            <Route path = "/home" element = {<HomePage items={items} setItems={setItems}/>} />
-            <Route path = "/" element = {<LandingPage items={items} setItems={setItems}/>} />
+            <Route path = "/home" element = {<HomePage
+              items={items}
+              setItems={setItems}
+              setFilteredItems={setFilteredItems}/>} />
+            <Route path = "/" element = {<LandingPage
+              items={items}
+              setItems={setItems}
+              setFilteredItems={setFilteredItems}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
             {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
         </Routes>

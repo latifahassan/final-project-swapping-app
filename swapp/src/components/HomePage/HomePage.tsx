@@ -9,9 +9,10 @@ import { ItemsTableResults } from '../App/App';
 type HomePageProps = {
 items: ItemsTableResults[]
 setItems: (items:ItemsTableResults[]) => void
+setFilteredItems: (items:ItemsTableResults[]) => void
 }
 
-export default function HomePage({items, setItems}: HomePageProps) {
+export default function HomePage({items, setItems, setFilteredItems}: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
@@ -42,7 +43,10 @@ export default function HomePage({items, setItems}: HomePageProps) {
 
   return (
     <div>
-      <SearchBar items={items} setItems={setItems} />
+      <SearchBar
+      items={items}
+      setItems={setItems}
+      setFilteredItems={setFilteredItems} />
       <ListDisplay
        numItems={numItems}
        handleGetItNowClick={handleGetItNowClick}      
