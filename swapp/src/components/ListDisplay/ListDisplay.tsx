@@ -12,13 +12,13 @@ type ListDisplayProps = {
   filteredItems: ItemsTableResults[];
 };
 export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems }: ListDisplayProps) {
-  const slicedItems = items.slice(0, numItems);
+  const slicedFilteredItems = filteredItems.slice(0, numItems);
 
   return (
     <>
     {/* <Grid container rowSpacing={2} columnSpacing={{ xs: 10, sm: 5, md: 7 }} sx={{pl: 1.5}}> */}
     <Grid container spacing={2} justifyContent="flex-start" alignItems="center" sx={{ px: 2}}>
-      {slicedItems.map((item) => (
+      {slicedFilteredItems.map((item) => (
         <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={item.item_id} sx={{ display: 'flex', justifyContent: 'center' }}>
         <DisplayCard
           key={item.item_id}
