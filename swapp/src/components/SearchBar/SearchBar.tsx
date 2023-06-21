@@ -3,12 +3,6 @@ import { useState } from 'react'
 import './SearchBar.css'
 import { ItemsTableResults } from '../App/App'
 
-// type Listing = {
-//   title: string,
-//   username: string,
-//   image: string,
-//   id: string
-// };
 
 type SearchBarProps = {
   items: ItemsTableResults[];
