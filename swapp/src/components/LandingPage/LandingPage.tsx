@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import landingpagegif from '../../images/landingpagegif.gif';
 import { Button } from '@mui/material';
 import { ItemsTableResults } from '../App/App';
+import './LandingPage.css';
 
 
 
@@ -26,16 +27,18 @@ export default function LandingPage({items, setItems, setFilteredItems, filtered
   let numItems = 99;
 
   return (
-   
-    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+   <div>
+    <div className="container" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <img src={landingpagegif} alt='gif' style={{ width: '100%', maxWidth: '500px', margin: '10px auto'}} />
       <Button role="button" variant="contained" color="success"  onClick={handleGetStartedClicked} sx={{mb: 2, mt: 2, width: '200px', height: '50px', fontSize: '1.2rem'}}>
           <b>Get Started</b>
         </Button>
-      <div style={{width: '100%'}}><SearchBar
-      items={items}
-      setItems={setItems}
-      setFilteredItems={setFilteredItems}/></div>
+      <div style={{width: '100%'}}>
+        <SearchBar
+        items={items}
+        setItems={setItems}
+        setFilteredItems={setFilteredItems}/>
+      </div>
       <ListDisplay
        selectedItem={[]}
        numItems={numItems}
@@ -43,9 +46,23 @@ export default function LandingPage({items, setItems, setFilteredItems, filtered
        spendATokenClicked = {false}  
        items={items}  
        filteredItems={filteredItems}
-        />
+        /></div>
+      <div className="footer"> 
       <Footer/>
-    </div>
-  
+      </div>
+      </div>
   );
 }
+
+
+/*
+<div className="container">
+  
+    search bar listdisplay
+  </div>
+ 
+    footer
+  </div>
+</div>
+
+*/
