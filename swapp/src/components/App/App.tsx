@@ -21,6 +21,8 @@ import supabase from '../../supabaseClient';
 export default function App() {
   const [items, setItems] = useState<ItemsTableResults[]>([]);
 
+  const [numberOfTokens, setNumberOfTokens] = useState(4);
+
   useEffect(() => {
     getItems();
   }, []);

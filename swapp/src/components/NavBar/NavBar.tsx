@@ -56,6 +56,7 @@ export default function NavBar() {
     </Box>
     <Box sx={{ flexGrow: 1, display: "flex", alignItem: 'center', justifyContent: 'center', paddingTop: 2 }}>
       <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '30px' : '47px' }} />
+      <Typography variant="h4" component="div" sx={{ flexGrow: 0, display: "flex", alignItem: 'center', justifyContent: 'center', paddingTop: 2 }}>{numberOfTokens}</Typography>
     </Box>
     <Box sx={{ flexGrow: 0 }}>
       {renderAccountIcon && (

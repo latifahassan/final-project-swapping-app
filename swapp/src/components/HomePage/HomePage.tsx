@@ -10,7 +10,8 @@ type Listing = {
   title: string,
   username: string,
   image: string,
-  id: string
+  id: string,
+  numberOfTokens: number
 }
 type HomePageProps = {
 items: ItemsTableResults[]
@@ -27,7 +28,6 @@ export default function HomePage({items}: HomePageProps) {
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
-  const [numberOfTokens, setNumberOfTokens] = useState(4);
 
   const handleSpendATokenClick = () => {
     if (numberOfTokens <= 0) {
