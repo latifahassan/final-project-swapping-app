@@ -8,18 +8,19 @@ import landingpagegif from '../../images/landingpagegif.gif';
 import { Button } from '@mui/material';
 import { ItemsTableResults } from '../App/App';
 
-type Listing = {
-  title: string,
-  username: string,
-  image: string,
-  id: string
-}
+// type Listing = {
+//   title: string,
+//   username: string,
+//   image: string,
+//   id: string
+// }
 
 type LandingPageProps = {
   items: ItemsTableResults[]
+  setItems: (items:ItemsTableResults[]) => void
   }
 
-export default function LandingPage({items}: LandingPageProps) {
+export default function LandingPage({items, setItems}: LandingPageProps) {
   const navigate = useNavigate();
   const handleGetStartedClicked = () => {
     navigate('/login');
@@ -36,7 +37,7 @@ export default function LandingPage({items}: LandingPageProps) {
       <Button role="button" variant="contained" color="success"  onClick={handleGetStartedClicked} sx={{mb: 2, mt: 2, width: '200px', height: '50px', fontSize: '1.2rem'}}>
           <b>Get Started</b>
         </Button>
-      <div style={{width: '100%'}}><SearchBar setSearchResults={setSearchResults}/></div>
+      <div style={{width: '100%'}}><SearchBar items={items} setItems={setItems}/></div>
       <ListDisplay
        selectedItem={[]}
        numItems={numItems}

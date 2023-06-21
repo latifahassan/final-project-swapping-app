@@ -62,8 +62,8 @@ console.log(items)
       <div className="App">
         <NavBar />
           <Routes>
-            <Route path = "/home" element = {<HomePage items={items}/>} />
-            <Route path = "/" element = {<LandingPage items={items}/>} />
+            <Route path = "/home" element = {<HomePage items={items} setItems={setItems}/>} />
+            <Route path = "/" element = {<LandingPage items={items} setItems={setItems}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
             {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
         </Routes>

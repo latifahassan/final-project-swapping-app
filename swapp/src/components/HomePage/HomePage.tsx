@@ -14,9 +14,10 @@ type Listing = {
 }
 type HomePageProps = {
 items: ItemsTableResults[]
+setItems: (items:ItemsTableResults[]) => void
 }
 
-export default function HomePage({items}: HomePageProps) {
+export default function HomePage({items, setItems}: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
@@ -47,7 +48,7 @@ export default function HomePage({items}: HomePageProps) {
 
   return (
     <div>
-      <SearchBar setSearchResults={setSearchResults} />
+      <SearchBar setItems={setItems} />
       <ListDisplay
        numItems={numItems}
        handleGetItNowClick={handleGetItNowClick}
