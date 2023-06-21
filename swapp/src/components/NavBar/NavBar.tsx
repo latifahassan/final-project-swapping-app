@@ -46,6 +46,10 @@ export default function NavBar() {
     }
   };
 
+  const handleAccount = () => {
+    navigate('/myaccount');
+  };
+
   const renderAccountIcon = !['/', '/login'].includes(location.pathname);
 
   return (
@@ -91,8 +95,16 @@ export default function NavBar() {
         onClose={handleCloseUserMenu}
       >
         {settings.map((setting) => (
-             <MenuItem key={setting} onClick={setting === 'Logout' ? handleLogout : handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+          <MenuItem
+            key={setting}
+            onClick={
+              setting === 'Logout'
+              ? handleLogout
+              : setting === 'My Account'
+              ? handleAccount
+              : handleCloseUserMenu
+  }
+>            <Typography textAlign="center">{setting}</Typography>
           </MenuItem>
         ))}
       </Menu>

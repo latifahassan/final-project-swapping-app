@@ -1,12 +1,13 @@
 import HomePage from '../HomePage/HomePage';
 import LandingPage from '../LandingPage/LandingPage';
 import AuthPage from '../AuthPage/AuthPage';
-// import MyAccountPage from '../MyAccountPage/MyAccountPage';
+import MyAccountPage from '../MyAccountPage/MyAccountPage';
 import NavBar from '../NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css'
 import supabase from '../../supabaseClient';
+
 
  export type ItemsTableResults = {
   item_id: string;
@@ -78,7 +79,7 @@ console.log(items)
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
-            {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
+            <Route path = "/myaccount" element = {<MyAccountPage/>} />
         </Routes>
       </div>
     </Router>
