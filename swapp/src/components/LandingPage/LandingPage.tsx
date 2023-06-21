@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
-import listingsData from '../SearchBar/data.json';
 import Footer from '../Footer/Footer';
 import landingpagegif from '../../images/landingpagegif.gif';
 import { Button } from '@mui/material';
 import { ItemsTableResults } from '../App/App';
 
-// type Listing = {
-//   title: string,
-//   username: string,
-//   image: string,
-//   id: string
-// }
+
 
 type LandingPageProps = {
   items: ItemsTableResults[]
   setItems: (items:ItemsTableResults[]) => void
+  setFilteredItems: (items:ItemsTableResults[]) => void
+  filteredItems: ItemsTableResults[]
   }
 
-export default function LandingPage({items, setItems}: LandingPageProps) {
+export default function LandingPage({items, setItems, setFilteredItems, filteredItems}: LandingPageProps) {
   const navigate = useNavigate();
   const handleGetStartedClicked = () => {
     navigate('/login');
   }
 
-  const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
 
   let numItems = 99;
 
@@ -37,14 +32,17 @@ export default function LandingPage({items, setItems}: LandingPageProps) {
       <Button role="button" variant="contained" color="success"  onClick={handleGetStartedClicked} sx={{mb: 2, mt: 2, width: '200px', height: '50px', fontSize: '1.2rem'}}>
           <b>Get Started</b>
         </Button>
-      <div style={{width: '100%'}}><SearchBar items={items} setItems={setItems}/></div>
+      <div style={{width: '100%'}}><SearchBar
+      items={items}
+      setItems={setItems}
+      setFilteredItems={setFilteredItems}/></div>
       <ListDisplay
        selectedItem={[]}
        numItems={numItems}
        handleGetItNowClick={handleGetStartedClicked}
-       searchResults={searchResults}
        spendATokenClicked = {false}  
        items={items}  
+       filteredItems={filteredItems}
         />
       <Footer/>
     </div>

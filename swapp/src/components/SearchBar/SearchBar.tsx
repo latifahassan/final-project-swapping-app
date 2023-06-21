@@ -1,23 +1,16 @@
-import listingsData from './data.json'
 import React from 'react'
 import { useState } from 'react'
 import './SearchBar.css'
 import { ItemsTableResults } from '../App/App'
 
-// type Listing = {
-//   title: string,
-//   username: string,
-//   image: string,
-//   id: string
-// };
 
 type SearchBarProps = {
   items: ItemsTableResults[];
   setItems: (FilteredData: ItemsTableResults[]) => void;
-
+  setFilteredItems: (FilteredData: ItemsTableResults[]) => void;
 }
 
-export default function SearchBar({items, setItems}: SearchBarProps) {
+export default function SearchBar({items, setItems, setFilteredItems}: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value
@@ -26,8 +19,9 @@ export default function SearchBar({items, setItems}: SearchBarProps) {
     // "     rEd      dREsS     "
     // "red dress"
     const cleanedQuery = query.trim().replace(/\s+/g, " ").toLowerCase();
-    const filteredData = items.filter((Items:ItemsTableResults[])=> items.title.toLowerCase().includes(cleanedQuery));
-    setItems(filteredData)
+    let copyOfItems = [...items];
+    const filteredData = copyOfItems.filter((item)=> item.title.toLowerCase().includes(cleanedQuery));
+    setFilteredItems(filteredData);
   }
   return (
     <div id="searchIcon">
