@@ -9,8 +9,9 @@ type ListDisplayProps = {
   handleGetItNowClick: (itemId: string) => void;
   spendATokenClicked: boolean;
   selectedItem: string[]; 
+  filteredItems: ItemsTableResults[];
 };
-export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem }: ListDisplayProps) {
+export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems }: ListDisplayProps) {
   const slicedItems = items.slice(0, numItems);
 
   return (

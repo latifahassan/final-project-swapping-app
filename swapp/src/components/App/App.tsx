@@ -70,11 +70,13 @@ console.log(items)
             <Route path = "/home" element = {<HomePage
               items={items}
               setItems={setItems}
-              setFilteredItems={setFilteredItems}/>} />
+              setFilteredItems={setFilteredItems}
+              filteredItems={filteredItems}/>} />
             <Route path = "/" element = {<LandingPage
               items={items}
               setItems={setItems}
-              setFilteredItems={setFilteredItems}/>} />
+              setFilteredItems={setFilteredItems}
+              filteredItems={filteredItems}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
             {/* <Route path = "/myaccount" element = {<MyAccountPage/>} /> */}
         </Routes>

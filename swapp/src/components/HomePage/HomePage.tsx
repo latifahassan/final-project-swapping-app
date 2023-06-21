@@ -10,9 +10,10 @@ type HomePageProps = {
 items: ItemsTableResults[]
 setItems: (items:ItemsTableResults[]) => void
 setFilteredItems: (items:ItemsTableResults[]) => void
+filteredItems: ItemsTableResults[]
 }
 
-export default function HomePage({items, setItems, setFilteredItems}: HomePageProps) {
+export default function HomePage({items, setItems, setFilteredItems, filteredItems}: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
@@ -52,7 +53,8 @@ export default function HomePage({items, setItems, setFilteredItems}: HomePagePr
        handleGetItNowClick={handleGetItNowClick}      
        spendATokenClicked={spendATokenClicked} 
        selectedItem={selectedItem}
-       items={items}/>
+       items={items}
+       filteredItems={filteredItems}/>
       {getItNowClicked && <PopUp
       numberOfTokens={numberOfTokens} 
       handleSpendATokenClick={handleSpendATokenClick} 

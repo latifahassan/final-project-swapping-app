@@ -21,7 +21,7 @@ export default function SearchBar({items, setItems, setFilteredItems}: SearchBar
     const cleanedQuery = query.trim().replace(/\s+/g, " ").toLowerCase();
     let copyOfItems = [...items];
     const filteredData = copyOfItems.filter((item)=> item.title.toLowerCase().includes(cleanedQuery));
-    setItems(filteredData)
+    setFilteredItems(filteredData);
   }
   return (
     <div id="searchIcon">

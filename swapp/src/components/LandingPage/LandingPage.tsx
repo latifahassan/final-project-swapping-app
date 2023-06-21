@@ -13,9 +13,10 @@ type LandingPageProps = {
   items: ItemsTableResults[]
   setItems: (items:ItemsTableResults[]) => void
   setFilteredItems: (items:ItemsTableResults[]) => void
+  filteredItems: ItemsTableResults[]
   }
 
-export default function LandingPage({items, setItems, setFilteredItems}: LandingPageProps) {
+export default function LandingPage({items, setItems, setFilteredItems, filteredItems}: LandingPageProps) {
   const navigate = useNavigate();
   const handleGetStartedClicked = () => {
     navigate('/login');
@@ -41,6 +42,7 @@ export default function LandingPage({items, setItems, setFilteredItems}: Landing
        handleGetItNowClick={handleGetStartedClicked}
        spendATokenClicked = {false}  
        items={items}  
+       filteredItems={filteredItems}
         />
       <Footer/>
     </div>
