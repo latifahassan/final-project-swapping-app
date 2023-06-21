@@ -19,7 +19,8 @@ export default function SearchBar({items, setItems}: SearchBarProps) {
     // "     rEd      dREsS     "
     // "red dress"
     const cleanedQuery = query.trim().replace(/\s+/g, " ").toLowerCase();
-    const filteredData = items.filter((item)=> item.title.toLowerCase().includes(cleanedQuery));
+    let copyOfItems = [...items];
+    const filteredData = copyOfItems.filter((item)=> item.title.toLowerCase().includes(cleanedQuery));
     setItems(filteredData)
   }
   return (
