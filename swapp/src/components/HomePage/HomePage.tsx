@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import PopUp from '../PopUp/PopUp';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
-import listingsData from '../SearchBar/data.json';
 import Footer from '../Footer/Footer';
 import { ItemsTableResults } from '../App/App';
 
-type Listing = {
-  title: string,
-  username: string,
-  image: string,
-  id: string
-}
+
 type HomePageProps = {
 items: ItemsTableResults[]
 setItems: (items:ItemsTableResults[]) => void
@@ -42,17 +36,16 @@ export default function HomePage({items, setItems}: HomePageProps) {
     }
   };
 
-  const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
+  // const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
 
   let numItems = 99;
 
   return (
     <div>
-      <SearchBar setItems={setItems} />
+      <SearchBar items={items} setItems={setItems} />
       <ListDisplay
        numItems={numItems}
-       handleGetItNowClick={handleGetItNowClick}
-       searchResults={searchResults}        
+       handleGetItNowClick={handleGetItNowClick}      
        spendATokenClicked={spendATokenClicked} 
        selectedItem={selectedItem}
        items={items}/>

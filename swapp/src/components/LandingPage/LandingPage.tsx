@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
-import listingsData from '../SearchBar/data.json';
 import Footer from '../Footer/Footer';
 import landingpagegif from '../../images/landingpagegif.gif';
 import { Button } from '@mui/material';
 import { ItemsTableResults } from '../App/App';
 
-// type Listing = {
-//   title: string,
-//   username: string,
-//   image: string,
-//   id: string
-// }
+
 
 type LandingPageProps = {
   items: ItemsTableResults[]
@@ -26,7 +20,6 @@ export default function LandingPage({items, setItems}: LandingPageProps) {
     navigate('/login');
   }
 
-  const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
 
   let numItems = 99;
 
@@ -42,7 +35,6 @@ export default function LandingPage({items, setItems}: LandingPageProps) {
        selectedItem={[]}
        numItems={numItems}
        handleGetItNowClick={handleGetStartedClicked}
-       searchResults={searchResults}
        spendATokenClicked = {false}  
        items={items}  
         />

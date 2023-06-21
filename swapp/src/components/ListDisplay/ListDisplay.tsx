@@ -9,14 +9,8 @@ type ListDisplayProps = {
   handleGetItNowClick: (itemId: string) => void;
   spendATokenClicked: boolean;
   selectedItem: string[]; 
-  searchResults: {
-    title:string,
-    username: string,
-    image: string,
-    id: string
-  }[];
 };
-export default function ListDisplay({ items, numItems, searchResults, handleGetItNowClick, spendATokenClicked, selectedItem }: ListDisplayProps) {
+export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem }: ListDisplayProps) {
   const slicedItems = items.slice(0, numItems);
 
   return (
