@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../../supabaseClient';
 
-export default function AuthUI() {
+type Props = {
+    user: string;
+    session: string;
+  }
+  
+export default function AuthUI(Props) {
 const navigate = useNavigate();
 const [activeTab, setActiveTab] = useState('login');
 const [loginEmail, setLoginEmail] = useState('');
@@ -15,7 +20,7 @@ const [signupPassword, setSignupPassword] = useState('');
     }
 
     const handleLogin = async () => {
-        const { user, session, error } = await supabase.auth.signIn({
+        const { user, session, error } = await supabase.auth.signInWithPassword({
             email: loginEmail,
             password: loginPassword
         })
