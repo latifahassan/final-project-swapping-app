@@ -1,4 +1,3 @@
-import listingsData from './data.json'
 import React from 'react'
 import { useState } from 'react'
 import './SearchBar.css'
@@ -26,7 +25,7 @@ export default function SearchBar({items, setItems}: SearchBarProps) {
     // "     rEd      dREsS     "
     // "red dress"
     const cleanedQuery = query.trim().replace(/\s+/g, " ").toLowerCase();
-    const filteredData = items.filter((Items:ItemsTableResults[])=> items.title.toLowerCase().includes(cleanedQuery));
+    const filteredData = items.filter((item)=> item.title.toLowerCase().includes(cleanedQuery));
     setItems(filteredData)
   }
   return (
