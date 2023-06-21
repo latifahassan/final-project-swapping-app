@@ -11,10 +11,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link,useNavigate } from 'react-router-dom';
 import swappTransparent from '../../swapp-transparent.png'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import supabase from '../../supabaseClient'
 
 const settings = ['My Account', 'Logout'];
 
@@ -22,6 +23,7 @@ export default function NavBar() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const navigate = useNavigate();
 
   const location = useLocation();
   const renderHomeIcon = location.pathname === "/myaccount"
@@ -33,6 +35,15 @@ export default function NavBar() {
 
   const handleCloseUserMenu = () => {
     setAccountMenu(null);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   const renderAccountIcon = !['/', '/login'].includes(location.pathname);
@@ -80,7 +91,7 @@ export default function NavBar() {
         onClose={handleCloseUserMenu}
       >
         {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
+             <MenuItem key={setting} onClick={setting === 'Logout' ? handleLogout : handleCloseUserMenu}>
             <Typography textAlign="center">{setting}</Typography>
           </MenuItem>
         ))}

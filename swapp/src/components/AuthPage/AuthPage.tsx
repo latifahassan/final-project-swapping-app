@@ -3,15 +3,11 @@ import { useState, useEffect } from 'react'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useNavigate } from 'react-router-dom'
-import NavBar from '../NavBar/NavBar'
+
 interface Session {
   user?: {
     email?: string;
   };
-}
-
-type Props = {
-  handleLogout: () => void;
 }
 export default function AuthPage() {
   const navigate = useNavigate();
@@ -32,12 +28,6 @@ export default function AuthPage() {
     return () => subscription.unsubscribe()
   }, [])
 
-  // const handleLogout: Props = () => {
-  //   supabase.auth.signOut().then(() => {
-  //     setSession(null)
-  //     navigate('/')
-  //   })
-  // }
 
   useEffect(() => {
     if (session) {
