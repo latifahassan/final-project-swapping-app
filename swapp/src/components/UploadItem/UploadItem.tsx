@@ -15,7 +15,7 @@ export default function UploadItem() {
           cacheControl: '3600',
           upsert: false,
         });
-      // Handle data and error as needed
+      console.log(data,error)
     }
   }
 
