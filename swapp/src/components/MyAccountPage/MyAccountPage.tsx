@@ -4,6 +4,7 @@
 // 3. A list of my 'gets'/'claims'
 
 import React from 'react'
+import UploadItem from '../UploadItem/UploadItem'
 
 // type Props = {}
 
@@ -15,7 +16,7 @@ export default function MyAccountPage() {
         <form>
           <label>Item name</label>
           <input type="text" />
-          <button>List it!</button>
+          <UploadItem />
         </form>
     </div>
   </div>
