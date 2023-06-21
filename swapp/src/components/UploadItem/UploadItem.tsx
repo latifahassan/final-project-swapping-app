@@ -15,7 +15,7 @@ export default function UploadItem() {
           cacheControl: '3600',
           upsert: false,
         });
-      console.log(data,error)
+      console.log(data,error, 'not working')
     }
   }
 
