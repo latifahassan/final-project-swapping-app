@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import PopUp from './PopUp';
-import { truncate } from 'fs/promises';
 // import DisplayCard from '../DisplayCard/DisplayCard';
 
 describe('PopUp component', () => {
