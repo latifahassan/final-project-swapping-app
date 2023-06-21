@@ -62,7 +62,7 @@ console.log(items)
   return (
     <Router>
       <div className="App">
-        <NavBar />
+        <NavBar numberOfTokens={numberOfTokens}/>
           <Routes>
             <Route path = "/home" element = {<HomePage items={items}/>} />
             <Route path = "/" element = {<LandingPage items={items}/>} />
