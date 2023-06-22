@@ -1,7 +1,6 @@
 import supabase from '../../supabaseClient'
 import { useState, useEffect } from 'react'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
+import AuthUi from './AuthUi'
 import { useNavigate } from 'react-router-dom'
 interface Session {
   user?: {
@@ -28,13 +27,6 @@ export default function AuthPage() {
     return () => subscription.unsubscribe()
   }, [])
 
-  // const handleLogout: Props = () => {
-  //   supabase.auth.signOut().then(() => {
-  //     setSession(null)
-  //     navigate('/')
-  //   })
-  // }
-
   useEffect(() => {
     if (session) {
       console.log("Session exists")
@@ -44,7 +36,7 @@ export default function AuthPage() {
   
   if (!session) {
     console.log("Rendering auth component")
-    return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
+    return (<AuthUi supabaseClient={supabase} appearance='card' />)
   } else {
     return null
   }
