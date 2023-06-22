@@ -54,7 +54,7 @@ export default function NavBar() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#018043", height: "80px", flexShrink: 9 }}>
-  <Toolbar disableGutters sx={{ justifyContent: "space-between", pl: '10px', pr: '10px'}}>
+  <Toolbar disableGutters sx={{ display: 'flex', justifyContent: "space-between", alignItems: 'baseline', pl: '10px', pr: '10px'}}>
     <Box sx={{ flexGrow: 0 }}>
       {renderHomeIcon && (
           <IconButton component = {Link} to = "/home">
@@ -68,15 +68,17 @@ export default function NavBar() {
             </Button>
           </Stack>)}
     </Box>
-    <Box sx={{ flexGrow: 1, display: "flex", alignItem: 'center', justifyContent: 'center', paddingTop: 2 }}>
-      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '30px' : '47px' }} />
+    <Box sx={{ flexGrow: 1, display: "flex", alignItems: 'basline', justifyContent: 'center' }}>
+      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '30px' : '47px'}} />
     </Box>
     <Box sx={{ flexGrow: 0 }}>
       {renderAccountIcon && (
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
+            <Typography sx={{borderRadius:'50%', backgroundColor: 'yellow', ml: '-15px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', height: isMobile ? '20px' : '25px', width: isMobile ? '20px' : '25px', mt: isMobile ? '15px' : '20px'}} >4</Typography>
           </IconButton>
+          
         </Tooltip>)}
       <Menu
         sx={{ mt: '45px' }}
