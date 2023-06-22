@@ -3,6 +3,8 @@ import supabase from '../../supabaseClient';
 import React from 'react'
 import {uuid} from 'uuidv4'
 import { useState } from 'react';
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { FileObject } from '@supabase/supabase-js';
 
 export default function UploadItem() {
   // async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -20,7 +22,10 @@ export default function UploadItem() {
   //     console.log(data,error, 'not working')
   //   }
   // }
-const [images, setImages] = useState([])
+
+const user = useUser() 
+// we need to come back to this and change <any[]> to <FileObject[]> with a more robust type definition
+const [images, setImages] = useState<any[]>([])
 
 async function getImages() {
   const { data, error } = await supabase
@@ -33,7 +38,7 @@ async function getImages() {
   }
   else {
     console.log(error)
-    alert(' error loading images')
+    alert('Error loading images.')
   }
 }
 
