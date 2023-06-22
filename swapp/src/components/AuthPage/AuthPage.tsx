@@ -37,7 +37,8 @@ export default function AuthPage() {
 
   useEffect(() => {
     if (session) {
-      console.log("Session exists")
+      console.log("Session exists. See session below...")
+      console.log(session)
       navigate('/home');
     }
   }, [session, navigate])
