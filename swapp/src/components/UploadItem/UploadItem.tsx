@@ -1,10 +1,9 @@
 
 import supabase from '../../supabaseClient';
 import React from 'react'
-import {uuid} from 'uuidv4'
+import {v4 as uuid} from 'uuid'
 import { useState } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { FileObject } from '@supabase/supabase-js';
 
 export default function UploadItem() {
   // async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -42,12 +41,13 @@ async function getImages() {
   }
 }
 
-  async function uploadImage(e: React.ChangeEvent<HTMLInputElement>) {
-    let file = e.target.files[0];
+  async function uploadImage(e: React.ChangeEvent<HTMLInputElement>| React.FormEvent<HTMLFormElement>) {
+    let file = (e.target as HTMLInputElement).files?.[0];
+    if (file) {
     const { data, error } = await supabase
     .storage
     .from('images')
-    .upload(user.id + '/' + uuid(), file);
+    .upload(user?.id + '/' + uuid(), file);
      if (data) {
       getImages()
      }
@@ -55,9 +55,10 @@ async function getImages() {
         console.log(error)
       }
   }
+}
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={uploadImage}>
       <input type="text" />
       <input type="file" name="file" accept = 'image/png,image/jpeg' onChange={(e)=> uploadImage(e)} />
       <button type="submit">List it!</button>
