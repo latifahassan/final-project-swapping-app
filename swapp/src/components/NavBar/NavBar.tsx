@@ -40,6 +40,7 @@ export default function NavBar() {
   const handleLogout = async () => {
     try {
       await supabase.auth.signOut();
+      handleCloseUserMenu();
       navigate('/');
     } catch (error) {
       console.error('Logout error:', error);
