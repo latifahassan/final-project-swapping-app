@@ -16,7 +16,7 @@ import supabase from '../../supabaseClient';
   image: string;
   user_id: string;
   username: string;
-  token_count?: number;
+  user: {token_count: number};
 }
 
 
@@ -37,6 +37,7 @@ export default function App() {
     const { data: user, error } = await supabase.auth.getUser();
     if (error) {
       console.error('User Error:', error);
+      console.log("user", user);
     } else if (user) {
       setToken_Count(user.token_count);
     };
