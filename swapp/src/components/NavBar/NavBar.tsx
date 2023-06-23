@@ -15,7 +15,7 @@ import { useLocation, Link,useNavigate } from 'react-router-dom';
 import swappTransparent from '../../swapp-transparent.png'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import supabase from '../../supabaseClient'
+import supabase from '../../supabaseClient';
 
 const settings = ['My Account', 'Logout'];
 

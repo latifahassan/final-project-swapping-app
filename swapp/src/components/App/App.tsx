@@ -23,7 +23,7 @@ import supabase from '../../supabaseClient';
 export default function App() {
   const [items, setItems] = useState<TableResults[]>([]);
   const [filteredItems, setFilteredItems] = useState<TableResults[]>(items);
-  
+  const [token_count, setToken_Count] = useState<number|null>(null);
 
   useEffect(() => {
     getItems();
@@ -32,6 +32,15 @@ export default function App() {
   useEffect(() => {
     setFilteredItems(items);
   }, [items]);
+
+  async function getUser() {
+    const { data: user, error } = await supabase.auth.getUser();
+    if (error) {
+      console.error('User Error:', error);
+    } else if (user) {
+      setToken_Count(user.token_count);
+    };
+  };
 
   async function getItems() {
     let { data: itemsData, error: itemsError } = await supabase
@@ -53,6 +62,7 @@ export default function App() {
           return {
             ...item,
             username: user ? user.username : null,
+            token_count: user ? user.token_count : null,
           };
         });
       
@@ -88,3 +98,8 @@ console.log(items)
     </Router>
   );
 }
+
+//Step 1: Use USE CONTEXT to find user_id.
+//Step 2: Update tokens based on user_id so correct number of tokens are displayed on the navbar.
+//Step 3: Replace the functionality that we have around increasing and decreasing tokens and work that into the supabase instead.
+//Step 4: 
