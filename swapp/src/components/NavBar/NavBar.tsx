@@ -54,7 +54,7 @@ export default function NavBar() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#018043", height: "80px", flexShrink: 9 }}>
-  <Toolbar disableGutters sx={{ justifyContent: "space-between", pl: '10px', pr: '10px'}}>
+  <Toolbar disableGutters sx={{ display: 'flex', justifyContent: "space-between", alignItems: 'center', pl: '10px', pr: '10px', pt: '10px'}}>
     <Box sx={{ flexGrow: 0 }}>
       {renderHomeIcon && (
           <IconButton component = {Link} to = "/home">
@@ -63,20 +63,31 @@ export default function NavBar() {
           
           {renderListItButton && (
           <Stack direction = "row" spacing = {2} >
-            <Button role="button" variant="contained" color="success" >
-          List it
+            <Button role="button" variant="contained" color="success" style={{width: '43px',
+    height: '40px',
+    padding: '0',
+    marginRight: '10px',
+    minWidth: 'unset',
+    color: 'black',
+    backgroundColor: 'white',
+    // fontWeight: 'bold',
+    fontSize: '13px',
+    }}>
+          + ADD
             </Button>
           </Stack>)}
     </Box>
-    <Box sx={{ flexGrow: 1, display: "flex", alignItem: 'center', justifyContent: 'center', paddingTop: 2 }}>
-      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '30px' : '47px' }} />
+    <Box sx={{ flexGrow: 1 }}>
+      <img src={swappTransparent} alt="swapp logo" style={{ height: isMobile ? '30px' : '43px', marginLeft: isMobile ? '-10px' : '0px'}} />
     </Box>
     <Box sx={{ flexGrow: 0 }}>
       {renderAccountIcon && (
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
+            <Typography sx={{borderRadius:'50%', backgroundColor: 'yellow', ml: '-15px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', height: isMobile ? '20px' : '25px', width: isMobile ? '20px' : '25px', mt: isMobile ? '15px' : '20px'}} >4</Typography>
           </IconButton>
+          
         </Tooltip>)}
       <Menu
         sx={{ mt: '45px' }}

@@ -22,6 +22,7 @@ import supabase from '../../supabaseClient';
 export default function App() {
   const [items, setItems] = useState<ItemsTableResults[]>([]);
   const [filteredItems, setFilteredItems] = useState<ItemsTableResults[]>(items);
+  
 
   useEffect(() => {
     getItems();

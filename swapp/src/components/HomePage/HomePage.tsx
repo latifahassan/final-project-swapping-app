@@ -18,25 +18,27 @@ export default function HomePage({items, setItems, setFilteredItems, filteredIte
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
   const handleGetItNowClick = (itemId: string) => {
+    if (numberOfTokens <= 0) {
+      setNumberOfTokens(0);
+      alert("You don't have any tokens left!");
+    }
+    else {
     setGetItNowClicked(true);
     setSelectedItem((prevSelectedItems) => [...prevSelectedItems, itemId]);
     setSpendATokenClicked(false);
+    }
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
   const [numberOfTokens, setNumberOfTokens] = useState(4);
 
   const handleSpendATokenClick = () => {
-    if (numberOfTokens <= 0) {
-      setNumberOfTokens(0);
-      alert("You don't have any tokens left!");
-    } else {
       setSpendATokenClicked(true);
       setNumberOfTokens(numberOfTokens - 1); 
       setGetItNowClicked(false);
       console.log(spendATokenClicked);
     }
-  };
+  
 
   // const [searchResults, setSearchResults] = useState<Listing[]>(listingsData);
 
