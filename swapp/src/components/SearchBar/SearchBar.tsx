@@ -1,13 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import './SearchBar.css'
-import { ItemsTableResults } from '../App/App'
+import { TableResults } from '../App/App'
 
 
 type SearchBarProps = {
-  items: ItemsTableResults[];
-  setItems: (FilteredData: ItemsTableResults[]) => void;
-  setFilteredItems: (FilteredData: ItemsTableResults[]) => void;
+  items: TableResults[];
+  setItems: (FilteredData: TableResults[]) => void;
+  setFilteredItems: (FilteredData: TableResults[]) => void;
 }
 
 export default function SearchBar({items, setItems, setFilteredItems}: SearchBarProps) {

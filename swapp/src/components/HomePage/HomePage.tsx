@@ -3,14 +3,14 @@ import PopUp from '../PopUp/PopUp';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
 import Footer from '../Footer/Footer';
-import { ItemsTableResults } from '../App/App';
+import { TableResults } from '../App/App';
 
 
 type HomePageProps = {
-items: ItemsTableResults[]
-setItems: (items:ItemsTableResults[]) => void
-setFilteredItems: (items:ItemsTableResults[]) => void
-filteredItems: ItemsTableResults[]
+items: TableResults[]
+setItems: (items:TableResults[]) => void
+setFilteredItems: (items:TableResults[]) => void
+filteredItems: TableResults[]
 }
 
 export default function HomePage({items, setItems, setFilteredItems, filteredItems}: HomePageProps) {

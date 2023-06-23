@@ -6,17 +6,17 @@ import Footer from '../Footer/Footer';
 import landingpagegif from '../../images/landingpagegif.gif';
 import landingpagegifdesktop from '../../images/landingpagegifdesktop.gif';
 import { Button } from '@mui/material';
-import { ItemsTableResults } from '../App/App';
+import { TableResults } from '../App/App';
 import './LandingPage.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 
 type LandingPageProps = {
-  items: ItemsTableResults[]
-  setItems: (items:ItemsTableResults[]) => void
-  setFilteredItems: (items:ItemsTableResults[]) => void
-  filteredItems: ItemsTableResults[]
+  items: TableResults[]
+  setItems: (items:TableResults[]) => void
+  setFilteredItems: (items:TableResults[]) => void
+  filteredItems: TableResults[]
   }
 
 export default function LandingPage({items, setItems, setFilteredItems, filteredItems}: LandingPageProps) {

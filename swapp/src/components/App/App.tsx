@@ -9,19 +9,20 @@ import './App.css'
 import supabase from '../../supabaseClient';
 
 
- export type ItemsTableResults = {
+ export type TableResults = {
   item_id: string;
   created_at: string;
   title: string;
   image: string;
   user_id: string;
   username: string;
+  token_count?: number;
 }
 
 
 export default function App() {
-  const [items, setItems] = useState<ItemsTableResults[]>([]);
-  const [filteredItems, setFilteredItems] = useState<ItemsTableResults[]>(items);
+  const [items, setItems] = useState<TableResults[]>([]);
+  const [filteredItems, setFilteredItems] = useState<TableResults[]>(items);
   
 
   useEffect(() => {
@@ -39,8 +40,9 @@ export default function App() {
 
     let { data: usersData, error: usersError } = await supabase
       .from('users')
-      .select('user_id, username');
+      .select('user_id, username, token_count');
 
+  
 
       if (itemsError) console.error('Items Error: ', itemsError);
       if (usersError) console.error('Users Error: ', usersError);
