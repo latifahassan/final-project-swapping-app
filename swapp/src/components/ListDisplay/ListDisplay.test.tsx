@@ -21,14 +21,14 @@ describe("ListDisplay", () => {
         spendATokenClicked={false}
         selectedItem={['abc123']}
         filteredItems={[
-          { title: 'test title 1', image: 'test1.jpg', username: 'test username 1', item_id: 'abc123', user_id: 'abc123', created_at: '2023' },
-          { title: 'test title 2', image: 'test2.jpg', username: 'test username 2', item_id: 'def456', user_id: 'abc123', created_at: '2023' },
-          { title: 'test title 3', image: 'test3.jpg', username: 'test username 3', item_id: 'ghi789', user_id: 'abc123', created_at: '2023' }
+          { title: 'test title 1', image: 'test1.jpg', username: 'test username 1', item_id: 'abc123', user_id: 'abc123', created_at: '2023', user: {token_count: 99} },
+          { title: 'test title 2', image: 'test2.jpg', username: 'test username 2', item_id: 'def456', user_id: 'abc123', created_at: '2023', user: {token_count: 99} },
+          { title: 'test title 3', image: 'test3.jpg', username: 'test username 3', item_id: 'ghi789', user_id: 'abc123', created_at: '2023', user: {token_count: 99} }
         ]}
         items={[
-          { title: 'test title 1', image: 'test1.jpg', username: 'test username 1', item_id: 'abc123', user_id: 'abc123', created_at: '2023' },
-          { title: 'test title 2', image: 'test2.jpg', username: 'test username 2', item_id: 'def456', user_id: 'abc123', created_at: '2023' },
-          { title: 'test title 3', image: 'test3.jpg', username: 'test username 3', item_id: 'ghi789', user_id: 'abc123', created_at: '2023' }
+          { title: 'test title 1', image: 'test1.jpg', username: 'test username 1', item_id: 'abc123', user_id: 'abc123', created_at: '2023', user: {token_count: 99} },
+          { title: 'test title 2', image: 'test2.jpg', username: 'test username 2', item_id: 'def456', user_id: 'abc123', created_at: '2023', user: {token_count: 99} },
+          { title: 'test title 3', image: 'test3.jpg', username: 'test username 3', item_id: 'ghi789', user_id: 'abc123', created_at: '2023', user: {token_count: 99} }
         ]}
       />
     );

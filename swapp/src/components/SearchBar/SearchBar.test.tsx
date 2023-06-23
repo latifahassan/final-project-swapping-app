@@ -12,7 +12,8 @@ describe('SearchBar component', () => {
         image: "https://m.media-amazon.com/images/I/91F0TNvmWGL._AC_UL1500_.jpg",
         user_id: "abc123",
         created_at: "2023",
-        item_id: "abc23234"
+        item_id: "abc23234",
+        user: {token_count: 99}
       }
     ];
 

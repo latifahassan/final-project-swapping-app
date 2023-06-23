@@ -39,7 +39,8 @@ export default function App() {
       console.error('User Error:', error);
       console.log("user", user);
     } else if (user) {
-      setToken_Count(user.token_count);
+      // setToken_Count(user.token_count);
+      console.log("User is active!");
     };
   };
 
@@ -68,7 +69,7 @@ export default function App() {
         });
       
         console.log('Transformed Data: ', transformedData);
-        setItems(transformedData);
+        // setItems(transformedData);
       }
   }
 
