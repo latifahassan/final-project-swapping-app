@@ -16,7 +16,7 @@ export default function UploadItem() {
     }
     fetchUser();
   }, []);
-
+console.log(images)
   async function getImages() {
     const { data, error } = await supabase
       .storage
