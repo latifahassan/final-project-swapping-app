@@ -40,9 +40,11 @@ console.log(images)
 
     e.preventDefault();
 
-    let fileInput = (e.target as HTMLInputElement).elements.namedItem("file") as HTMLInputElement;
+    if (e.currentTarget instanceof HTMLFormElement) {
 
-    let titleInput = (e.target as HTMLInputElement).elements.namedItem("title") as HTMLInputElement;
+    let fileInput = (e.currentTarget.elements.namedItem("file") as HTMLInputElement);
+
+    let titleInput = (e.currentTarget.elements.namedItem("title") as HTMLInputElement);
 
     let file = fileInput.files?.[0];
 
@@ -58,6 +60,7 @@ console.log(images)
        const {data: insertData, error: insertError} = await supabase
        .from("items")
        .insert([{title: title, user_id: user?.id, image: filePath}]);
+       console.log("See insertData below...", insertData)
        if(insertError) {
         console.error(insertError)
         alert("Error inserting new item.");
@@ -71,6 +74,7 @@ console.log(images)
       alert('You must be logged in to upload an image.');
     }
   }
+  };
 
   return (
     <form onSubmit={uploadImage}>
