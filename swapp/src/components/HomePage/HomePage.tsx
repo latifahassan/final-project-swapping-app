@@ -39,6 +39,7 @@ export default function HomePage({items, setItems, setFilteredItems, filteredIte
       return; // Handle the case when tokenCount is null
     }
   
+
     // Update the token count in the state
     setSpendATokenClicked(true);
     setTokenCount(tokenCount - 1);

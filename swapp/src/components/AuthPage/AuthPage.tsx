@@ -50,7 +50,7 @@ export default function AuthPage({ supabaseClient, appearance }: Props) {
         };
         console.log('Authenticated session:', authenticatedSession);
       } else {
-        console.error('Invalid data object:', data);
+        console.error('Invalid data object:', error);
       }
 
       navigate('/home');
