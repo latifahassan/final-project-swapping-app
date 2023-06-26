@@ -4,7 +4,7 @@ import ListDisplay from '../ListDisplay/ListDisplay';
 import SearchBar from '../SearchBar/SearchBar';
 import Footer from '../Footer/Footer';
 import { TableResults } from '../App/App';
-
+import supabase from '../../supabaseClient'
 
 type HomePageProps = {
 items: TableResults[]
@@ -34,11 +34,22 @@ export default function HomePage({items, setItems, setFilteredItems, filteredIte
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
   
 
-  const handleSpendATokenClick = () => {
+  const handleSpendATokenClick = async () => {
       setSpendATokenClicked(true);
       setTokenCount(tokenCount - 1); 
       setGetItNowClicked(false);
       console.log(spendATokenClicked);
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        const { data, error } = await supabase
+        .from('users')
+        .update({token_count: tokenCount-1})
+        .eq('user_id', user?.id);
+        console.log(data,error)
+      } catch (error) {
+        
+        console.error('Error updating user token count:', error);
+      }
     }
   
 
