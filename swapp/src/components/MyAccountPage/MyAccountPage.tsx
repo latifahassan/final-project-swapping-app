@@ -48,7 +48,6 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
     <div className="accountContainer">
       <div className="uploadItem">
         <h2>Make a listing</h2>
-          <input type="text" />
           <UploadItem />
           <ListDisplay 
            numItems={numItems}

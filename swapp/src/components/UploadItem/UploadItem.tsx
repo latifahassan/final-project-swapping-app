@@ -27,6 +27,15 @@ export default function UploadItem() {
 
   console.log(images);
 
+  function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setTitle(e.target.value);
+  }
+
+  useEffect(() => {
+    // this shows an up-to-date value for title. Adding a console log to handleTitleChange shows that the value of title is always one character behind the value of the text input
+    console.log("title:", title);
+  }, [title]);
+
   async function getImages() {
     const { data, error } = await supabase.storage
       .from("images")
@@ -70,15 +79,10 @@ export default function UploadItem() {
     try {
       console.log("handleFormSubmit function has been called on form submission.");
       e.preventDefault();
+      console.log("user:", user);
+      console.log("title:", title);
+      console.log("uploadedFilePath:", uploadedFilePath);
       if (user && title && uploadedFilePath) {
-        console.log(
-          "user:",
-          user?.id,
-          "title:",
-          title,
-          "uploadedFilePath:",
-          uploadedFilePath
-        );
         const { data: insertData, error: insertError } = await supabase
           .from("items")
           .insert([{ title: title, user_id: user?.id, image: `https://utocnplrsihspihnbpne.supabase.co/storage/v1/object/public/images/${uploadedFilePath}` }]);
@@ -108,7 +112,7 @@ export default function UploadItem() {
         type="text"
         name="title"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleTitleChange}
       />
       <input
         type="file"
