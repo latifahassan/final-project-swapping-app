@@ -36,7 +36,7 @@ export default function UploadItem() {
         sortBy: { column: "name", order: "asc" },
       });
     if (data) {
-      console.log(data);
+      console.log("getImages function got data:", data);
       setImages(data);
     } else {
       console.log(error);
@@ -67,36 +67,43 @@ export default function UploadItem() {
   }
 
   async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (user && title && uploadedFilePath) {
-      console.log(
-        "user:",
-        user?.id,
-        "title:",
-        title,
-        "uploadedFilePath:",
-        uploadedFilePath
-      );
-      const { data: insertData, error: insertError } = await supabase
-        .from("items")
-        .insert([{ title: title, user_id: user?.id, image: `https://utocnplrsihspihnbpne.supabase.co/storage/v1/object/public/images/${uploadedFilePath}` }]);
-        console.log("insertData variable from handleFormSubmit:", insertData);
-      if (insertError) {
-        console.error(insertError);
-        alert("Error inserting new item.");
+    try {
+      console.log("handleFormSubmit function has been called on form submission.");
+      e.preventDefault();
+      if (user && title && uploadedFilePath) {
+        console.log(
+          "user:",
+          user?.id,
+          "title:",
+          title,
+          "uploadedFilePath:",
+          uploadedFilePath
+        );
+        const { data: insertData, error: insertError } = await supabase
+          .from("items")
+          .insert([{ title: title, user_id: user?.id, image: `https://utocnplrsihspihnbpne.supabase.co/storage/v1/object/public/images/${uploadedFilePath}` }]);
+          console.log("insertData variable from handleFormSubmit:", insertData);
+        if (insertError) {
+          console.error(insertError);
+          alert("Error inserting new item.");
+        }
+        // Reset text input to empty string ready for next item that the user wants to list
+        setTitle("");
+        // Reset uploadedFilePath to empty string ready for next item that the user wants to list
+        setUploadedFilePath("");
+        getImages();
+      } else if (!user) {
+        alert("You must be logged in to list an item.");
       }
-      // Reset text input to empty string ready for next item that the user wants to list
-      setTitle("");
-      // Reset uploadedFilePath to empty string ready for next item that the user wants to list
-      setUploadedFilePath("");
-      getImages();
-    } else if (!user) {
-      alert("You must be logged in to list an item.");
+    }
+    catch (error) {
+      console.error("Error in handleFormSubmit:", error);
     }
   }
 
   return (
     <form onSubmit={handleFormSubmit}>
+      <label>Item name</label>
       <input
         type="text"
         name="title"

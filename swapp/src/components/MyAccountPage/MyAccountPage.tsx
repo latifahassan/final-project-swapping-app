@@ -48,8 +48,6 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
     <div className="accountContainer">
       <div className="uploadItem">
         <h2>Make a listing</h2>
-        <form>
-          <label>Item name</label>
           <input type="text" />
           <UploadItem />
           <ListDisplay 
@@ -57,7 +55,6 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
            items={items}
            filteredItems={filteredItems}
            />
-        </form>
     </div>
   </div>
   )
