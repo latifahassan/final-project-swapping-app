@@ -29,7 +29,6 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
     async function getUser() {
       const { data: { user } } = await supabase.auth.getUser()
       setCurrentUser(user);
-      console.log('see currently logged in user below...', currentUser);
     if(user) {
       setFilteredItems(items.filter(x => x.user_id === user?.id));
       setLoading(false);
@@ -39,6 +38,11 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
     };
     getUser();
   }, [items, setFilteredItems] );
+
+ useEffect(() => {
+  console.log('see currently logged in user below...', currentUser);
+  }, [currentUser]);
+
 
   if(loading) {
     return <div>loading...</div>
