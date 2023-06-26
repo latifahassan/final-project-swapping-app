@@ -58,10 +58,9 @@ export default function App() {
       
         console.log('Transformed Data: ', transformedData);
         setItems(transformedData);
-        console.log("see items below...")
-        console.log(items)
       }
   }
+
 
 
   return (
