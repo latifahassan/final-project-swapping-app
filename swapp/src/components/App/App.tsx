@@ -133,9 +133,6 @@ export default function App() {
     fetchUserTokenCount();
   }, [session]);
 
-// this is to check that the items are being pulled from the database
-console.log("see items below...")
-console.log(items)
 
 
   return (
@@ -154,8 +151,13 @@ console.log(items)
               setItems={setItems}
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}/>} />
+
             <Route path = "/login" element = {<AuthPage supabaseClient={supabase} appearance='card'/>} />
-            <Route path = "/myaccount" element = {<MyAccountPage/>} />
+            <Route path = "/myaccount" element = {<MyAccountPage
+              items={items}
+              setFilteredItems={setFilteredItems}
+              filteredItems={filteredItems}
+              />} />
         </Routes>
       </div>
   );
