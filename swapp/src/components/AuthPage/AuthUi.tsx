@@ -84,7 +84,7 @@ const userData=  {
 const { data:insertData, error:insertError } = await supabase
   .from('users')
   .insert([
-    {userData},
+    userData,
   ])
   if(insertError) {
     console.log('User insertion error', insertError)
