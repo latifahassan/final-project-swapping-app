@@ -8,11 +8,11 @@ import UploadItem from '../UploadItem/UploadItem';
 import ListDisplay from '../ListDisplay/ListDisplay';
 import { TableResults } from '../App/App';
 import supabase from '../../supabaseClient'
+import { User} from '@supabase/supabase-js';
 
 type MyAccountPageProps = {
   items: TableResults[]
   filteredItems: TableResults[];
-  setItems: (items:TableResults[]) => void
   setFilteredItems: (items:TableResults[]) => void
 }
 
@@ -22,22 +22,23 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
 
   // const user = supabase.auth.getUser();
 
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect( () => {
     async function getUser() {
-      const user = await supabase.auth.getUser();
-      setUser(user);
+      const { data: { user } } = await supabase.auth.getUser()
+      setCurrentUser(user);
+      console.log('see currently logged in user below...', currentUser);
     if(user) {
-      setFilteredItems(items.filter(x => x.user_id === user.id));
+      setFilteredItems(items.filter(x => x.user_id === user?.id));
       setLoading(false);
     } else {
       console.error("User does not have a value.");
     };
     };
     getUser();
-  }, [items, setFilteredItems] );
+  }, [items, setFilteredItems, currentUser] );
 
   if(loading) {
     return <div>loading...</div>

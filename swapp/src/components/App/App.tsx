@@ -84,7 +84,6 @@ console.log(items)
             <Route path = "/login" element = {<AuthPage/>} />
             <Route path = "/myaccount" element = {<MyAccountPage
               items={items}
-              setItems={setItems}
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}
               />} />
