@@ -8,6 +8,7 @@ export default function UploadItem() {
   const [images, setImages] = useState<any[]>([]);
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [title, setTitle] = useState("");
+  const [uploadedFilePath, setUploadedFilePath] = useState("");
 
   useEffect(() => {
     async function fetchUser() {
@@ -17,7 +18,9 @@ export default function UploadItem() {
     }
     fetchUser();
   }, []);
+
 console.log(images)
+
   async function getImages() {
     const { data, error } = await supabase
       .storage
@@ -32,52 +35,51 @@ console.log(images)
     }
   }
 
-  async function uploadImage(e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>) {
+  async function uploadImage(e: React.ChangeEvent<HTMLInputElement>) {
 
     e.preventDefault();
-
-    if (e.currentTarget instanceof HTMLFormElement) {
-
-    let fileInput = (e.currentTarget.elements.namedItem("file") as HTMLInputElement);
-
-    let titleInput = (e.currentTarget.elements.namedItem("title") as HTMLInputElement);
-
-    let file = fileInput.files?.[0];
-
-    let title = titleInput.value;
-
-    if (user && file && title) {
-      const filePath = user?.id + '/' + uuid()
-      const { data, error } = await supabase
-        .storage
-        .from('images')
-        .upload(filePath, file);
-      if (data) {
-       const {data: insertData, error: insertError} = await supabase
-       .from("items")
-       .insert([{title: title, user_id: user?.id, image: filePath}]);
-       console.log("See insertData below...", insertData)
-       if(insertError) {
-        console.error(insertError)
-        alert("Error inserting new item.");
-       }
-       setTitle("")
-       getImages();
-      } else {
-        console.log(error)
-      }
+    let file = e.target.files?.[0];
+    if (user && file) {
+        const filePath = user?.id + '/' + uuid();
+        const { data, error } = await supabase
+            .storage
+            .from('images')
+            .upload(filePath, file);
+        if (data) {
+            setUploadedFilePath(filePath);
+            getImages();
+        } else {
+            console.log(error);
+        }
     } else if (!user) {
-      alert('You must be logged in to upload an image.');
+        alert('You must be logged in to upload an image.');
     }
   }
-  };
+  
+  async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (user && title && uploadedFilePath) {
+        const {data: insertData, error: insertError} = await supabase
+        .from("items")
+        .insert([{title: title, user_id: user?.id, image: uploadedFilePath}]);
+        if(insertError) {
+            console.error(insertError)
+            alert("Error inserting new item.");
+        }
+        setTitle("");
+        getImages();
+    } else if (!user) {
+        alert('You must be logged in to list an item.');
+    }
+}
 
-  return (
-    <form onSubmit={uploadImage}>
-      <input type="text" name="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <input type="file" name="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/avif" onChange={(e) => uploadImage(e)} />
-      <button type="submit" disabled={!isUserLoaded}>List it!</button>
-      {!isUserLoaded && <p>Loading user session...</p>}
-    </form>
-  );
+
+return (
+  <form onSubmit={handleFormSubmit}>
+    <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+    <input type="file" name="file" accept="image/png,image/jpeg,image/jpg,image/webp" onChange={uploadImage} />
+    <button type="submit" disabled={!isUserLoaded || !uploadedFilePath}>List it!</button>
+    {!isUserLoaded && <p>Loading user session...</p>}
+  </form>
+);
 }
