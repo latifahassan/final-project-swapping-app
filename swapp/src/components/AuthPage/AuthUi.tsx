@@ -75,8 +75,8 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
       }
 const userData=  {
   email: signupEmail,
-  password: signupPassword,
   username: signupUsername,
+  password: signupPassword,
   user_id: data.user.id,
   address: signupAddress
 }
@@ -267,14 +267,14 @@ const { data:insertData, error:insertError } = await supabase
               type="username"
               label="Username"
               value={signupUsername}
-              onChange={(e) => setSignupEmail(e.target.value)}
+              onChange={(e) => setSignupUsername(e.target.value)}
               sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
             />
             <TextField
               type="address"
               label="Address"
-              value={signupEmail}
-              onChange={(e) => setSignupEmail(e.target.value)}
+              value={signupAddress}
+              onChange={(e) => setSignupAddress(e.target.value)}
               sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
             />
             <Button
