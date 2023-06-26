@@ -38,7 +38,7 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
     };
     };
     getUser();
-  }, [items, setFilteredItems, currentUser] );
+  }, [items, setFilteredItems] );
 
   if(loading) {
     return <div>loading...</div>
