@@ -3,7 +3,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import AuthPage from '../AuthPage/AuthPage';
 import MyAccountPage from '../MyAccountPage/MyAccountPage';
 import NavBar from '../NavBar/NavBar';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css'
 import supabase from '../../supabaseClient';
@@ -36,6 +36,7 @@ export default function App() {
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
   const [session, setSession] = useState<Session | null>(null)
+  console.log(user);
   useEffect(() => {
     console.log('useEffect running')
     supabase.auth.getSession().then(({ data: { session } }) => {
