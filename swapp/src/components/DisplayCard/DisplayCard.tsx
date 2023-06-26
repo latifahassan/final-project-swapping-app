@@ -8,16 +8,18 @@ type DisplayCardProps = {
   title: string
   username: string
   id: string
-  spendATokenClicked: boolean;
-  handleGetItNowClick: (itemId: string) => void;
-  selectedItem: string[]; 
+  spendATokenClicked?: boolean;
+  handleGetItNowClick?: (itemId: string) => void;
+  selectedItem?: string[]; 
 }
 
-export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked, selectedItem}: DisplayCardProps) {
+export default function DisplayCard({id, image, title, username, handleGetItNowClick, spendATokenClicked, selectedItem = []}: DisplayCardProps) {
+  // aobve, we had to write selectedItem = [] because we are using the selectedItem prop in the ListDisplay component, and we are passing it down to the DisplayCard component. However, we are not passing it down every time, so we have to set a default value for it. We set it to an empty array, so that if we don't pass it down, it will be an empty array, and we can still use it in the DisplayCard component.
   const itemIsSelected = selectedItem.includes(id);
 
   const handleButtonClick = () => {
-    handleGetItNowClick(id);
+    // we have to use short circuiting to check if the function exists before calling it. We have to do this since in the props it is optional, thanks to the '?'.
+    handleGetItNowClick && handleGetItNowClick(id);
   }
 
   return (

@@ -6,9 +6,9 @@ import { TableResults } from '../App/App';
 type ListDisplayProps = {
   items: TableResults[]
   numItems: number;
-  handleGetItNowClick: (itemId: string) => void;
+  handleGetItNowClick?: (itemId: string) => void;
   spendATokenClicked?: boolean;
-  selectedItem: string[]; 
+  selectedItem?: string[]; 
   filteredItems: TableResults[];
 };
 export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems }: ListDisplayProps) {
@@ -26,7 +26,8 @@ export default function ListDisplay({ items, numItems, handleGetItNowClick, spen
           image={item.image}
           title={item.title}
           username={item.username}
-          handleGetItNowClick={() => handleGetItNowClick(item.item_id)}
+          // we use short circuiting to check if the function exists before calling it. We have to do this since in the props it is optional, thanks to the '?'.
+          handleGetItNowClick={() => handleGetItNowClick && handleGetItNowClick(item.item_id)}
           spendATokenClicked={spendATokenClicked}
           selectedItem={selectedItem}
         />

@@ -10,14 +10,12 @@ import { TableResults } from '../App/App'
 
 type MyAccountPageProps = {
   items: TableResults[]
-  handleGetItNowClick: (itemId: string) => void;
-  selectedItem: string[];
   filteredItems: TableResults[];
   setItems: (items:TableResults[]) => void
   setFilteredItems: (items:TableResults[]) => void
 }
 
-export default function MyAccountPage({ items, handleGetItNowClick, selectedItem, filteredItems, setFilteredItems }: MyAccountPageProps) {
+export default function MyAccountPage({ items, filteredItems, setFilteredItems }: MyAccountPageProps) {
 
   let numItems = 99;
 
@@ -31,8 +29,6 @@ export default function MyAccountPage({ items, handleGetItNowClick, selectedItem
           <UploadItem />
           <ListDisplay 
            numItems={numItems}
-           handleGetItNowClick={handleGetItNowClick}
-           selectedItem={selectedItem}
            items={items}
            filteredItems={filteredItems}
            />
