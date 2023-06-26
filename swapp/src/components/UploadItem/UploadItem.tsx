@@ -57,7 +57,7 @@ export default function UploadItem() {
     e.preventDefault();
     let file = e.target.files?.[0];
     if (user && file) {
-      // Create a unique filename for the uploaded file, and make the path the same as the current user's ID
+      // Create a unique filename for the uploaded file using the uuid package, and make the path the same as the current user's ID
       const filePath = user?.id + "/" + uuid();
       const { data, error } = await supabase.storage
         .from("images")
