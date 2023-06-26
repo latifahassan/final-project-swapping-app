@@ -11,15 +11,17 @@ items: TableResults[]
 setItems: (items:TableResults[]) => void
 setFilteredItems: (items:TableResults[]) => void
 filteredItems: TableResults[]
+tokenCount:number
+setTokenCount:(tokenCount:number)=>void
 }
 
-export default function HomePage({items, setItems, setFilteredItems, filteredItems}: HomePageProps) {
+export default function HomePage({items, setItems, setFilteredItems, filteredItems, tokenCount, setTokenCount}: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
   const handleGetItNowClick = (itemId: string) => {
-    if (numberOfTokens <= 0) {
-      setNumberOfTokens(0);
+    if (tokenCount <= 0) {
+      setTokenCount(0);
       alert("You don't have any tokens left!");
     }
     else {
@@ -30,11 +32,11 @@ export default function HomePage({items, setItems, setFilteredItems, filteredIte
   };
 
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
-  const [numberOfTokens, setNumberOfTokens] = useState(4);
+  
 
   const handleSpendATokenClick = () => {
       setSpendATokenClicked(true);
-      setNumberOfTokens(numberOfTokens - 1); 
+      setTokenCount(tokenCount - 1); 
       setGetItNowClicked(false);
       console.log(spendATokenClicked);
     }
@@ -58,11 +60,11 @@ export default function HomePage({items, setItems, setFilteredItems, filteredIte
        items={items}
        filteredItems={filteredItems}/>
       {getItNowClicked && <PopUp
-      numberOfTokens={numberOfTokens} 
+      tokenCount={tokenCount} 
       handleSpendATokenClick={handleSpendATokenClick} 
       getItNowClicked={getItNowClicked}
       setGetItNowClicked={setGetItNowClicked}/>}
-      <p> Number of tokens: {numberOfTokens}</p>
+      <p> Number of tokens: {tokenCount}</p>
       <Footer/>
     </div>
   

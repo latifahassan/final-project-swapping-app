@@ -7,7 +7,16 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css'
 import supabase from '../../supabaseClient';
+import { useNavigate } from 'react-router-dom';
 
+
+interface Session {
+  user?: {
+    email?: string;
+  };
+}
+
+ 
 
  export type TableResults = {
   item_id: string;
@@ -23,7 +32,32 @@ import supabase from '../../supabaseClient';
 export default function App() {
   const [items, setItems] = useState<TableResults[]>([]);
   const [filteredItems, setFilteredItems] = useState<TableResults[]>(items);
-  const [tokenCount, setTokenCount]= useState<number>(0)
+  const [tokenCount, setTokenCount]= useState<number>(0);
+  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
+  const [session, setSession] = useState<Session | null>(null)
+  useEffect(() => {
+    console.log('useEffect running')
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log(session)
+      setSession(session)
+    })
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  useEffect(() => {
+    if (session) {
+      console.log("Session exists")
+      navigate('/home');
+    }
+  }, [session, navigate])
 
   useEffect(() => {
     getItems();
@@ -71,6 +105,7 @@ export default function App() {
           console.log('User not found');
           return;
         }
+        setUser(user);
         // Query the users table using the user_id
         const { data, error } = await supabase
           .from('users')
@@ -96,7 +131,7 @@ export default function App() {
     };
   
     fetchUserTokenCount();
-  }, [user]);
+  }, [session]);
 
 // this is to check that the items are being pulled from the database
 console.log("see items below...")
@@ -104,7 +139,6 @@ console.log(items)
 
 
   return (
-    <Router>
       <div className="App">
         <NavBar tokenCount={tokenCount} />
           <Routes>
@@ -113,16 +147,16 @@ console.log(items)
               setItems={setItems}
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}
-              tokenCount={tokenCount}/>} />
+              tokenCount={tokenCount}
+              setTokenCount={setTokenCount}/>} />
             <Route path = "/" element = {<LandingPage
               items={items}
               setItems={setItems}
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}/>} />
-            <Route path = "/login" element = {<AuthPage/>} />
+            <Route path = "/login" element = {<AuthPage supabaseClient={supabase} appearance='card'/>} />
             <Route path = "/myaccount" element = {<MyAccountPage/>} />
         </Routes>
       </div>
-    </Router>
   );
 }
