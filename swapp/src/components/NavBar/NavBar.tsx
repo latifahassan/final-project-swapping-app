@@ -19,7 +19,11 @@ import supabase from '../../supabaseClient'
 
 const settings = ['My Account', 'Logout'];
 
-export default function NavBar() {
+type NavBarProps = {
+  tokenCount: number
+}
+
+export default function NavBar({tokenCount}:NavBarProps) {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -86,7 +90,7 @@ export default function NavBar() {
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
-            <Typography sx={{borderRadius:'50%', backgroundColor: 'yellow', ml: '-15px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', height: isMobile ? '20px' : '25px', width: isMobile ? '20px' : '25px', mt: isMobile ? '15px' : '20px'}} >4</Typography>
+            <Typography sx={{borderRadius:'50%', backgroundColor: 'yellow', ml: '-15px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', height: isMobile ? '20px' : '25px', width: isMobile ? '20px' : '25px', mt: isMobile ? '15px' : '20px'}} >{tokenCount}</Typography>
           </IconButton>
           
         </Tooltip>)}
