@@ -231,11 +231,6 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
         </Typography>
         <form onSubmit={handleSignup}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <TextField
-              type="username"
-              label="Username"
-              sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
-            />
             <TextField
               type="email"
               label="Email"
