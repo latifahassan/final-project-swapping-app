@@ -9,10 +9,6 @@ export default function UploadItem() {
   const [isUserLoaded, setIsUserLoaded] = useState(false);
   const [title, setTitle] = useState("");
 
-  async function addNewRowToItemsTable() {
-    
-  };
-
   useEffect(() => {
     async function fetchUser() {
       const { data: { user } } = await supabase.auth.getUser();
