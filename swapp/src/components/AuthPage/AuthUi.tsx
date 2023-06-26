@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import supabase from '../../supabaseClient'
 
 interface Props {
   supabaseClient: any;
@@ -20,6 +21,9 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
   const [loginPassword, setLoginPassword] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
+  const [signupUsername, setSignupUsername] = useState('');
+  const [signupAddress, setSignupAddress] = useState('');
+
 
   const handleTabChange = (tab: 'login' | 'signup') => {
     setActiveTab(tab);
@@ -69,6 +73,24 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
         console.error('Sign-up error:', error);
         return;
       }
+const userData=  {
+  email: signupEmail,
+  password: signupPassword,
+  username: signupUsername,
+  user_id: data.user.id,
+  address: signupAddress
+}
+
+const { data:insertData, error:insertError } = await supabase
+  .from('users')
+  .insert([
+    {userData},
+  ])
+  if(insertError) {
+    console.log('User insertion error', insertError)
+    return;
+  }
+  console.log('User Data:', insertData)
 
       const authenticatedSession: Session = {
         data: {
@@ -79,6 +101,9 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
       navigate('/home');
       setSignupEmail('');
       setSignupPassword('');
+      setSignupUsername('');
+      setSignupAddress('');
+
     } catch (error) {
       console.error('Sign-up error:', error);
     }
@@ -236,6 +261,20 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
               label="Password"
               value={signupPassword}
               onChange={(e) => setSignupPassword(e.target.value)}
+              sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
+            />
+            <TextField
+              type="username"
+              label="Username"
+              value={signupUsername}
+              onChange={(e) => setSignupEmail(e.target.value)}
+              sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
+            />
+            <TextField
+              type="address"
+              label="Address"
+              value={signupEmail}
+              onChange={(e) => setSignupEmail(e.target.value)}
               sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
             />
             <Button
