@@ -75,7 +75,7 @@ console.log(images)
   return (
     <form onSubmit={uploadImage}>
       <input type="text" name="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <input type="file" name="file" accept="image/png,image/jpeg,image/jpg,image/webp" onChange={(e) => uploadImage(e)} />
+      <input type="file" name="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/avif" onChange={(e) => uploadImage(e)} />
       <button type="submit" disabled={!isUserLoaded}>List it!</button>
       {!isUserLoaded && <p>Loading user session...</p>}
     </form>
