@@ -11,12 +11,12 @@ import { useTheme } from '@mui/material/styles';
 
 type PopUpProps = {
   handleSpendATokenClick: () => void;
-  numberOfTokens: number;
   getItNowClicked: boolean;
   setGetItNowClicked: (getItNowClicked: boolean) => void;
+  tokenCount:number;
 }
 
-export default function PopUp({handleSpendATokenClick, numberOfTokens, getItNowClicked, setGetItNowClicked}: PopUpProps) {
+export default function PopUp({handleSpendATokenClick, tokenCount, getItNowClicked, setGetItNowClicked}: PopUpProps) {
 
 const [open, setOpen] = useState(false);
 const theme = useTheme();
@@ -35,7 +35,7 @@ const handleCloseModal = () => {
 };
 
 
-const youHaveOneToken = numberOfTokens === 1;
+const youHaveOneToken = tokenCount === 1;
 
   return (
     <div>
@@ -52,7 +52,7 @@ const youHaveOneToken = numberOfTokens === 1;
         <TextField id="outlined-basic" label="Address" variant="outlined" sx={{backgroundColor: '#E3E2E2', width: '260px', margin: '0 auto'}} />
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           {youHaveOneToken && <p id = "numberOfTokens"> You have 1 token</p>}
-          {!youHaveOneToken && <p id = "numberOfTokens"> You have {numberOfTokens} tokens</p>}
+          {!youHaveOneToken && <p id = "numberOfTokens"> You have {tokenCount} tokens</p>}
         </Typography>
         <Button role="button" variant="contained" color="success" onClick={handleSpendATokenClick} className='greenButton' >Spend a token</Button>
       </Box>
