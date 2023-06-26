@@ -16,6 +16,8 @@ import swappTransparent from '../../swapp-transparent.png'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import supabase from '../../supabaseClient'
+import token1 from '../../images/token1.png'
+
 
 const settings = ['My Account', 'Logout'];
 
@@ -64,17 +66,20 @@ export default function NavBar() {
           
           {renderListItButton && (
           <Stack direction = "row" spacing = {2} >
-            <Button role="button" variant="contained" color="success" style={{width: '43px',
+            <Button role="button" variant="contained" color="success" title="List an Item!" style={{width: '43px',
     height: '40px',
     padding: '0',
     marginRight: '10px',
     minWidth: 'unset',
-    color: 'black',
-    backgroundColor: 'white',
+    color: 'white',
+    border: '2px solid white',
     // fontWeight: 'bold',
-    fontSize: '13px',
+    fontSize: '22px',
+    borderRadius: '35%',
+    backgroundColor: '#018043',
+  
     }}>
-          + ADD
+          +
             </Button>
           </Stack>)}
     </Box>
@@ -84,10 +89,11 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 0 }}>
       {renderAccountIcon && (
         <Tooltip title="Open settings">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <AccountCircleIcon sx={{ fontSize: isMobile? "40px" : "50px" }} />
-            <Typography sx={{borderRadius:'50%', backgroundColor: 'yellow', ml: '-15px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', height: isMobile ? '20px' : '25px', width: isMobile ? '20px' : '25px', mt: isMobile ? '15px' : '20px'}} >4</Typography>
-          </IconButton>
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, position: 'relative', mr: '10px' }}>
+  <AccountCircleIcon sx={{ fontSize: isMobile ? "45px" : "55px", color: 'white' }} />
+  <img src={token1} alt="token" style={{ height: isMobile ? '25px' : '30px', width: isMobile ? '28px' : '33px', marginTop: isMobile ? '18px' : '23px', marginLeft: '-19px' }} />
+  <Typography sx={{fontWeight: 'bold', ml: isMobile ? '-19px': '-22px', mt: isMobile? '22px': '24px'}}>4</Typography>
+</IconButton>
           
         </Tooltip>)}
       <Menu
