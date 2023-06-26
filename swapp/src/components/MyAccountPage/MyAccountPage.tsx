@@ -5,10 +5,22 @@
 
 import React from 'react'
 import UploadItem from '../UploadItem/UploadItem'
+import ListDisplay from '../ListDisplay/ListDisplay'
+import { TableResults } from '../App/App'
 
-// type Props = {}
+type MyAccountPageProps = {
+  items: TableResults[]
+  handleGetItNowClick: (itemId: string) => void;
+  selectedItem: string[];
+  filteredItems: TableResults[];
+  setItems: (items:TableResults[]) => void
+  setFilteredItems: (items:TableResults[]) => void
+}
 
-export default function MyAccountPage() {
+export default function MyAccountPage({ items, handleGetItNowClick, selectedItem, filteredItems, setFilteredItems }: MyAccountPageProps) {
+
+  let numItems = 99;
+
   return (
     <div className="accountContainer">
       <div className="uploadItem">
@@ -17,8 +29,16 @@ export default function MyAccountPage() {
           <label>Item name</label>
           <input type="text" />
           <UploadItem />
+          <ListDisplay 
+           numItems={numItems}
+           handleGetItNowClick={handleGetItNowClick}
+           selectedItem={selectedItem}
+           items={items}
+           filteredItems={filteredItems}
+           />
         </form>
     </div>
   </div>
   )
 }
+//items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems

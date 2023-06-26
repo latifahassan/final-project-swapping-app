@@ -7,7 +7,7 @@ type ListDisplayProps = {
   items: TableResults[]
   numItems: number;
   handleGetItNowClick: (itemId: string) => void;
-  spendATokenClicked: boolean;
+  spendATokenClicked?: boolean;
   selectedItem: string[]; 
   filteredItems: TableResults[];
 };

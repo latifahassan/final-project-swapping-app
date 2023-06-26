@@ -82,7 +82,12 @@ console.log(items)
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
-            <Route path = "/myaccount" element = {<MyAccountPage/>} />
+            <Route path = "/myaccount" element = {<MyAccountPage
+              items={items}
+              setItems={setItems}
+              setFilteredItems={setFilteredItems}
+              filteredItems={filteredItems}
+              />} />
         </Routes>
       </div>
     </Router>
