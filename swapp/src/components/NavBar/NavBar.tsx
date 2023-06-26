@@ -21,7 +21,11 @@ import token1 from '../../images/token1.png'
 
 const settings = ['My Account', 'Logout'];
 
-export default function NavBar() {
+type NavBarProps = {
+  tokenCount: number
+}
+
+export default function NavBar({tokenCount}:NavBarProps) {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -92,9 +96,8 @@ export default function NavBar() {
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, position: 'relative', mr: '10px' }}>
   <AccountCircleIcon sx={{ fontSize: isMobile ? "45px" : "55px", color: 'white' }} />
   <img src={token1} alt="token" style={{ height: isMobile ? '25px' : '30px', width: isMobile ? '28px' : '33px', marginTop: isMobile ? '18px' : '23px', marginLeft: '-19px' }} />
-  <Typography sx={{fontWeight: 'bold', ml: isMobile ? '-19px': '-22px', mt: isMobile? '22px': '24px'}}>4</Typography>
+  <Typography sx={{fontWeight: 'bold', ml: isMobile ? '-19px': '-22px', mt: isMobile? '22px': '24px'}}>{tokenCount}</Typography>
 </IconButton>
-          
         </Tooltip>)}
       <Menu
         sx={{ mt: '45px' }}

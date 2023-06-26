@@ -15,7 +15,7 @@ describe('PopUp component', () => {
 
     render(<PopUp
       handleSpendATokenClick={handleSpendATokenClickMock}
-      numberOfTokens={4}
+      tokenCount={4}
       getItNowClicked={true}
       setGetItNowClicked={setGetItNowClickedMock}/>);
 
