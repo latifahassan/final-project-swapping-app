@@ -61,9 +61,6 @@ export default function App() {
       }
   }
 
-// this is to check that the items are being pulled from the database
-console.log("see items below...")
-console.log(items)
 
 
   return (
@@ -82,7 +79,11 @@ console.log(items)
               setFilteredItems={setFilteredItems}
               filteredItems={filteredItems}/>} />
             <Route path = "/login" element = {<AuthPage/>} />
-            <Route path = "/myaccount" element = {<MyAccountPage/>} />
+            <Route path = "/myaccount" element = {<MyAccountPage
+              items={items}
+              setFilteredItems={setFilteredItems}
+              filteredItems={filteredItems}
+              />} />
         </Routes>
       </div>
     </Router>
