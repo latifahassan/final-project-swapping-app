@@ -1,6 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 interface Props {
   supabaseClient: any;
@@ -20,6 +22,8 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
   const [loginPassword, setLoginPassword] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleTabChange = (tab: 'login' | 'signup') => {
     setActiveTab(tab);
@@ -91,8 +95,9 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '100vh',
+    minHeight: isMobile ? "1rem" : "70vh",
     padding: '4rem',
+    pb: isMobile ? "20vh" : "11rem",
     backgroundColor: '#f5f5f5',
   }}
 >
@@ -101,6 +106,7 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
       display: 'flex',
       justifyContent: 'center',
       marginBottom: '-1px',
+      mt: isMobile ? "-3.2rem" : "0rem",
     }}
   >
     <Box
@@ -177,7 +183,7 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
   >
     {activeTab === 'login' && (
       <Box sx={{ marginBottom: '2rem' }}>
-        <Typography variant="h5" sx={{ marginBottom: '2rem', fontSize: '2rem' }}>
+        <Typography variant="h5" sx={{ marginBottom: '3rem', fontSize: '2rem' }}>
           Login
         </Typography>
         <form onSubmit={handleLogin}>
@@ -187,14 +193,14 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
               label="Email"
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value)}
-              sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
+              sx={{ marginBottom: "3rem", fontSize: '1.5rem' }}
             />
             <TextField
               type="password"
               label="Password"
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
-              sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
+              sx={{ marginBottom: '3rem', fontSize: '1.5rem' }}
             />
             <Button
               type="submit"
@@ -203,6 +209,7 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
                 backgroundColor: 'black',
                 color: 'white',
                 padding: '1rem 2rem',
+                marginBottom: '3rem',
                 fontSize: '1.2rem',
                 borderRadius: 0,
                 '&:hover': {
@@ -224,6 +231,11 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
         </Typography>
         <form onSubmit={handleSignup}>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <TextField
+              type="username"
+              label="Username"
+              sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
+            />
             <TextField
               type="email"
               label="Email"
@@ -238,6 +250,7 @@ export default function AuthUi({ supabaseClient, appearance }: Props) {
               onChange={(e) => setSignupPassword(e.target.value)}
               sx={{ marginBottom: '2rem', fontSize: '1.5rem' }}
             />
+            
             <Button
               type="submit"
               variant="contained"
