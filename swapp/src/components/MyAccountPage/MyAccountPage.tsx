@@ -20,18 +20,24 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
 
   let numItems = 99;
 
-  const user = supabase.auth.getUser();
+  // const user = supabase.auth.getUser();
 
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect( () => {
+    async function getUser() {
+      const user = await supabase.auth.getUser();
+      setUser(user);
     if(user) {
       setFilteredItems(items.filter(x => x.user_id === user.id));
       setLoading(false);
     } else {
       console.error("User does not have a value.");
     };
-  }, [user, items, setFilteredItems] );
+    };
+    getUser();
+  }, [items, setFilteredItems] );
 
   if(loading) {
     return <div>loading...</div>
@@ -55,4 +61,3 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
   </div>
   )
 }
-//items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems
