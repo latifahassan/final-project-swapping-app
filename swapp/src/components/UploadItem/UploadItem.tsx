@@ -2,6 +2,40 @@ import supabase from "../../supabaseClient";
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import "./UploadItem.css";
+import { styled } from "@mui/system";
+import { Box, TextField, Button } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
+const StyledForm = styled("form")(({ theme }) => ({
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	gap: theme.spacing(2),
+	maxWidth: "100vw",
+	margin: "o auto",
+	marginBottom: "40px",
+}));
+
+const FileInputWrapper = styled("div")({
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	justifyContent: "center",
+	width: "150px",
+	height: "150px",
+	border: "1px solid black",
+	borderRadius: "8px",
+	transition: "border-color 0.3s ease",
+	cursor: "pointer", // Added cursor style for hover
+	"&:hover": {
+		borderColor: "blue", // Example border color change on hover
+	},
+});
+
+const HiddenFileInput = styled("input")({
+	display: "none",
+});
 
 export default function UploadItem() {
 	const [user, setUser] = useState<any>(null);
@@ -9,6 +43,15 @@ export default function UploadItem() {
 	const [isUserLoaded, setIsUserLoaded] = useState(false);
 	const [title, setTitle] = useState("");
 	const [uploadedFilePath, setUploadedFilePath] = useState("");
+
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+	// function handleFileInputClick() {
+	// 	const fileInput = document.getElementById("fileInput");
+	// 	if (fileInput) {
+	// 		fileInput.click();
+	// 	}
+	// }
 
 	useEffect(() => {
 		console.log("setUploadedFilePath:", uploadedFilePath);
@@ -113,28 +156,68 @@ export default function UploadItem() {
 	}
 
 	return (
-		<form onSubmit={handleFormSubmit} className="formContainer">
-			<div className="uploadContainer">
-				<input
-					type="file"
-					name="file"
-					accept="image/png,image/jpeg,image/jpg,image/webp"
-					onChange={uploadImage}
-				/>
-				<label>Item name</label>
-				<input
-					type="text"
+		<StyledForm onSubmit={handleFormSubmit}>
+			<Box
+				display="flex"
+				flexDirection="row"
+				alignItems="center"
+				gap={2}
+				marginLeft="30px"
+				marginRight="10px"
+			>
+				<FileInputWrapper>
+					<label htmlFor="fileInput">
+						<Box
+							display="flex"
+							flexDirection="column"
+							alignItems="center"
+							justifyContent="center"
+							width="100%"
+							height="100%"
+							textAlign="center"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="48"
+								height="48"
+								viewBox="0 0 48 48"
+							>
+								<path d="M34 10H14c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h20c2.2 0 4-1.8 4-4V14c0-2.2-1.8-4-4-4zm-6 22h-4v-4h4v4zm0-8h-4v-8h4v8z" />
+							</svg>
+							<HiddenFileInput
+								type="file"
+								id="fileInput"
+								accept="image/png,image/jpeg,image/jpg,image/webp"
+								onChange={uploadImage}
+							/>
+							<Box fontSize="14px" fontWeight="bold">
+								Upload an image
+							</Box>
+						</Box>
+					</label>
+				</FileInputWrapper>
+				<TextField
+					sx={{ width: "45%" }}
+					label="Item title"
+					variant="outlined"
 					name="title"
 					value={title}
 					onChange={handleTitleChange}
 				/>
-			</div>
-			<div className="buttonContainer">
-				<button type="submit" disabled={!isUserLoaded || !uploadedFilePath}>
-					List it!
-				</button>
-			</div>
+			</Box>
+			<Button
+				sx={{
+					backgroundColor: "black",
+					borderRadius: "8px",
+					width: isMobile ? "40%" : "10%",
+				}}
+				type="submit"
+				variant="contained"
+				disabled={!isUserLoaded || !uploadedFilePath}
+			>
+				List it!
+			</Button>
 			{!isUserLoaded && <p>Loading user session...</p>}
-		</form>
+		</StyledForm>
 	);
 }
