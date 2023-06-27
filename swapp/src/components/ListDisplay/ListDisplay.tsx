@@ -4,19 +4,33 @@ import Grid from '@mui/material/Grid';
 import { TableResults } from '../App/App';
 
 type ListDisplayProps = {
-  items: TableResults[]
+  items: TableResults[];
   numItems: number;
   handleGetItNowClick?: (itemId: string) => void;
   spendATokenClicked?: boolean;
-  selectedItem?: string[]; 
+  selectedItem?: string[];
   filteredItems: TableResults[];
+  claimedItems?: string[]
   setFilteredItems: (items:TableResults[]) => void
-};
-export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems, setFilteredItems }: ListDisplayProps) {
+}
+
+export default function ListDisplay({
+  items,
+  numItems,
+  handleGetItNowClick,
+  spendATokenClicked,
+  selectedItem,
+  claimedItems,
+  filteredItems,
+  setFilteredItems
+}: ListDisplayProps) {
+
   const slicedFilteredItems = filteredItems.slice(0, numItems);
 
+console.log(claimedItems)
   return (
     <>
+
     {/* <Grid container rowSpacing={2} columnSpacing={{ xs: 10, sm: 5, md: 7 }} sx={{pl: 1.5}}> */}
     <Grid container spacing={2} justifyContent="flex-start" alignItems="center" sx={{ px: 2}}>
       {slicedFilteredItems.map((item) => (
@@ -33,6 +47,7 @@ export default function ListDisplay({ items, numItems, handleGetItNowClick, spen
           selectedItem={selectedItem}
           filteredItems={filteredItems}
           setFilteredItems={setFilteredItems}
+          claimedItems={claimedItems}
         />
         </Grid>
       ))}

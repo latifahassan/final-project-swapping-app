@@ -16,6 +16,7 @@ type DisplayCardProps = {
   selectedItem?: string[];
   filteredItems?: TableResults[];
   setFilteredItems?: (items: TableResults[]) => void;
+  claimedItems?: string[];
 };
 
 export default function DisplayCard({
@@ -23,6 +24,7 @@ export default function DisplayCard({
   image,
   title,
   username,
+  claimedItems,
   handleGetItNowClick,
   spendATokenClicked,
   selectedItem = [],
@@ -33,9 +35,9 @@ export default function DisplayCard({
   const itemIsSelected = selectedItem.includes(id);
   const location = useLocation();
   const isMyAccountPage = location.pathname === "/myaccount";
+  const itemIsClaimed = claimedItems?.includes(id);
 
   const handleButtonClick = () => {
-    // we have to use short circuiting to check if the function exists before calling it. We have to do this since in the props it is optional, thanks to the '?'.
     handleGetItNowClick && handleGetItNowClick(id);
   };
 
@@ -75,6 +77,11 @@ export default function DisplayCard({
     }
   };
 
+  console.log('Claimed Items:', claimedItems);
+  console.log('Current Item ID:', id);
+
+
+  
   return (
     <Card
       sx={{
@@ -107,6 +114,10 @@ export default function DisplayCard({
             mt: -2,
           }}
         >
+    <Card sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5 }}>
+      <CardMedia sx={{ height: 165, width: 172, borderRadius: 2, mt: 1.4 }} image={image} title={`image of ${title}`} />
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div" sx={{ fontSize: 14, fontWeight: 'bold', maxWidth: 500, minWidth: 190, textWrap: 'wrap', mt: -2 }}>
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: -0.5 }}>
@@ -114,14 +125,12 @@ export default function DisplayCard({
         </Typography>
       </CardContent>
       <CardActions>
-        {!isMyAccountPage && (!itemIsSelected || !spendATokenClicked) && (
-          <Button
-            role="button"
-            variant="contained"
-            color="success"
-            onClick={handleButtonClick}
-            sx={{ mb: 2, mt: -2 }}
-          >
+        {(!isMyAccountPage && itemIsClaimed) ? (
+          <Typography id="claimedOption" variant="body1" sx={{ fontWeight: 'bold', color: '#018043', pb: '8px' }}>
+            Claimed
+          </Typography>
+        ) : (
+          <Button role="button" variant="contained" color="success" onClick={handleButtonClick} sx={{ mb: 2, mt: -2 }}>
             GET IT NOW
           </Button>
         )}
@@ -136,15 +145,6 @@ export default function DisplayCard({
             VIEW
           </Button>
         )}
-        {spendATokenClicked && itemIsSelected && (
-          <Typography
-            id="claimedOption"
-            variant="body1"
-            sx={{ fontWeight: "bold", color: "#018043", pb: "8px" }}
-          >
-            Claimed
-          </Typography>
-          )}
           {/* only show UNLIST if you are on /myaccount and the item has not been claimed... */}
           {isMyAccountPage && !(spendATokenClicked && itemIsSelected) && (
           <Button
