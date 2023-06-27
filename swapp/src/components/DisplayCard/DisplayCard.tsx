@@ -35,8 +35,10 @@ export default function DisplayCard({
   };
 
   const handleUnlistButtonClick = async () => {
+    console.log("UNLIST button clicked, and handleUnlistButtonClick function called. The item_id is: ", id);
     const { data: userData, error: userError } = await supabase.auth.getUser();
-    const currentUserID = userData?.id;
+    const currentUserID = userData?.user?.id;
+    console.log("currentUserID is: ", currentUserID);
 
     if(userError) {
       console.error(userError);
@@ -116,7 +118,7 @@ export default function DisplayCard({
           <Button
             role="button"
             variant="contained"
-            color="primary"
+            color="success"
             onClick={handleButtonClick}
             sx={{ mb: 2, mt: -2 }}
           >
@@ -136,7 +138,7 @@ export default function DisplayCard({
           <Button
           role="button"
           variant="contained"
-          color="primary"
+          color="error"
           onClick={handleUnlistButtonClick}
           sx={{ mb: 2, mt: -2 }}
         >
