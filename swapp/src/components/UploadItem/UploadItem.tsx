@@ -3,7 +3,12 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import "./UploadItem.css";
 
-export default function UploadItem() {
+type UploadItemProps={
+  tokenCount: number;
+  setTokenCount: (tokenCount: number) => void;
+}
+
+export default function UploadItem({tokenCount, setTokenCount}: UploadItemProps) {
 	const [user, setUser] = useState<any>(null);
 	const [images, setImages] = useState<any[]>([]);
 	const [isUserLoaded, setIsUserLoaded] = useState(false);
@@ -104,6 +109,17 @@ export default function UploadItem() {
 				// Reset uploadedFilePath to empty string ready for next item that the user wants to list
 				setUploadedFilePath("");
 				getImages();
+        // Now increase the token count by one because the user has listed an item.
+        setTokenCount(tokenCount + 1);
+        // Reflect the change on the database.
+        const { error: updateError } = await supabase
+        .from('users')
+        .update({ token_count: tokenCount + 1 })
+        .eq('user_id', user.id);
+  
+      if (updateError) {
+        console.error('Error updating user token count:', updateError);
+      }
 			} else if (!user) {
 				alert("You must be logged in to list an item.");
 			}

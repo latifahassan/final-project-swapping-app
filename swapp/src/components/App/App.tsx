@@ -207,6 +207,8 @@ export default function App() {
 					element={
 						session ? (
 							<MyAccountPage
+							    tokenCount={tokenCount}
+								setTokenCount={setTokenCount}
 								items={items}
 								setFilteredItems={setFilteredItems}
 								filteredItems={filteredItems}
