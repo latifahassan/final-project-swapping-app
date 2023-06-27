@@ -143,6 +143,7 @@ export default function UploadItem() {
 	return (
 		<StyledForm onSubmit={handleFormSubmit}>
 			<FileInputWrapper>
+			<label htmlFor="fileInput">
 				<Box
 					display="flex"
 					flexDirection="column"
@@ -162,6 +163,7 @@ export default function UploadItem() {
 						Upload an image
 					</Box>
 				</Box>
+				</label>
 			</FileInputWrapper>
 			<TextField
 				label="Item title"
