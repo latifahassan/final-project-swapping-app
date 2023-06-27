@@ -7,7 +7,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css'
 import supabase from '../../supabaseClient';
-import { useNavigate } from 'react-router-dom';
 
 
 interface Session {
@@ -34,7 +33,6 @@ export default function App() {
   const [filteredItems, setFilteredItems] = useState<TableResults[]>(items);
   const [tokenCount, setTokenCount]= useState<number>(0);
   const [user, setUser] = useState<any>(null);
-  const navigate = useNavigate();
   const [session, setSession] = useState<Session | null>(null)
   console.log(user);
   useEffect(() => {
@@ -56,9 +54,8 @@ export default function App() {
   useEffect(() => {
     if (session) {
       console.log("Session exists")
-      navigate('/home');
     }
-  }, [session, navigate])
+  }, [session])
 
   useEffect(() => {
     getItems();
