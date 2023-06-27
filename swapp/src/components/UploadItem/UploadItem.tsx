@@ -2,6 +2,34 @@ import supabase from "../../supabaseClient";
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import "./UploadItem.css";
+import { styled } from "@mui/system";
+import { Box, TextField, Button } from "@mui/material";
+
+const StyledForm = styled("form")(({ theme }) => ({
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	gap: theme.spacing(2),
+	maxWidth: "100vw",
+	margin: "o auto",
+	marginBottom: "40px",
+}));
+
+const FileInputWrapper = styled("div")({
+	display: "flex",
+	flexDirection: "column",
+	alignItems: "center",
+	justifyContent: "center",
+	width: "150px",
+	height: "150px",
+	border: "1px solid black",
+	borderRadius: "8px",
+	transition: "border-color 0.3s ease",
+});
+
+const HiddenFileInput = styled("input")({
+	display: "none",
+});
 
 export default function UploadItem() {
 	const [user, setUser] = useState<any>(null);
@@ -113,28 +141,45 @@ export default function UploadItem() {
 	}
 
 	return (
-		<form onSubmit={handleFormSubmit} className="formContainer">
-			<div className="uploadContainer">
-				<input
-					type="file"
-					name="file"
-					accept="image/png,image/jpeg,image/jpg,image/webp"
-					onChange={uploadImage}
-				/>
-				<label>Item name</label>
-				<input
-					type="text"
-					name="title"
-					value={title}
-					onChange={handleTitleChange}
-				/>
-			</div>
+		<StyledForm onSubmit={handleFormSubmit}>
+			<FileInputWrapper>
+				<Box
+					display="flex"
+					flexDirection="column"
+					alignItems="center"
+					justifyContent="center"
+					width="100%"
+					height="100%"
+					textAlign="center"
+				>
+					<HiddenFileInput
+						type="file"
+						name="file"
+						accept="image/png,image/jpeg,image/jpg,image/webp"
+						onChange={uploadImage}
+					/>
+					<Box fontSize="14px" fontWeight="bold">
+						Upload an image
+					</Box>
+				</Box>
+			</FileInputWrapper>
+			<TextField
+				label="Item title"
+				variant="outlined"
+				name="title"
+				value={title}
+				onChange={handleTitleChange}
+			/>
 			<div className="buttonContainer">
-				<button type="submit" disabled={!isUserLoaded || !uploadedFilePath}>
+				<Button
+					type="submit"
+					variant="contained"
+					disabled={!isUserLoaded || !uploadedFilePath}
+				>
 					List it!
-				</button>
+				</Button>
 			</div>
 			{!isUserLoaded && <p>Loading user session...</p>}
-		</form>
+		</StyledForm>
 	);
 }
