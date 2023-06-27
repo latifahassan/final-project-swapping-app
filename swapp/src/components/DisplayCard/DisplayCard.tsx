@@ -114,10 +114,6 @@ export default function DisplayCard({
             mt: -2,
           }}
         >
-    <Card sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', borderRadius: 4, boxShadow: 2.5 }}>
-      <CardMedia sx={{ height: 165, width: 172, borderRadius: 2, mt: 1.4 }} image={image} title={`image of ${title}`} />
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div" sx={{ fontSize: 14, fontWeight: 'bold', maxWidth: 500, minWidth: 190, textWrap: 'wrap', mt: -2 }}>
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: -0.5 }}>
@@ -145,19 +141,19 @@ export default function DisplayCard({
             VIEW
           </Button>
         )}
-          {/* only show UNLIST if you are on /myaccount and the item has not been claimed... */}
-          {isMyAccountPage && !(spendATokenClicked && itemIsSelected) && (
+        {isMyAccountPage && !(spendATokenClicked && itemIsSelected) && (
           <Button
-          role="button"
-          variant="contained"
-          color="error"
-          onClick={handleUnlistButtonClick}
-          sx={{ mb: 2, mt: -2 }}
-        >
-          UNLIST
-        </Button>
-          )}
+            role="button"
+            variant="contained"
+            color="error"
+            onClick={handleUnlistButtonClick}
+            sx={{ mb: 2, mt: -2 }}
+          >
+            UNLIST
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
 }
+  
