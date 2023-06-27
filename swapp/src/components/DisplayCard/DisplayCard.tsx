@@ -3,6 +3,7 @@ import { Button, CardMedia, Card, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import { useLocation } from "react-router-dom";
+import supabase from '../../supabaseClient'
 
 type DisplayCardProps = {
   image: string;
@@ -31,6 +32,34 @@ export default function DisplayCard({
   const handleButtonClick = () => {
     // we have to use short circuiting to check if the function exists before calling it. We have to do this since in the props it is optional, thanks to the '?'.
     handleGetItNowClick && handleGetItNowClick(id);
+  };
+
+  const handleUnlistButtonClick = async () => {
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+    const currentUserID = userData?.id;
+
+    if(userError) {
+      console.error(userError);
+    };
+  
+    if (currentUserID) {
+      // Fetch the item to be deleted
+      const { data: itemData, error: itemError } = await supabase
+        .from("items")
+        .select("user_id")
+        .eq("item_id", id)
+        .single();
+  
+      const itemUserID = itemData?.user_id;
+  
+      if (currentUserID === itemUserID) {
+        // Current user has permission to delete the item
+        await supabase.from("items").delete().eq("item_id", id);
+      } else {
+        // Current user doesn't have permission to delete the item
+        console.log("Permission denied. The current user is not the owner of the item.");
+      }
+    }
   };
 
   return (
@@ -102,7 +131,18 @@ export default function DisplayCard({
           >
             Claimed
           </Typography>
-        )}
+          )}
+          {isMyAccountPage && (
+          <Button
+          role="button"
+          variant="contained"
+          color="primary"
+          onClick={handleUnlistButtonClick}
+          sx={{ mb: 2, mt: -2 }}
+        >
+          UNLIST
+        </Button>
+          )}
       </CardActions>
     </Card>
   );
