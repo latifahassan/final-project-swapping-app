@@ -11,7 +11,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useLocation, Link,useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import swappTransparent from '../../swapp-transparent.png'
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -87,7 +87,9 @@ export default function NavBar({tokenCount, items, setFilteredItems}:NavBarProps
     borderRadius: '35%',
     backgroundColor: '#018043',
   
-    }}>
+    }}
+    onClick={() => navigate("/myaccount")}
+    >
           +
             </Button>
           </Stack>)}
