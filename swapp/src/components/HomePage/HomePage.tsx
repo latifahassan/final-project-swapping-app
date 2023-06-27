@@ -111,8 +111,6 @@ console.log(claimedItems)
       handleSpendATokenClick={handleSpendATokenClick} 
       getItNowClicked={getItNowClicked}
       setGetItNowClicked={setGetItNowClicked}/>}
-
-      <p> Number of tokens: {tokenCount}</p>
       <Footer />
     </div>
   );

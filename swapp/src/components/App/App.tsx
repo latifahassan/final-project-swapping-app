@@ -165,7 +165,11 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<NavBar tokenCount={tokenCount} />
+			<NavBar
+      tokenCount={tokenCount}
+      items={items}
+      setFilteredItems={setFilteredItems}
+      />
 			<Routes>
 				<Route
 					path="/home"
@@ -207,9 +211,12 @@ export default function App() {
 					element={
 						session ? (
 							<MyAccountPage
+							  tokenCount={tokenCount}
+								setTokenCount={setTokenCount}
 								items={items}
 								setFilteredItems={setFilteredItems}
 								filteredItems={filteredItems}
+                getItems={getItems}
 							/>
 						) : (
 							<Navigate to="/login" />

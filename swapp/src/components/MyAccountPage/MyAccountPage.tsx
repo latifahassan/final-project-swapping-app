@@ -11,12 +11,15 @@ import supabase from '../../supabaseClient'
 import { User} from '@supabase/supabase-js';
 
 type MyAccountPageProps = {
-  items: TableResults[]
+  items: TableResults[];
   filteredItems: TableResults[];
-  setFilteredItems: (items:TableResults[]) => void
+  setFilteredItems: (items:TableResults[]) => void;
+  tokenCount: number;
+  setTokenCount: (tokenCount: number) => void;
+  getItems: () => void;
 }
 
-export default function MyAccountPage({ items, filteredItems, setFilteredItems }: MyAccountPageProps) {
+export default function MyAccountPage({ items, filteredItems, setFilteredItems, tokenCount, setTokenCount, getItems }: MyAccountPageProps) {
 
   let numItems = 99;
 
@@ -52,12 +55,18 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
     <div className="accountContainer">
       <div className="uploadItem">
         <h2>Make a listing</h2>
-          <UploadItem />
+          <UploadItem 
+           tokenCount={tokenCount}
+           setTokenCount={setTokenCount}
+           getItems={getItems}
+           />
           <ListDisplay 
            numItems={numItems}
            items={items}
            filteredItems={filteredItems}
            setFilteredItems={setFilteredItems}
+           tokenCount={tokenCount}
+           setTokenCount={setTokenCount}
            />
     </div>
   </div>
