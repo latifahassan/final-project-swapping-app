@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import supabase from '../../supabaseClient';
 
-
+//removed nav
 interface Session {
   user?: {
     email?: string;
