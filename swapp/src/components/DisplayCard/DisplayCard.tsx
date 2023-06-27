@@ -4,6 +4,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import { useLocation } from "react-router-dom";
 import supabase from '../../supabaseClient'
+import { TableResults } from '../App/App';
 
 type DisplayCardProps = {
   image: string;
@@ -13,6 +14,8 @@ type DisplayCardProps = {
   spendATokenClicked?: boolean;
   handleGetItNowClick?: (itemId: string) => void;
   selectedItem?: string[];
+  filteredItems?: TableResults[];
+  setFilteredItems?: (items: TableResults[]) => void;
 };
 
 export default function DisplayCard({
@@ -23,6 +26,8 @@ export default function DisplayCard({
   handleGetItNowClick,
   spendATokenClicked,
   selectedItem = [],
+  filteredItems = [],
+  setFilteredItems = () => {},
 }: DisplayCardProps) {
   // aobve, we had to write selectedItem = [] because we are using the selectedItem prop in the ListDisplay component, and we are passing it down to the DisplayCard component. However, we are not passing it down every time, so we have to set a default value for it. We set it to an empty array, so that if we don't pass it down, it will be an empty array, and we can still use it in the DisplayCard component.
   const itemIsSelected = selectedItem.includes(id);
@@ -52,12 +57,18 @@ export default function DisplayCard({
         .eq("item_id", id)
         .single();
   
+      if (itemError) {
+        console.error(itemError);
+      }
+      
       const itemUserID = itemData?.user_id;
   
       if (currentUserID === itemUserID) {
         // Current user has permission to delete the item
         await supabase.from("items").delete().eq("item_id", id);
-      } else {
+        // now refresh the state of the filteredItems so that the deleted item is no longer displayed
+        setFilteredItems(filteredItems.filter(x => x.item_id !== id));
+      }   else {
         // Current user doesn't have permission to delete the item
         console.log("Permission denied. The current user is not the owner of the item.");
       }

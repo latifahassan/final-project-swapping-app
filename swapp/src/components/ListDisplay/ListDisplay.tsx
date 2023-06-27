@@ -10,8 +10,9 @@ type ListDisplayProps = {
   spendATokenClicked?: boolean;
   selectedItem?: string[]; 
   filteredItems: TableResults[];
+  setFilteredItems: (items:TableResults[]) => void
 };
-export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems }: ListDisplayProps) {
+export default function ListDisplay({ items, numItems, handleGetItNowClick, spendATokenClicked, selectedItem, filteredItems, setFilteredItems }: ListDisplayProps) {
   const slicedFilteredItems = filteredItems.slice(0, numItems);
 
   return (
@@ -30,6 +31,8 @@ export default function ListDisplay({ items, numItems, handleGetItNowClick, spen
           handleGetItNowClick={() => handleGetItNowClick && handleGetItNowClick(item.item_id)}
           spendATokenClicked={spendATokenClicked}
           selectedItem={selectedItem}
+          filteredItems={filteredItems}
+          setFilteredItems={setFilteredItems}
         />
         </Grid>
       ))}

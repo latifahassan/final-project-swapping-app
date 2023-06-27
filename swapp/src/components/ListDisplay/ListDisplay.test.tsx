@@ -20,6 +20,7 @@ describe("ListDisplay", () => {
         handleGetItNowClick={handleGetItNowClick}
         spendATokenClicked={false}
         selectedItem={['abc123']}
+        setFilteredItems={jest.fn()}
         filteredItems={[
           { title: 'test title 1', image: 'test1.jpg', username: 'test username 1', item_id: 'abc123', user_id: 'abc123', created_at: '2023' },
           { title: 'test title 2', image: 'test2.jpg', username: 'test username 2', item_id: 'def456', user_id: 'abc123', created_at: '2023' },

@@ -83,7 +83,9 @@ export default function HomePage({items, setItems, setFilteredItems, filteredIte
        spendATokenClicked={spendATokenClicked} 
        selectedItem={selectedItem}
        items={items}
-       filteredItems={filteredItems}/>
+       filteredItems={filteredItems}
+       setFilteredItems={setFilteredItems}
+       />
       {getItNowClicked && <PopUp
       tokenCount={tokenCount} 
       handleSpendATokenClick={handleSpendATokenClick} 
