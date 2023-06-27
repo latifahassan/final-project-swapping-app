@@ -142,46 +142,52 @@ export default function UploadItem() {
 
 	return (
 		<StyledForm onSubmit={handleFormSubmit}>
-			<FileInputWrapper>
+		  <FileInputWrapper>
 			<label htmlFor="fileInput">
-				<Box
-					display="flex"
-					flexDirection="column"
-					alignItems="center"
-					justifyContent="center"
-					width="100%"
-					height="100%"
-					textAlign="center"
+			  <Box
+				display="flex"
+				flexDirection="column"
+				alignItems="center"
+				justifyContent="center"
+				width="100%"
+				height="100%"
+				textAlign="center"
+			  >
+			    <svg
+				  xmlns="http://www.w3.org/2000/svg"
+				  width="48"
+				  height="48"
+				  viewBox="0 0 48 48"
 				>
-					<HiddenFileInput
-						type="file"
-						name="file"
-						accept="image/png,image/jpeg,image/jpg,image/webp"
-						onChange={uploadImage}
-					/>
-					<Box fontSize="14px" fontWeight="bold">
-						Upload an image
-					</Box>
+				  <path d="M34 10H14c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h20c2.2 0 4-1.8 4-4V14c0-2.2-1.8-4-4-4zm-6 22h-4v-4h4v4zm0-8h-4v-8h4v8z" />
+				</svg>
+				<HiddenFileInput
+				  type="file"
+				  id="fileInput"
+				  accept="image/png,image/jpeg,image/jpg,image/webp"
+				  onChange={uploadImage}
+				/>
+				<Box fontSize="14px" fontWeight="bold">
+				  Upload an image
 				</Box>
-				</label>
-			</FileInputWrapper>
-			<TextField
-				label="Item title"
-				variant="outlined"
-				name="title"
-				value={title}
-				onChange={handleTitleChange}
-			/>
-			<div className="buttonContainer">
-				<Button
-					type="submit"
-					variant="contained"
-					disabled={!isUserLoaded || !uploadedFilePath}
-				>
-					List it!
-				</Button>
-			</div>
-			{!isUserLoaded && <p>Loading user session...</p>}
+			  </Box>
+			</label>
+		  </FileInputWrapper>
+		  <TextField
+			label="Item title"
+			variant="outlined"
+			name="title"
+			value={title}
+			onChange={handleTitleChange}
+		  />
+		  <Button
+			type="submit"
+			variant="contained"
+			disabled={!isUserLoaded || !uploadedFilePath}
+		  >
+			List it!
+		  </Button>
+		  {!isUserLoaded && <p>Loading user session...</p>}
 		</StyledForm>
-	);
-}
+	  );
+	  }
