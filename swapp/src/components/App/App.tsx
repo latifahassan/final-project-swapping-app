@@ -216,6 +216,7 @@ export default function App() {
 								items={items}
 								setFilteredItems={setFilteredItems}
 								filteredItems={filteredItems}
+                getItems={getItems}
 							/>
 						) : (
 							<Navigate to="/login" />

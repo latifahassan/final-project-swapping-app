@@ -16,9 +16,10 @@ type MyAccountPageProps = {
   setFilteredItems: (items:TableResults[]) => void;
   tokenCount: number;
   setTokenCount: (tokenCount: number) => void;
+  getItems: () => void;
 }
 
-export default function MyAccountPage({ items, filteredItems, setFilteredItems, tokenCount, setTokenCount }: MyAccountPageProps) {
+export default function MyAccountPage({ items, filteredItems, setFilteredItems, tokenCount, setTokenCount, getItems }: MyAccountPageProps) {
 
   let numItems = 99;
 
@@ -57,6 +58,7 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems, 
           <UploadItem 
            tokenCount={tokenCount}
            setTokenCount={setTokenCount}
+           getItems={getItems}
            />
           <ListDisplay 
            numItems={numItems}

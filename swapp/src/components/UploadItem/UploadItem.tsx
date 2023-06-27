@@ -6,9 +6,10 @@ import "./UploadItem.css";
 type UploadItemProps={
   tokenCount: number;
   setTokenCount: (tokenCount: number) => void;
+  getItems: () => void;
 }
 
-export default function UploadItem({tokenCount, setTokenCount}: UploadItemProps) {
+export default function UploadItem({tokenCount, setTokenCount, getItems}: UploadItemProps) {
 	const [user, setUser] = useState<any>(null);
 	const [images, setImages] = useState<any[]>([]);
 	const [isUserLoaded, setIsUserLoaded] = useState(false);
@@ -109,18 +110,21 @@ export default function UploadItem({tokenCount, setTokenCount}: UploadItemProps)
 				// Reset uploadedFilePath to empty string ready for next item that the user wants to list
 				setUploadedFilePath("");
 				getImages();
-        // Now increase the token count by one because the user has listed an item.
-        setTokenCount(tokenCount + 1);
-        // Reflect the change on the database.
-        const { error: updateError } = await supabase
-        .from('users')
-        .update({ token_count: tokenCount + 1 })
-        .eq('user_id', user.id);
-  
-      if (updateError) {
-        console.error('Error updating user token count:', updateError);
-      }
-			} else if (!user) {
+				// Now increase the token count by one because the user has listed an item.
+				setTokenCount(tokenCount + 1);
+				// Reflect the change on the database.
+				const { error: updateError } = await supabase
+				.from('users')
+				.update({ token_count: tokenCount + 1 })
+				.eq('user_id', user.id);
+		
+				if (updateError) {
+					console.error('Error updating user token count:', updateError);
+				}
+				// Run the getItems() function to update the list of items and show the new item that the user has just listed
+				getItems();
+			}
+			else if (!user) {
 				alert("You must be logged in to list an item.");
 			}
 		} catch (error) {
