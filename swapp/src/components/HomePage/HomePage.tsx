@@ -76,12 +76,13 @@ export default function HomePage({
           .from('claims')
           .insert([{ item_id: itemId, user_id: user.id, claimed: true }]);
   
-        if (insertError) {
-          console.error('Error inserting claim:', insertError);
-        } else {
-          console.log('Claim inserted successfully.');
-          //setClaimedItems((prevClaimedItems:string[]) => [...prevClaimedItems, itemId]);
-        }
+          if (insertError) {
+            console.error('Error inserting claim:', insertError);
+          } else {
+            console.log('Claim inserted successfully.');
+            setClaimedItems([...claimedItems, itemId]);
+          }
+          
       }
     } catch (error) {
       console.error('Error updating user token count:', error);
