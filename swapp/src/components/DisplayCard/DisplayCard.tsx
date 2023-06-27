@@ -145,7 +145,8 @@ export default function DisplayCard({
             Claimed
           </Typography>
           )}
-          {isMyAccountPage && (
+          {/* only show UNLIST if you are on /myaccount and the item has not been claimed... */}
+          {isMyAccountPage && !(spendATokenClicked && itemIsSelected) && (
           <Button
           role="button"
           variant="contained"
