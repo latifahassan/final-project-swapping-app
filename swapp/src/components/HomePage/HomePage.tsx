@@ -96,23 +96,24 @@ console.log(claimedItems)
     <div>
       <SearchBar items={items} setItems={setItems} setFilteredItems={setFilteredItems} />
       <ListDisplay
-        numItems={numItems}
-        handleGetItNowClick={handleGetItNowClick}
-        spendATokenClicked={spendATokenClicked}
-        selectedItem={selectedItem}
-        claimedItems={claimedItems}
-        items={items}
-        filteredItems={filteredItems}
-        
+
+       numItems={numItems}
+       handleGetItNowClick={handleGetItNowClick}      
+       spendATokenClicked={spendATokenClicked} 
+       selectedItem={selectedItem}
+       items={items}
+       filteredItems={filteredItems}
+       setFilteredItems={setFilteredItems}
+       claimedItems={claimedItems}
+       />
+      {getItNowClicked && <PopUp
+      tokenCount={tokenCount} 
+      handleSpendATokenClick={handleSpendATokenClick} 
+      getItNowClicked={getItNowClicked}
+      setGetItNowClicked={setGetItNowClicked}/>}
       />
-      {getItNowClicked && (
-        <PopUp
-          tokenCount={tokenCount}
-          handleSpendATokenClick={handleSpendATokenClick}
-          getItNowClicked={getItNowClicked}
-          setGetItNowClicked={setGetItNowClicked}
-        />
       )}
+
       <p> Number of tokens: {tokenCount}</p>
       <Footer />
     </div>

@@ -57,6 +57,7 @@ export default function MyAccountPage({ items, filteredItems, setFilteredItems }
            numItems={numItems}
            items={items}
            filteredItems={filteredItems}
+           setFilteredItems={setFilteredItems}
            />
     </div>
   </div>

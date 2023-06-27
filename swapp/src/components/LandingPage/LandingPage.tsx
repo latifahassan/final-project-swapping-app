@@ -51,6 +51,7 @@ export default function LandingPage({items, setItems, setFilteredItems, filtered
        spendATokenClicked = {false}  
        items={items}  
        filteredItems={filteredItems}
+       setFilteredItems={setFilteredItems}
         /></div>
       <div className="footer"> 
       <Footer/>
