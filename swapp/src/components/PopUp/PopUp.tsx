@@ -45,7 +45,7 @@ const youHaveOneToken = tokenCount === 1;
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={{ backgroundColor: 'white', width: '300px', margin: '0 auto', textAlign: 'center', mt: isMobile ? "40%" : "15%", p: '40px', borderRadius: '26px'}}>
+        <Box sx={{ backgroundColor: 'white', width: '300px', margin: '0 auto', textAlign: 'center', mt: isMobile ? "40%" : "15%", pt: '40px', pb: '40px', pl: isMobile ? '10px' : '40px', pr: isMobile ? '10px' : '40px', borderRadius: '26px'}}>
         <Typography id="modal-modal-title" variant="h5" component="h2" sx={{fontWeight: 'bold', pb: '15px'}}>
           Confirm your address
         </Typography>
@@ -54,7 +54,7 @@ const youHaveOneToken = tokenCount === 1;
           {youHaveOneToken && <p id = "numberOfTokens"> You have 1 token</p>}
           {!youHaveOneToken && <p id = "numberOfTokens"> You have {tokenCount} tokens</p>}
         </Typography>
-        <Button role="button" variant="contained" color="success" onClick={handleSpendATokenClick} className='greenButton' >Spend a token</Button>
+        <Button role="button" variant="contained" style={{backgroundColor: '#018043'}} onClick={handleSpendATokenClick} className='greenButton' >Spend a token</Button>
       </Box>
       </Modal>
     </div>
