@@ -133,6 +133,9 @@ const { data:insertData, error:insertError } = await supabase
       justifyContent: 'center',
       marginBottom: '-1px',
       mt: isMobile? '-7vh' : '0px',
+      paddingLeft: '-50px',
+      overflow: 'hidden',
+
     }}
   >
     <Box
@@ -154,7 +157,6 @@ const { data:insertData, error:insertError } = await supabase
     color: activeTab === 'login' ? 'black' : '#808080',
     fontSize: '1.2rem',
     padding: '0.5rem 2rem',
-    
     borderLeft: '1px solid #e0e0e0',
     borderRight: 'none',
     borderTopLeftRadius: '4px',
@@ -201,9 +203,10 @@ const { data:insertData, error:insertError } = await supabase
       alignItems: 'center',
       border: '1px solid #e0e0e0',
       borderRadius: '4px',
-      padding: '2rem',
       backgroundColor: 'white',
-      width: '400px', 
+      width: '360px',
+      paddingTop: '2rem',
+      paddingBottom: '2rem',
       marginTop: '-1px', 
     }}
   >
