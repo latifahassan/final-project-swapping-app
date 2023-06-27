@@ -40,7 +40,7 @@ export default function DisplayCard({id, image, title, username, handleGetItNowC
       </CardContent>
       <CardActions>
       {(!itemIsSelected || !spendATokenClicked) && ( 
-      <Button role="button" variant="contained" color="success"  onClick={handleButtonClick} sx={{mb: 2, mt: -2}}>
+      <Button role="button" variant="contained" style={{backgroundColor: '#018043'}}  onClick={handleButtonClick} sx={{mb: 2, mt: -2}}>
           GET IT NOW
         </Button>)}
        {spendATokenClicked && itemIsSelected && (<Typography id = "claimedOption" variant="body1" sx={{fontWeight: 'bold', color: '#018043', pb: '8px'}}>Claimed</Typography>)} 
