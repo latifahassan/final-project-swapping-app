@@ -17,6 +17,8 @@ type DisplayCardProps = {
   filteredItems?: TableResults[];
   setFilteredItems?: (items: TableResults[]) => void;
   claimedItems?: string[];
+  tokenCount?: number;
+  setTokenCount?: (tokenCount: number) => void;
 };
 
 export default function DisplayCard({
@@ -30,8 +32,10 @@ export default function DisplayCard({
   selectedItem = [],
   filteredItems = [],
   setFilteredItems = () => {},
+  tokenCount,
+  setTokenCount
 }: DisplayCardProps) {
-  // aobve, we had to write selectedItem = [] because we are using the selectedItem prop in the ListDisplay component, and we are passing it down to the DisplayCard component. However, we are not passing it down every time, so we have to set a default value for it. We set it to an empty array, so that if we don't pass it down, it will be an empty array, and we can still use it in the DisplayCard component.
+  // above, we had to write selectedItem = [] because we are using the selectedItem prop in the ListDisplay component, and we are passing it down to the DisplayCard component. However, we are not passing it down every time, so we have to set a default value for it. We set it to an empty array, so that if we don't pass it down, it will be an empty array, and we can still use it in the DisplayCard component.
   const itemIsSelected = selectedItem.includes(id);
   const location = useLocation();
   const isMyAccountPage = location.pathname === "/myaccount";
@@ -43,37 +47,56 @@ export default function DisplayCard({
 
   const handleUnlistButtonClick = async () => {
     console.log("UNLIST button clicked, and handleUnlistButtonClick function called. The item_id is: ", id);
-    const { data: userData, error: userError } = await supabase.auth.getUser();
-    const currentUserID = userData?.user?.id;
-    console.log("currentUserID is: ", currentUserID);
+    console.log("The current user's token count is: ", tokenCount);
+    if (tokenCount && tokenCount >= 1) {
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+      const currentUserID = userData?.user?.id;
+      console.log("currentUserID is: ", currentUserID);
 
-    if(userError) {
-      console.error(userError);
-    };
+      if(userError) {
+        console.error(userError);
+      };
+    
+      if (currentUserID) {
+        // Fetch the item to be deleted
+        const { data: itemData, error: itemError } = await supabase
+          .from("items")
+          .select("user_id")
+          .eq("item_id", id)
+          .single();
+    
+        if (itemError) {
+          console.error(itemError);
+        }
+        
+        const itemUserID = itemData?.user_id;
+    
+        if (currentUserID === itemUserID) {
+          // Current user has permission to delete the item
+          await supabase.from("items").delete().eq("item_id", id);
+          // now refresh the state of the filteredItems so that the deleted item is no longer displayed
+          setFilteredItems(filteredItems.filter(x => x.item_id !== id));
+          // now reduce the token count by 1
+          if (setTokenCount) {
+            setTokenCount(tokenCount - 1);
+          }
+          // and do the same in the database
+          const { error: updateError } = await supabase
+          .from('users')
+          .update({ token_count: tokenCount - 1 })
+          .eq('user_id', currentUserID);
   
-    if (currentUserID) {
-      // Fetch the item to be deleted
-      const { data: itemData, error: itemError } = await supabase
-        .from("items")
-        .select("user_id")
-        .eq("item_id", id)
-        .single();
-  
-      if (itemError) {
-        console.error(itemError);
+          if (updateError) {
+            console.error('Error updating user token count:', updateError);
+          }
+        }   else {
+          // Current user doesn't have permission to delete the item
+          console.log("Permission denied. The current user is not the owner of the item.");
+        }
       }
-      
-      const itemUserID = itemData?.user_id;
-  
-      if (currentUserID === itemUserID) {
-        // Current user has permission to delete the item
-        await supabase.from("items").delete().eq("item_id", id);
-        // now refresh the state of the filteredItems so that the deleted item is no longer displayed
-        setFilteredItems(filteredItems.filter(x => x.item_id !== id));
-      }   else {
-        // Current user doesn't have permission to delete the item
-        console.log("Permission denied. The current user is not the owner of the item.");
-      }
+    }
+    else {
+      alert("You don't have enough tokens to unlist this item. You need at least 1 token to unlist an item. Please list an item to earn a token.")
     }
   };
 
@@ -121,7 +144,7 @@ export default function DisplayCard({
         </Typography>
       </CardContent>
       <CardActions>
-        
+
         {(!isMyAccountPage && itemIsClaimed) && (
           <Typography id="claimedOption" variant="body1" sx={{ fontWeight: 'bold', color: '#018043', pb: '8px' }}>
             Claimed
