@@ -1,3 +1,4 @@
+
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
 import AuthPage from "../AuthPage/AuthPage";
@@ -9,6 +10,8 @@ import "./App.css";
 import supabase from "../../supabaseClient";
 import { Navigate } from "react-router-dom";
 
+
+//removed nav
 interface Session {
 	user?: {
 		email?: string;
@@ -25,6 +28,7 @@ export type TableResults = {
 };
 
 export default function App() {
+
 	const [items, setItems] = useState<TableResults[]>([]);
 	const [filteredItems, setFilteredItems] = useState<TableResults[]>(items);
 	const [tokenCount, setTokenCount] = useState<number>(0);
@@ -216,3 +220,5 @@ export default function App() {
 		</div>
 	);
 }
+
+

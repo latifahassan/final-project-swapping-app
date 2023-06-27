@@ -65,7 +65,7 @@ export default function NavBar({tokenCount}:NavBarProps) {
     <Box sx={{ flexGrow: 0 }}>
       {renderHomeIcon && (
           <IconButton component = {Link} to = "/home">
-            <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px" }}/>
+            <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px", color: 'white'}}/>
             </IconButton>)}
           
           {renderListItButton && (

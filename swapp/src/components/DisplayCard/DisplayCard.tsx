@@ -41,6 +41,7 @@ export default function DisplayCard({
         </Typography>
       </CardContent>
       <CardActions>
+
         {itemIsClaimed ? (
           <Typography id="claimedOption" variant="body1" sx={{ fontWeight: 'bold', color: '#018043', pb: '8px' }}>
             Claimed
