@@ -165,7 +165,11 @@ export default function App() {
 
 	return (
 		<div className="App">
-			<NavBar tokenCount={tokenCount} />
+			<NavBar
+      tokenCount={tokenCount}
+      items={items}
+      setFilteredItems={setFilteredItems}
+      />
 			<Routes>
 				<Route
 					path="/home"

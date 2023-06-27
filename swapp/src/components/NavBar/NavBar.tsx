@@ -17,15 +17,18 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import supabase from '../../supabaseClient'
 import token1 from '../../images/token1.png'
+import { TableResults } from '../App/App';
 
 
 const settings = ['My Account', 'Logout'];
 
 type NavBarProps = {
   tokenCount: number
+  items: TableResults[]
+  setFilteredItems: (items: TableResults[]) => void
 }
 
-export default function NavBar({tokenCount}:NavBarProps) {
+export default function NavBar({tokenCount, items, setFilteredItems}:NavBarProps) {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -64,7 +67,9 @@ export default function NavBar({tokenCount}:NavBarProps) {
   <Toolbar disableGutters sx={{ display: 'flex', justifyContent: "space-between", alignItems: 'center', pl: '10px', pr: '10px', pt: '10px'}}>
     <Box sx={{ flexGrow: 0 }}>
       {renderHomeIcon && (
-          <IconButton component = {Link} to = "/home">
+        // the onClick means that when the home icon is pressed, we setFilteredItems to the original items array
+        // this avoids the issue of going from /myaccount to /home and still having the items filtered down to only show your listed items
+          <IconButton component = {Link} to = "/home" onClick={() => setFilteredItems(items)}>
             <HomeIcon sx={{ fontSize: isMobile ? "40px" : "50px", color: 'white'}}/>
             </IconButton>)}
           
