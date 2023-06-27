@@ -2,7 +2,9 @@ import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import supabase from '../../supabaseClient';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import Footer from '../Footer/Footer';
 interface Props {
   supabaseClient: any;
   appearance: any;
@@ -23,7 +25,8 @@ export default function AuthPage({ supabaseClient, appearance }: Props) {
   const [signupPassword, setSignupPassword] = useState('');
   const [signupUsername, setSignupUsername] = useState('');
   const [signupAddress, setSignupAddress] = useState('');
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleTabChange = (tab: 'login' | 'signup') => {
     setActiveTab(tab);
@@ -116,8 +119,11 @@ const { data:insertData, error:insertError } = await supabase
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '100vh',
-    padding: '4rem',
+    minHeight: isMobile? '30vh' : '65vh',
+    pb: '12.3vh',
+    pr: '2vw',
+    pl: '2vw',
+    pt: '10vh',
     backgroundColor: '#f5f5f5',
   }}
 >
@@ -126,6 +132,7 @@ const { data:insertData, error:insertError } = await supabase
       display: 'flex',
       justifyContent: 'center',
       marginBottom: '-1px',
+      mt: isMobile? '-7vh' : '0px',
     }}
   >
     <Box
@@ -298,6 +305,7 @@ const { data:insertData, error:insertError } = await supabase
       </Box>
     )}
   </Box>
+  <Footer />
 </Box>
 );
 };
