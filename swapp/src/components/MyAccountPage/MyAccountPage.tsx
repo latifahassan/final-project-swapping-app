@@ -34,6 +34,7 @@ export default function MyAccountPage({
   const [loading, setLoading] = useState(true);
   const [claimantUsername, setClaimantUsername] = useState("");
   const [claimantAddress, setClaimantAddress] = useState("");
+  const [claimantEmail, setClaimantEmail] = useState("");
   const [viewClicked, setViewClicked] = useState(false);
   
   const handleViewClick: (itemId: string) => void = (itemId) => {
@@ -65,6 +66,16 @@ export default function MyAccountPage({
       .from("claims")
       .select("user_id")
       .eq("item_id", itemId);
+      console.log(claimsData)
+
+      setClaimantUsername("");
+      setClaimantAddress("");
+      setClaimantEmail("");
+
+      if (claimsData && claimsData.length === 0) {
+        alert("No one has claimed this item yet, keep checking back!")
+        return;
+      }
 
     if (claimsError) {
       console.error("Error fetching claims:", claimsError);
@@ -79,7 +90,7 @@ export default function MyAccountPage({
 
     const { data: userData, error: userError } = await supabase
       .from("users")
-      .select("username, address")
+      .select("username, address, email")
       .eq("user_id", claimantUserId);
 
     if (userError) {
@@ -90,6 +101,7 @@ export default function MyAccountPage({
     const claimant = userData[0];
     if (!claimant) {
       console.error("Claimant details not found");
+      alert("No one has claimed this item yet, keep checking back!")
       return;
     }
     console.log("Claimant username:", claimant.username);
@@ -97,6 +109,7 @@ export default function MyAccountPage({
   
     setClaimantUsername(claimant.username);
     setClaimantAddress(claimant.address);
+    setClaimantEmail(claimant.email);
   }
 
   if (loading) {
@@ -122,10 +135,11 @@ export default function MyAccountPage({
           fetchClaimantDetails={fetchClaimantDetails}
           handleViewClick={handleViewClick}
         />
-        {viewClicked && (
+        {(viewClicked && claimantUsername !== "" && claimantEmail && claimantAddress) && (
           <PopUp
             claimantUsername={claimantUsername}
             claimantAddress={claimantAddress}
+            claimantEmail={claimantEmail}
             viewClicked={viewClicked}
             setViewClicked={setViewClicked}
           />

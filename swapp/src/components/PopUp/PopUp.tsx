@@ -15,6 +15,7 @@ type PopUpProps = {
   tokenCount?: number;
   claimantUsername?: string;
   claimantAddress?: string;
+  claimantEmail?: string;
   viewClicked?: boolean;
   setViewClicked?: (viewClicked: boolean) => void;
 };
@@ -26,6 +27,7 @@ export default function PopUp({
   setGetItNowClicked,
   claimantAddress,
   claimantUsername,
+  claimantEmail,
   setViewClicked,
   viewClicked,
 }: PopUpProps) {
@@ -121,16 +123,25 @@ export default function PopUp({
                 disabled
                 sx={{ backgroundColor: '#E3E2E2', width: '260px', margin: '0 auto', mt: '10px' }}
               />
-              <Button
+              <TextField
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                value={claimantEmail || ''}
+                disabled
+                sx={{ backgroundColor: '#E3E2E2', width: '260px', margin: '0 auto', mt: '10px' }}
+              />
+              {/* <Button
                 role="button"
                 variant="contained"
                 style={{ backgroundColor: '#018043' }}
               >
                 I've shipped this item
-              </Button>
+              </Button> */}
               <Button
                 role="button"
                 variant="contained"
+                onClick={handleCloseModal}
                 style={{ backgroundColor: '#FF5C5C' }}
               >
                 Go back
