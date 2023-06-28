@@ -40,7 +40,7 @@ export default function MyAccountPage({
     fetchClaimantDetails && fetchClaimantDetails(itemId);
     setViewClicked(true)
   };
-
+// works 
   useEffect( () => {
     async function getUser() {
       const { data: { user } } = await supabase.auth.getUser()
