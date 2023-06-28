@@ -15,6 +15,7 @@ type MyAccountPageProps = {
   getItems: () => void;
   selectedItem: string[];
   setSelectedItem: (selectedItem: string[]) => void;
+  
 };
 
 export default function MyAccountPage({
@@ -33,8 +34,12 @@ export default function MyAccountPage({
   const [loading, setLoading] = useState(true);
   const [claimantUsername, setClaimantUsername] = useState("");
   const [claimantAddress, setClaimantAddress] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
+  const [viewClicked, setViewClicked] = useState(false);
   
+  const handleViewClick: (itemId: string) => void = (itemId) => {
+    fetchClaimantDetails && fetchClaimantDetails(itemId);
+    setViewClicked(true)
+  };
 
   useEffect( () => {
     async function getUser() {
@@ -87,10 +92,11 @@ export default function MyAccountPage({
       console.error("Claimant details not found");
       return;
     }
-
+    console.log("Claimant username:", claimant.username);
+    console.log("Claimant address:", claimant.address);
+  
     setClaimantUsername(claimant.username);
     setClaimantAddress(claimant.address);
-    
   }
 
   if (loading) {
@@ -114,11 +120,14 @@ export default function MyAccountPage({
           tokenCount={tokenCount}
           setTokenCount={setTokenCount}
           fetchClaimantDetails={fetchClaimantDetails}
+          handleViewClick={handleViewClick}
         />
-        {showPopup && (
+        {viewClicked && (
           <PopUp
             claimantUsername={claimantUsername}
             claimantAddress={claimantAddress}
+            viewClicked={viewClicked}
+            setViewClicked={setViewClicked}
           />
         )}
       </div>

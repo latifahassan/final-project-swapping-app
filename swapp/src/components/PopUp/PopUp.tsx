@@ -15,6 +15,8 @@ type PopUpProps = {
   tokenCount?: number;
   claimantUsername?: string;
   claimantAddress?: string;
+  viewClicked?: boolean;
+  setViewClicked?: (viewClicked: boolean) => void;
 };
 
 export default function PopUp({
@@ -24,6 +26,8 @@ export default function PopUp({
   setGetItNowClicked,
   claimantAddress,
   claimantUsername,
+  setViewClicked,
+  viewClicked,
 }: PopUpProps) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -31,14 +35,15 @@ export default function PopUp({
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
-    if (getItNowClicked) {
+    if (getItNowClicked || viewClicked) {
       setOpen(true);
     }
-  }, [getItNowClicked]);
+  }, [getItNowClicked, viewClicked]);
 
   const handleCloseModal = () => {
     setOpen(false);
     setGetItNowClicked?.(false);
+    setViewClicked?.(false);
   };
 
   const youHaveOneToken = tokenCount === 1;
