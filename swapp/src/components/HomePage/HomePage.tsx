@@ -15,6 +15,8 @@ type HomePageProps = {
   setTokenCount: (tokenCount: number) => void;
   claimedItems: string[];
   setClaimedItems: (claimedItems: string[]) => void;
+  selectedItem: string[]; 
+  setSelectedItem: (selectedItem: string[]) => void; 
 };
 
 export default function HomePage({
@@ -26,9 +28,10 @@ export default function HomePage({
   setTokenCount,
   claimedItems,
   setClaimedItems,
+  selectedItem,
+  setSelectedItem,
 }: HomePageProps) {
   const [getItNowClicked, setGetItNowClicked] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<string[]>([]);
   const [spendATokenClicked, setSpendATokenClicked] = useState(false);
 
   const handleGetItNowClick = (itemId: string) => {
@@ -38,7 +41,7 @@ export default function HomePage({
     } else {
       setGetItNowClicked(true);
       if (!claimedItems.includes(itemId)) {
-        setSelectedItem((prevSelectedItems) => [...prevSelectedItems, itemId]);
+      setSelectedItem([...selectedItem, itemId]);
       }
       setSpendATokenClicked(false);
     }

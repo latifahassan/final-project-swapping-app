@@ -19,6 +19,8 @@ type DisplayCardProps = {
   claimedItems?: string[];
   tokenCount?: number;
   setTokenCount?: (tokenCount: number) => void;
+  fetchClaimantDetails?: (itemId: string) => void;
+  setShowPopup?: (showPopup: boolean) => void;
 };
 
 export default function DisplayCard({
@@ -33,7 +35,8 @@ export default function DisplayCard({
   filteredItems = [],
   setFilteredItems = () => {},
   tokenCount,
-  setTokenCount
+  setTokenCount,
+  fetchClaimantDetails,
 }: DisplayCardProps) {
   // above, we had to write selectedItem = [] because we are using the selectedItem prop in the ListDisplay component, and we are passing it down to the DisplayCard component. However, we are not passing it down every time, so we have to set a default value for it. We set it to an empty array, so that if we don't pass it down, it will be an empty array, and we can still use it in the DisplayCard component.
   const itemIsSelected = selectedItem.includes(id);
@@ -44,7 +47,10 @@ export default function DisplayCard({
   const handleButtonClick = () => {
     handleGetItNowClick && handleGetItNowClick(id);
   };
-
+  const handleViewClick: (itemId: string) => void = (itemId) => {
+    fetchClaimantDetails && fetchClaimantDetails(id);
+  };
+  
   const handleUnlistButtonClick = async () => {
     console.log("UNLIST button clicked, and handleUnlistButtonClick function called. The item_id is: ", id);
     console.log("The current user's token count is: ", tokenCount);
@@ -159,14 +165,15 @@ export default function DisplayCard({
 
         {isMyAccountPage && !itemIsSelected && (
           <Button
-            role="button"
-            variant="contained"
-            color="success"
-            onClick={handleButtonClick}
-            sx={{ mb: 2, mt: -2 }}
-          >
-            VIEW
-          </Button>
+          role="button"
+          variant="contained"
+          color="success"
+          onClick={() => handleViewClick(id)}
+          sx={{ mb: 2, mt: -2 }}
+        >
+          VIEW
+        </Button>
+        
         )}
 
         {isMyAccountPage && !(spendATokenClicked && itemIsSelected) && (

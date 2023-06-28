@@ -14,6 +14,7 @@ type ListDisplayProps = {
   setFilteredItems: (items:TableResults[]) => void
   tokenCount?: number;
   setTokenCount?: (tokenCount: number) => void;
+  fetchClaimantDetails?: (itemId: string) => void;
 }
 
 export default function ListDisplay({
@@ -26,7 +27,8 @@ export default function ListDisplay({
   filteredItems,
   setFilteredItems,
   tokenCount,
-  setTokenCount
+  setTokenCount,
+  fetchClaimantDetails
 }: ListDisplayProps) {
 
   const slicedFilteredItems = filteredItems.slice(0, numItems);
@@ -54,6 +56,7 @@ console.log(claimedItems)
           claimedItems={claimedItems}
           tokenCount={tokenCount}
           setTokenCount={setTokenCount}
+          fetchClaimantDetails={fetchClaimantDetails}
         />
         </Grid>
       ))}

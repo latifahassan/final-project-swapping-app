@@ -1,4 +1,3 @@
-
 import HomePage from "../HomePage/HomePage";
 import LandingPage from "../LandingPage/LandingPage";
 import AuthPage from "../AuthPage/AuthPage";
@@ -35,6 +34,7 @@ export default function App() {
 	const [user, setUser] = useState<any>(null);
 	const [session, setSession] = useState<Session | null>(null);
 	const [claimedItems, setClaimedItems] = useState<string[]>([]);
+	const [selectedItem, setSelectedItem] = useState<string[]>([]);
 
 	console.log(user);
 	useEffect(() => {
@@ -184,6 +184,8 @@ export default function App() {
 								setTokenCount={setTokenCount}
 								claimedItems={claimedItems}
 								setClaimedItems={setClaimedItems}
+								selectedItem={selectedItem}
+                				setSelectedItem={setSelectedItem}
 							/>
 						) : (
 							<Navigate to="/login" />
@@ -217,6 +219,8 @@ export default function App() {
 								setFilteredItems={setFilteredItems}
 								filteredItems={filteredItems}
                 getItems={getItems}
+				selectedItem={selectedItem}
+                setSelectedItem={setSelectedItem}
 							/>
 						) : (
 							<Navigate to="/login" />
