@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { TextField, Button } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { useLocation } from 'react-router-dom';
+import { useLocation as useReactRouterLocation } from 'react-router-dom';
 
 type PopUpProps = {
   handleSpendATokenClick?: () => void;
@@ -33,8 +33,23 @@ export default function PopUp({
 }: PopUpProps) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+  function useLocation() {
+    const location = useReactRouterLocation();
+  
+    if (!location) {
+      // Provide a default location object if none is available
+      return {
+        pathname: '',
+        search: '',
+        hash: '',
+        state: null,
+      };
+    }
+  
+    return location;
+    
+  }  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const location = useLocation();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     if (getItNowClicked || viewClicked) {
@@ -51,6 +66,7 @@ export default function PopUp({
   const youHaveOneToken = tokenCount === 1;
 
   return (
+    
     <div>
       <Modal
         disableEnforceFocus
