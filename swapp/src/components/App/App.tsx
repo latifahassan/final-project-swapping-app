@@ -186,7 +186,7 @@ export default function App() {
 								setClaimedItems={setClaimedItems}
 							/>
 						) : (
-							<Navigate to="/login" />
+							<Navigate to="/" />
 						)
 					}
 				/>
