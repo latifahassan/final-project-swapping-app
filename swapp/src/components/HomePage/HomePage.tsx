@@ -113,6 +113,7 @@ console.log(claimedItems)
       tokenCount={tokenCount} 
       handleSpendATokenClick={handleSpendATokenClick} 
       getItNowClicked={getItNowClicked}
+      viewType="homepage"
       setGetItNowClicked={setGetItNowClicked}/>}
       <Footer />
     </div>

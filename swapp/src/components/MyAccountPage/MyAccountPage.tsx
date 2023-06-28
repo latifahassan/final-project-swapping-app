@@ -141,6 +141,7 @@ export default function MyAccountPage({
             claimantAddress={claimantAddress}
             claimantEmail={claimantEmail}
             viewClicked={viewClicked}
+            viewType="myaccount"
             setViewClicked={setViewClicked}
           />
         )}

@@ -17,6 +17,7 @@ describe('PopUp component', () => {
       handleSpendATokenClick={handleSpendATokenClickMock}
       tokenCount={4}
       getItNowClicked={true}
+      viewType="homepage"
       setGetItNowClicked={setGetItNowClickedMock}/>);
 
     const titleElement = screen.getByText('Confirm your address');

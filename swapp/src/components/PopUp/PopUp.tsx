@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import { TextField, Button } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { useLocation as useReactRouterLocation } from 'react-router-dom';
 
 type PopUpProps = {
   handleSpendATokenClick?: () => void;
@@ -18,11 +17,13 @@ type PopUpProps = {
   claimantEmail?: string;
   viewClicked?: boolean;
   setViewClicked?: (viewClicked: boolean) => void;
+  viewType: "homepage" | "myaccount"
 };
 
 export default function PopUp({
   handleSpendATokenClick,
   tokenCount,
+  viewType,
   getItNowClicked,
   setGetItNowClicked,
   claimantAddress,
@@ -33,23 +34,7 @@ export default function PopUp({
 }: PopUpProps) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
-  function useLocation() {
-    const location = useReactRouterLocation();
-  
-    if (!location) {
-      // Provide a default location object if none is available
-      return {
-        pathname: '',
-        search: '',
-        hash: '',
-        state: null,
-      };
-    }
-  
-    return location;
-    
-  }  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const location = useLocation();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     if (getItNowClicked || viewClicked) {
@@ -95,11 +80,11 @@ export default function PopUp({
             component="h2"
             sx={{ fontWeight: 'bold', pb: '15px' }}
           >
-            {location.pathname === '/home'
+            {viewType === 'homepage'
               ? 'Confirm your address'
               : 'This item has been claimed'}
           </Typography>
-          {location.pathname === '/home' ? (
+          {viewType === "homepage" ? (
             <>
               <TextField
                 id="outlined-basic"
