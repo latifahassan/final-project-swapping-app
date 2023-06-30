@@ -5,6 +5,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import Footer from '../Footer/Footer';
 import { TableResults } from '../App/App';
 import supabase from '../../supabaseClient';
+import './HomePage.css';
 
 type HomePageProps = {
   items: TableResults[];
@@ -97,6 +98,7 @@ console.log(claimedItems)
 
   return (
     <div>
+      <div className="container">
       <SearchBar items={items} setItems={setItems} setFilteredItems={setFilteredItems} />
       <ListDisplay
 
@@ -115,6 +117,7 @@ console.log(claimedItems)
       getItNowClicked={getItNowClicked}
       viewType="homepage"
       setGetItNowClicked={setGetItNowClicked}/>}
+      </div>
       <Footer />
     </div>
   );
