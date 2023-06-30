@@ -207,7 +207,7 @@ export default function UploadItem({tokenCount, setTokenCount, getItems}: Upload
 							<HiddenFileInput
 								type="file"
 								id="fileInput"
-								accept="image/png,image/jpeg,image/jpg,image/webp"
+								accept="image/png,image/jpeg,image/jpg,image/webp,image/JPG,image/JPEG,image/PNG,image/WEBP,image/"
 								onChange={uploadImage}
 							/>
 							<Box fontSize="14px" fontWeight="bold">
